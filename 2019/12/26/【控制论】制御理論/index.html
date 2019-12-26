@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/Sakuyui.github.io/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/Sakuyui.github.io/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/Sakuyui.github.io/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/Sakuyui.github.io/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/Sakuyui.github.io/css/main.css">
+
+
+<link rel="stylesheet" href="/Sakuyui.github.io/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/Sakuyui.github.io/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="【控制论】制御理論力学系をフィードバック制御する微分オペレーター$s&#x3D;\frac{d}{dt}$[例]$ms^2x(s)+csx(s)+kx(s)&#x3D;f(s)\\x(s)&#x3D;\frac{1}{ms^2+cs+k}f(s)$$\frac{1}{ms^2+cs+k}$は伝達関数RLC电路$L\frac{d^2q(t)}{dt^2}+R\frac{dq(t)}{dt}+\frac{1}{C}q(t)&#x3D;v(t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【控制论】制御理論">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="【控制论】制御理論力学系をフィードバック制御する微分オペレーター$s&#x3D;\frac{d}{dt}$[例]$ms^2x(s)+csx(s)+kx(s)&#x3D;f(s)\\x(s)&#x3D;\frac{1}{ms^2+cs+k}f(s)$$\frac{1}{ms^2+cs+k}$は伝達関数RLC电路$L\frac{d^2q(t)}{dt^2}+R\frac{dq(t)}{dt}+\frac{1}{C}q(t)&#x3D;v(t">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563689259372.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563705437708.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563708207140.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563708666184.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563715961800.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563715983823.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563715995367.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563716025557.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563716071396.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563716124783.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563716151814.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563769242281.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563770061552.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563770995136.png">
+<meta property="article:published_time" content="2019-12-26T12:48:46.607Z">
+<meta property="article:modified_time" content="2019-12-26T12:31:42.000Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/1563689259372.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>【控制论】制御理論 | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/Sakuyui.github.io/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/Sakuyui.github.io/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/Sakuyui.github.io/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/Sakuyui.github.io/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/Sakuyui.github.io/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/Sakuyui.github.io/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/Sakuyui.github.io/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E6%8E%A7%E5%88%B6%E8%AE%BA%E3%80%91%E5%88%B6%E5%BE%A1%E7%90%86%E8%AB%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/Sakuyui.github.io/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【控制论】制御理論
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:48:46 / Modified: 20:31:42" itemprop="dateCreated datePublished" datetime="2019-12-26T20:48:46+08:00">2019-12-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>962</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="【控制论】制御理論"><a href="#【控制论】制御理論" class="headerlink" title="【控制论】制御理論"></a>【控制论】制御理論</h1><h2 id="力学系をフィードバック制御する"><a href="#力学系をフィードバック制御する" class="headerlink" title="力学系をフィードバック制御する"></a>力学系をフィードバック制御する</h2><p><strong>微分オペレーター</strong><br>$s=\frac{d}{dt}$<br>[例]<br>$ms^2x(s)+csx(s)+kx(s)=f(s)\\x(s)=\frac{1}{ms^2+cs+k}f(s)$<br>$\frac{1}{ms^2+cs+k}$は<strong>伝達関数</strong><br><img src="./1563689259372.png" alt="Alt text"><br><strong>RLC电路</strong><br>$L\frac{d^2q(t)}{dt^2}+R\frac{dq(t)}{dt}+\frac{1}{C}q(t)=v(t)$<img src="./1563705437708.png" alt="Alt text"><br><img src="./1563708207140.png" alt="Alt text"></p>
+<h2 id="制御系設計とは、複素数とラプラス変換"><a href="#制御系設計とは、複素数とラプラス変換" class="headerlink" title="制御系設計とは、複素数とラプラス変換"></a>制御系設計とは、複素数とラプラス変換</h2><p><img src="./1563708666184.png" alt="Alt text"><br><strong>AB并联=&gt;$\frac{A}{AB+1}$</strong><br><strong>Loop transfer function:化简为仅有一个函数和一个反馈环的图</strong></p>
+<p><strong>閉ループ伝達関数:$\frac{L}{1+L}$</strong></p>
+<h2 id="制御で用いるラプラス変換の重要な性質-LTIシステムの表現１-convolution-と伝達関数"><a href="#制御で用いるラプラス変換の重要な性質-LTIシステムの表現１-convolution-と伝達関数" class="headerlink" title="制御で用いるラプラス変換の重要な性質,LTIシステムの表現１(convolution と伝達関数)"></a>制御で用いるラプラス変換の重要な性質,LTIシステムの表現１(convolution と伝達関数)</h2><h3 id="ラプラス変換性質"><a href="#ラプラス変換性質" class="headerlink" title="ラプラス変換性質"></a>ラプラス変換性質</h3><ul>
+<li><p>linear<br><img src="./1563715961800.png" alt="Alt text"></p>
+</li>
+<li><p>scaling<br><img src="./1563715983823.png" alt="Alt text"></p>
+</li>
+<li><p>delay<br><img src="./1563715995367.png" alt="Alt text"></p>
+</li>
+<li>move<br><img src="./1563716025557.png" alt="Alt text"></li>
+<li>微分<br><img src="./1563716071396.png" alt="Alt text"></li>
+<li>int<br><img src="./1563716124783.png" alt="Alt text"></li>
+<li>convolution<br><img src="./1563716151814.png" alt="Alt text"><script type="math/tex; mode=display">y(t)=g(t)*u(t)=\int_0^tg(\tau)u(t-\tau)d\tau</script></li>
+<li>最終値定理<br><img src="./1563769242281.png" alt="Alt text"></li>
+</ul>
+<h3 id="线性时不变系统-LTIシステム"><a href="#线性时不变系统-LTIシステム" class="headerlink" title="线性时不变系统(LTIシステム)"></a>线性时不变系统(LTIシステム)</h3><p><strong>インパルス応答($g(t)$)</strong>:给一个LTI一个单位脉冲信号，他的输出<br>知道impluse应答后，对于任意的信号输入，都可以利用卷积定理求输出<br><img src="./1563770061552.png" alt="Alt text"><br><strong>ステップ応答</strong>($u_s(t)$)：</p>
+<h3 id="伝達関数"><a href="#伝達関数" class="headerlink" title="伝達関数"></a>伝達関数</h3><p>$G（s）=Y（s）/U（s）$<br>一般$G(s)$<br><img src="./1563770995136.png" alt="Alt text"></p>
+<h2 id="附-フリーエ変換のいくつかの形式"><a href="#附-フリーエ変換のいくつかの形式" class="headerlink" title="附:フリーエ変換のいくつかの形式"></a>附:フリーエ変換のいくつかの形式</h2><ul>
+<li>(连续时间(非周期)，连续频率)-&gt;傅里叶变换(FT)<script type="math/tex; mode=display">X(\omega)=\int_{-\infty}^\infty x(t)e^{-j\omega t}dt</script></li>
+<li>(连续时间，离散频率）-&gt;傅里叶级数(FS)<script type="math/tex; mode=display">X(k\omega_0)=\frac{1}{T_0}\int_{-\frac{T_0}{2}}^{\frac{T_0}{2}} x(t)e^{-jk\omega_0 t}dt</script></li>
+<li>(离散时间,连续频率)  -&gt;离散时间傅里叶级数 (DTFT)<script type="math/tex; mode=display">X(e^{j\omega})=\sum_{n=-\infty}^\infty x(n)e^{-j\omega n}</script></li>
+<li>(离散时间,离散频率) -&gt; 离散傅里叶级数 (DFS)<script type="math/tex; mode=display">\tilde X[k]=\sum_{n=0}^{N-1} \tilde x(n)e^{-j{\frac{2\pi}{N}} kn}</script></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/Sakuyui.github.io/2019/12/26/%E3%80%90%E7%9F%A9%E9%98%B5%E8%AE%BA_%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0%E3%80%91%E7%89%B9%E5%BE%81%E5%80%BC%E5%88%86%E8%A7%A3%EF%BC%8C%E5%A5%87%E5%BC%82%E5%80%BC%E5%88%86%E8%A7%A3%EF%BC%88SVD%EF%BC%89/" rel="prev" title="【矩阵论_线性代数】特征值分解，奇异值分解（SVD）">
+      <i class="fa fa-chevron-left"></i> 【矩阵论_线性代数】特征值分解，奇异值分解（SVD）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/Sakuyui.github.io/2019/12/26/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E3%80%91%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%845%E7%A7%8D%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/" rel="next" title="【密码学】分组密码的5种基本工作模式">
+      【密码学】分组密码的5种基本工作模式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【控制论】制御理論"><span class="nav-number">1.</span> <span class="nav-text">【控制论】制御理論</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#力学系をフィードバック制御する"><span class="nav-number">1.1.</span> <span class="nav-text">力学系をフィードバック制御する</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制御系設計とは、複素数とラプラス変換"><span class="nav-number">1.2.</span> <span class="nav-text">制御系設計とは、複素数とラプラス変換</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#制御で用いるラプラス変換の重要な性質-LTIシステムの表現１-convolution-と伝達関数"><span class="nav-number">1.3.</span> <span class="nav-text">制御で用いるラプラス変換の重要な性質,LTIシステムの表現１(convolution と伝達関数)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ラプラス変換性質"><span class="nav-number">1.3.1.</span> <span class="nav-text">ラプラス変換性質</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性时不变系统-LTIシステム"><span class="nav-number">1.3.2.</span> <span class="nav-text">线性时不变系统(LTIシステム)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#伝達関数"><span class="nav-number">1.3.3.</span> <span class="nav-text">伝達関数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附-フリーエ変換のいくつかの形式"><span class="nav-number">1.4.</span> <span class="nav-text">附:フリーエ変換のいくつかの形式</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/Sakuyui.github.io/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/Sakuyui.github.io/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">267k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4:03</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/Sakuyui.github.io/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/Sakuyui.github.io/lib/anime.min.js"></script>
+  <script src="/Sakuyui.github.io/lib/velocity/velocity.min.js"></script>
+  <script src="/Sakuyui.github.io/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/Sakuyui.github.io/js/utils.js"></script>
+
+<script src="/Sakuyui.github.io/js/motion.js"></script>
+
+
+<script src="/Sakuyui.github.io/js/schemes/muse.js"></script>
+
+
+<script src="/Sakuyui.github.io/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/Sakuyui.github.io/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/Sakuyui.github.io/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
