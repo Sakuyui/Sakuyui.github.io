@@ -210,6 +210,191 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">【转】TCP、IP、ARP协议之间的工作关系</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:45:10 / Modified: 21:49:51" itemprop="dateCreated datePublished" datetime="2019-12-26T20:45:10+08:00">2019-12-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p><strong>转于:<a href="https://www.cnblogs.com/itsad/p/8250503.html" target="_blank" rel="noopener">https://www.cnblogs.com/itsad/p/8250503.html</a></strong> 版权归原作者所有</p>
+</blockquote>
+<p>TCP协议与ARP协议位于不同的层，不能用“并列”的思维来考虑。TCP位于传输层，而ARP工作在网络层（也有说法是数据链路层，主要看怎么理解），但实际上掌管网络层的大boss是IP协议，ARP协议用于实现IP地址向MAC地址的转换，不过是个跑龙套的。</p>
+<p>除此之外，网络层想要把数据发出去还要依靠数据链路层，在局域网中，数据链路层和之下的物理层最常见的莫过于802.3协议栈了，也就是大名鼎鼎的以太网。</p>
+<p>注：802.3/以太网并不是一个协议，也不是一个分层。它是对局域网内部通信的一个实现标准，囊括了从物理层到链路层的一坨协议。以下简单使用“802.3”来代表802.3中链路层及以下负责数据传送的协议集。</p>
+<p>在网络分层模型中，下层要为上层提供服务，而上层的一切行动都要靠下层们为它跑腿。打个简单的比方，TCP就好比是老板，而IP是项目主管，ARP和802.3则是为以上二位跑腿的小员工。现在老板TCP想要向外发送一个SYN请柬。以下是大致剧情……</p>
+<hr>
+<p>TCP：IP你过来，我现在要给“destinationIP”发送一个SYN请柬，请柬我已经写好了，剩下的就交给你了，限你n秒之内给我回话！（老板任性地走了……）。</p>
+<p>IP拿到请柬后用信封封好，写上自己的IP地址和接收方的IP地址。然后将自己的网络号与<strong>destinationIP</strong>对比：<br><strong>1. 刚好在同一个网段，心想目标就在我们小区内（局域网），这就好办了（跳至 —- #1 —- 处）。</strong><br><strong>2. IP一看不在同一个网段，心想不妙，只能求助收发室了（网关/路由器）（跳至 —- #2 —- 处）。</strong></p>
+<p><strong>—- #1 —-</strong><br>IP：ARP你过来，给我查查这个“destinationIP”的详细地址在哪（MAC地址）。</p>
+<p>ARP：（翻了翻自己的笔记本<strong>（ARP缓存）</strong>没找到，他摇了摇头，接着打开了小区广播）<strong> “destinationIP”</strong>听到请回答，我需要你的详细地址。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/[%E6%8E%92%E9%98%9F%E8%AE%BA]/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%5B%E6%8E%92%E9%98%9F%E8%AE%BA%5D/" class="post-title-link" itemprop="url">[排队论]</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:45:06 / Modified: 20:31:56" itemprop="dateCreated datePublished" datetime="2019-12-26T20:45:06+08:00">2019-12-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="排队论"><a href="#排队论" class="headerlink" title="[排队论]"></a>[排队论]</h1><h2 id="M-M-S-S-e-g-电话系统"><a href="#M-M-S-S-e-g-电话系统" class="headerlink" title="M/M/S/S e.g. 电话系统"></a>M/M/S/S e.g. 电话系统</h2><p>到达：$\lambda$的指数分布<br>消灭: $n\mu$的指数分布 (n是客户数量)<br>窗口数:$N$<br><img src="./1565418510612.png" alt="Alt text"><br><img src="./1565418704641.png" alt="Alt text"><br><img src="./1565418761237.png" alt="Alt text"></p>
+<h2 id="M-M-1-infty"><a href="#M-M-1-infty" class="headerlink" title="M/M/1/$\infty$"></a>M/M/1/$\infty$</h2><blockquote>
+<p>M/M/1<br><strong>过程进入状态n的速率等于过程离开状态n的速率。</strong><br>于是我们可以得到第一个概率方程 $\lambda P_0=\mu P_1$</p>
+</blockquote>
+<p><img src="./1565418956515.png" alt="Alt text"><br><img src="./1565418978273.png" alt="Alt text"><br><img src="./1565418984959.png" alt="Alt text"></p>
+<blockquote>
+<p>$P_1=\frac{\lambda}{\mu}P_0$<br>…<br>$P_{n+1}=\frac{\lambda}{\mu}P_n+(P_n-\frac{\lambda}{\mu}P_{n-1})=(\frac{\lambda}{\mu})^{n+1}P_0$<br>排队价格等式:<script type="math/tex">P\{X\ge n\}=(\lambda \div \mu)P\{X\ge n-1\}</script><br><strong>顾客平均数=L=<script type="math/tex">\sum_{n=0}^\infty{nP_n}=\frac{\lambda}{\mu-\lambda}</script></strong><br>求和函数 $\sum_n nx^n$:转换成$\sum_n (n+1)x^n-x^n$,前面一项是求导<br>W=L\ $\lambda$ (平均等待时间)<br>$W_Q=W-E[S]=W-\frac{1}{\mu}$ (平均等待排队时间)<br>$L_Q=\lambda W_Q$ (排队等待的平均用户数量)</p>
+<h2 id="M-M-S-infty"><a href="#M-M-S-infty" class="headerlink" title="M/M/S/$\infty$"></a>M/M/S/$\infty$</h2><p><img src="./1565419031035.png" alt="Alt text"><br><img src="./1565419040873.png" alt="Alt text"><br><img src="./1565419046141.png" alt="Alt text"><br><img src="./1565419054714.png" alt="Alt text"></p>
+<h2 id="2-经典排队模型"><a href="#2-经典排队模型" class="headerlink" title="2.经典排队模型"></a>2.经典排队模型</h2><p>其格式为： A/B/n/S/Z</p>
+</blockquote>
+<ul>
+<li>A：顾客到达的规律；B：服务时间分布；n：服务台数目；S：队列容量的大小；Z：服务规程</li>
+</ul>
+<p>若队列容量大小为∞时，可简化为A/B/n/Z</p>
+<p>若还为先来先服务时，可简化为A/B/n</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%5B%E6%8E%92%E9%98%9F%E8%AE%BA%5D/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/22/hello-world%20-%20Copy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -447,7 +632,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -511,12 +696,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">267k</span>
+    <span title="Symbols count total">269k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:03</span>
+    <span title="Reading time total">4:04</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>

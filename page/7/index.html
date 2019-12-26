@@ -210,6 +210,184 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/" class="post-title-link" itemprop="url">【概率模型】CRF_Conditional Random Field(条件随机场)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:46:34 / Modified: 20:27:12" itemprop="dateCreated datePublished" datetime="2019-12-26T20:46:34+08:00">2019-12-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="【概率模型】CRF-Conditional-Random-Field-条件随机场"><a href="#【概率模型】CRF-Conditional-Random-Field-条件随机场" class="headerlink" title="【概率模型】CRF:Conditional Random Field(条件随机场)"></a>【概率模型】CRF:Conditional Random Field(条件随机场)</h1><blockquote>
+<p>CRF主要用于序列标注，可以简单理解为对序列的每一帧都进行分类</p>
+<h2 id="逐帧softmax"><a href="#逐帧softmax" class="headerlink" title="逐帧softmax"></a>逐帧softmax</h2><p>为了解决上述问题。可以利用逐帧softmax<br>将这个序列用 CNN 或者 RNN 进行编码后，接一个全连接层用 softmax 激活，如下图所示：<br><img src="./1557629879751.png" alt="Alt text"></p>
+<h2 id="条件随机场"><a href="#条件随机场" class="headerlink" title="条件随机场"></a>条件随机场</h2><p>然而，当我们设计标签时，比如用 s、b、m、e 的 4 个标签来做字标注法的分词，目标输出序列本身会带有一些上下文关联，比如 s 后面就不能接 m 和 e，等等。逐标签 softmax 并没有考虑这种输出层面的上下文关联，所以它意味着把这些关联放到了编码层面，希望模型能自己学到这些内容，但有时候会“强模型所难”。 </p>
+</blockquote>
+<p>而 CRF 则更直接一点，它<strong>将输出层面的关联分离了出来</strong>，这使得模型在学习上更为“从容”：<br><img src="./1557630131916.png" alt="Alt text"><br>而在序列标注任务中，我们的正确答案是一般是唯一的。比如“今天天气不错”，如果对应的分词结果是“今天/天气/不/错”，那么目标输出序列就是 bebess，除此之外别的路径都不符合要求。</p>
+<p>换言之，在序列标注任务中，我们的研究的基本单位应该是路径，我们要做的事情，是从 k^n 条路径选出正确的一条，那就意味着，如果将它<strong>视为一个分类问题</strong>，那么将是 k^n 类中选一类的分类问题。<br><img src="./1557630124813.png" alt="Alt text"><br>这就是逐帧 softmax 和 CRF 的根本不同了：<strong>前者将序列标注看成是 n 个 k 分类问题，后者将序列标注看成是 1 个 k^n 分类问题。</strong><br>具体来讲，在 CRF 的序列标注问题中，我们要计算的是条件概率：<br><img src="./1557630182441.png" alt="Alt text"></p>
+<p>我们举个例子：<br><img src="./1557665166565.png" alt="Alt text"><br>我们可以得到以下模型图：<br><img src="./1557665178660.png" alt="Alt text"><br>当模型输入句子 ”Dog caught the cat“ 时，我们希望模型能够输出标注序列：“n v a n”的概率最大<br>那么如何根据这个状态图计算出序列”n v a n“的出现的概率呢？<br>这里就引出了<strong>概率无向图模型</strong>：（注：个人认为条件随机场模型是一个概率无向图模型，而线性链条件随机场是一个有向图模型）</p>
+<p>对于上列图，我们定义两种特征</p>
+<ul>
+<li><strong>转移特征</strong><br>定义在边上的特征。<img src="./1557665271002.png" alt="Alt text"><br>表示观察序列X在i及i-1位置上的标记转移概率</li>
+<li><strong>状态特征</strong><br>定义在点上的特征<script type="math/tex; mode=display">s_k(y_i,X,i)</script>表示对于观察序列X其i位置的标记概率</li>
+</ul>
+<p><img src="./1557665438893.png" alt="Alt text"><br><img src="./1557666060888.png" alt="Alt text"></p>
+<h4 id="定义CRF中的特征函数"><a href="#定义CRF中的特征函数" class="headerlink" title="定义CRF中的特征函数"></a>定义CRF中的特征函数</h4><p>现在，我们正式地定义一下什么是CRF中的特征函数，所谓特征函数，就是这样的函数，它接受四个参数： </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E3%82%BD%E3%83%95%E3%83%88%E5%B7%A5%E5%AD%A6%E3%80%91Git%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%E3%80%90%E3%82%BD%E3%83%95%E3%83%88%E5%B7%A5%E5%AD%A6%E3%80%91Git%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" class="post-title-link" itemprop="url">【ソフト工学】Gitコマンド</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:46:26 / Modified: 20:30:15" itemprop="dateCreated datePublished" datetime="2019-12-26T20:46:26+08:00">2019-12-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>735</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="【ソフト工学】Gitコマンド"><a href="#【ソフト工学】Gitコマンド" class="headerlink" title="【ソフト工学】Gitコマンド"></a>【ソフト工学】Gitコマンド</h1><h2 id="よく使用のコマンド"><a href="#よく使用のコマンド" class="headerlink" title="よく使用のコマンド"></a>よく使用のコマンド</h2><h3 id="远程仓库相关"><a href="#远程仓库相关" class="headerlink" title="远程仓库相关"></a>远程仓库相关</h3><p>检出仓库：<strong>git clone git://github.com/jquery/jquery.git</strong><br>查看远程仓库：<strong>git remote -v</strong><br>添加远程仓库：<strong>git remote add [name] [url]</strong><br>删除远程仓库：<strong>git remote rm [name]</strong><br>修改远程仓库： <strong>git remote set-url —push[name][newUrl]</strong><br>拉取远程仓库： <strong>git pull [remoteName] [localBranchName]</strong><br>推送远程仓库： <strong>git push [remoteName] [localBranchName]</strong></p>
+<h3 id="上传项目到远程分支"><a href="#上传项目到远程分支" class="headerlink" title="上传项目到远程分支"></a>上传项目到远程分支</h3><p>1.初始化本地仓库<br><code>Git init</code><br>2.上传修改的文件<br><code>git add *</code><br>3.commit 文件<br><code>git commit -m &quot;test&quot;</code><br>4.创建分支<br><code>git branch test</code><br>5.切换分支<br><code>git checkout test</code><br>6.关联远程分支<br><code>git remote add origin https://github.com/yangxiaoyan20/BowlingScore.git</code><br>7.push<br><code>git push origin test</code></p>
+<p>修改后重新push<br>1、git add .<br>2、git commit -m “test” &nbsp;（”test“为分支名）<br>3、git branch test（创建分支）<br>4、git checkout &nbsp;test （切换分支）<br>5、git push origin test:test</p>
+<p>commit，然后pull，然后再push</p>
+<h2 id="error："><a href="#error：" class="headerlink" title="error："></a>error：</h2><p>1.fatal: refusing to merge unrelated histories<br><strong>git pull origin master -–allow-unrelated-histories</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%E3%80%90%E3%82%BD%E3%83%95%E3%83%88%E5%B7%A5%E5%AD%A6%E3%80%91Git%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90Robotics%E3%80%91%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E5%AF%BC%E8%AE%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -909,191 +1087,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="Sakuyui39">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SakuyuiのBLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">【转】TCP、IP、ARP协议之间的工作关系</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-26 20:45:10 / Modified: 21:49:51" itemprop="dateCreated datePublished" datetime="2019-12-26T20:45:10+08:00">2019-12-26</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p><strong>转于:<a href="https://www.cnblogs.com/itsad/p/8250503.html" target="_blank" rel="noopener">https://www.cnblogs.com/itsad/p/8250503.html</a></strong> 版权归原作者所有</p>
-</blockquote>
-<p>TCP协议与ARP协议位于不同的层，不能用“并列”的思维来考虑。TCP位于传输层，而ARP工作在网络层（也有说法是数据链路层，主要看怎么理解），但实际上掌管网络层的大boss是IP协议，ARP协议用于实现IP地址向MAC地址的转换，不过是个跑龙套的。</p>
-<p>除此之外，网络层想要把数据发出去还要依靠数据链路层，在局域网中，数据链路层和之下的物理层最常见的莫过于802.3协议栈了，也就是大名鼎鼎的以太网。</p>
-<p>注：802.3/以太网并不是一个协议，也不是一个分层。它是对局域网内部通信的一个实现标准，囊括了从物理层到链路层的一坨协议。以下简单使用“802.3”来代表802.3中链路层及以下负责数据传送的协议集。</p>
-<p>在网络分层模型中，下层要为上层提供服务，而上层的一切行动都要靠下层们为它跑腿。打个简单的比方，TCP就好比是老板，而IP是项目主管，ARP和802.3则是为以上二位跑腿的小员工。现在老板TCP想要向外发送一个SYN请柬。以下是大致剧情……</p>
-<hr>
-<p>TCP：IP你过来，我现在要给“destinationIP”发送一个SYN请柬，请柬我已经写好了，剩下的就交给你了，限你n秒之内给我回话！（老板任性地走了……）。</p>
-<p>IP拿到请柬后用信封封好，写上自己的IP地址和接收方的IP地址。然后将自己的网络号与<strong>destinationIP</strong>对比：<br><strong>1. 刚好在同一个网段，心想目标就在我们小区内（局域网），这就好办了（跳至 —- #1 —- 处）。</strong><br><strong>2. IP一看不在同一个网段，心想不妙，只能求助收发室了（网关/路由器）（跳至 —- #2 —- 处）。</strong></p>
-<p><strong>—- #1 —-</strong><br>IP：ARP你过来，给我查查这个“destinationIP”的详细地址在哪（MAC地址）。</p>
-<p>ARP：（翻了翻自己的笔记本<strong>（ARP缓存）</strong>没找到，他摇了摇头，接着打开了小区广播）<strong> “destinationIP”</strong>听到请回答，我需要你的详细地址。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/26/%E3%80%90%E8%BD%AC%E3%80%91TCP%E3%80%81IP%E3%80%81ARP%E5%8D%8F%E8%AE%AE%E4%B9%8B%E9%97%B4%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%85%B3%E7%B3%BB/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/[%E6%8E%92%E9%98%9F%E8%AE%BA]/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="Sakuyui39">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SakuyuiのBLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/26/%5B%E6%8E%92%E9%98%9F%E8%AE%BA%5D/" class="post-title-link" itemprop="url">[排队论]</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-26 20:45:06 / Modified: 20:31:56" itemprop="dateCreated datePublished" datetime="2019-12-26T20:45:06+08:00">2019-12-26</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="排队论"><a href="#排队论" class="headerlink" title="[排队论]"></a>[排队论]</h1><h2 id="M-M-S-S-e-g-电话系统"><a href="#M-M-S-S-e-g-电话系统" class="headerlink" title="M/M/S/S e.g. 电话系统"></a>M/M/S/S e.g. 电话系统</h2><p>到达：$\lambda$的指数分布<br>消灭: $n\mu$的指数分布 (n是客户数量)<br>窗口数:$N$<br><img src="./1565418510612.png" alt="Alt text"><br><img src="./1565418704641.png" alt="Alt text"><br><img src="./1565418761237.png" alt="Alt text"></p>
-<h2 id="M-M-1-infty"><a href="#M-M-1-infty" class="headerlink" title="M/M/1/$\infty$"></a>M/M/1/$\infty$</h2><blockquote>
-<p>M/M/1<br><strong>过程进入状态n的速率等于过程离开状态n的速率。</strong><br>于是我们可以得到第一个概率方程 $\lambda P_0=\mu P_1$</p>
-</blockquote>
-<p><img src="./1565418956515.png" alt="Alt text"><br><img src="./1565418978273.png" alt="Alt text"><br><img src="./1565418984959.png" alt="Alt text"></p>
-<blockquote>
-<p>$P_1=\frac{\lambda}{\mu}P_0$<br>…<br>$P_{n+1}=\frac{\lambda}{\mu}P_n+(P_n-\frac{\lambda}{\mu}P_{n-1})=(\frac{\lambda}{\mu})^{n+1}P_0$<br>排队价格等式:<script type="math/tex">P\{X\ge n\}=(\lambda \div \mu)P\{X\ge n-1\}</script><br><strong>顾客平均数=L=<script type="math/tex">\sum_{n=0}^\infty{nP_n}=\frac{\lambda}{\mu-\lambda}</script></strong><br>求和函数 $\sum_n nx^n$:转换成$\sum_n (n+1)x^n-x^n$,前面一项是求导<br>W=L\ $\lambda$ (平均等待时间)<br>$W_Q=W-E[S]=W-\frac{1}{\mu}$ (平均等待排队时间)<br>$L_Q=\lambda W_Q$ (排队等待的平均用户数量)</p>
-<h2 id="M-M-S-infty"><a href="#M-M-S-infty" class="headerlink" title="M/M/S/$\infty$"></a>M/M/S/$\infty$</h2><p><img src="./1565419031035.png" alt="Alt text"><br><img src="./1565419040873.png" alt="Alt text"><br><img src="./1565419046141.png" alt="Alt text"><br><img src="./1565419054714.png" alt="Alt text"></p>
-<h2 id="2-经典排队模型"><a href="#2-经典排队模型" class="headerlink" title="2.经典排队模型"></a>2.经典排队模型</h2><p>其格式为： A/B/n/S/Z</p>
-</blockquote>
-<ul>
-<li>A：顾客到达的规律；B：服务时间分布；n：服务台数目；S：队列容量的大小；Z：服务规程</li>
-</ul>
-<p>若队列容量大小为∞时，可简化为A/B/n/Z</p>
-<p>若还为先来先服务时，可简化为A/B/n</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/26/%5B%E6%8E%92%E9%98%9F%E8%AE%BA%5D/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1166,7 +1159,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1230,12 +1223,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">267k</span>
+    <span title="Symbols count total">269k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:03</span>
+    <span title="Reading time total">4:04</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>

@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【深層学習】LSTM-Long-Short Term Memory</title>
+    <url>/2019/12/26/%E3%80%90%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E3%80%91LSTM-Long-Short%20Term%20Memory/</url>
+    <content><![CDATA[<h1 id="【深層学習】LSTM-Long-Short-Term-Memory"><a href="#【深層学習】LSTM-Long-Short-Term-Memory" class="headerlink" title="【深層学習】LSTM:Long-Short Term Memory"></a>【深層学習】LSTM:Long-Short Term Memory</h1><h2 id="Structure"><a href="#Structure" class="headerlink" title="Structure"></a>Structure</h2><p>其实就是RNN的进化版,从图中可以看出朴素RNN是<strong>当前的输出结果不仅和当前时刻的输入有关，还和上层的隐藏层计算结果有关</strong>，而LSTM中还加入了$c$，因此LSTM有2个传递状态$h\text{(hidden state)}$与$c\text{(cell state)}$<br><img src="./1558189242145.png" alt="Alt text"></p>
+<p>LSTM利用某时刻输入$x_t$和上一时刻隐藏状态$h_{t-1}$经过运算得到<strong>4个状态</strong><br> <img src="./1558189578364.png" alt="Alt text"><br><img src="./1558189600298.png" alt="Alt text"><br><img src="./1558189677265.png" alt="Alt text"></p>
+<h2 id="Details"><a href="#Details" class="headerlink" title="Details"></a>Details</h2><h3 id="遗忘门-z-f"><a href="#遗忘门-z-f" class="headerlink" title="遗忘门$z_f$"></a>遗忘门$z_f$</h3><blockquote>
+<p>遗忘门决定了应丢弃或保留哪些信息。来自先前隐藏状态的信息和来自当前输入的信息通过<strong>sigmoid</strong>函数传递。值介于0和1之间，<strong>越接近0意味着忘记，越接近1意味着要保持。</strong><br><img src="https://pic2.zhimg.com/v2-6c7bd0888f84cfd7d5cf3bc03e9cdbfd_b.gif" alt="avatar"><br><img src="./1558190292899.png" alt="Alt text"><br><strong>由输出和上一层的隐藏状态来决定遗忘哪些</strong></p>
+<h3 id="输入门-z-i-与-z"><a href="#输入门-z-i-与-z" class="headerlink" title="输入门$z_i$与$z$"></a>输入门$z_i$与$z$</h3><p>输入门要<strong>更新单元状态</strong>，首先，我们将先前的隐藏状态和当前输入传递给sigmoid函数。这决定了通过将值转换为0到1来更新哪些值：0表示不重要，1表示重要。接着你还要将隐藏状态和当前输入传递给tanh函数，以便在-1和1之间取值以帮助调节网络。然后将tanh输出与sigmoid输出相乘。<strong>sigmoid输出将决定哪些信息对于输出很重要</strong>。<br>输出门决定下一个隐藏状态应该是什么。请记住，隐藏状态包含有关先前输入的信息，隐藏状态也可用于预测。首先，我们将先前的隐藏状态和当前输入传递给sigmoid函数。然后我们将新修改的单元状态传递给tanh函数。我们将tanh输出与sigmoid输出相乘，以确定隐藏状态应携带的信息，输出的是隐藏状态。然后将新的细胞状态和新的隐藏状态转移到下一个时间步。</p>
+</blockquote>
+<p><img src="./1558190357604.png" alt="Alt text"></p>
+<h3 id="cell-state"><a href="#cell-state" class="headerlink" title="cell state"></a>cell state</h3><blockquote>
+<p>现在我们应该有足够的信息来计算细胞状态。首先，细胞状态逐点乘以遗忘向量。如果它乘以接近0的值，则有可能在单元状态中丢弃。然后我们从输入门获取输出并进行逐点相加，将神经网络发现的新值更新为细胞状态中，这就给了我们新的细胞状态。<br><img src="https://pic4.zhimg.com/v2-726bf910e01dea258ccd6bc7ad96e5fb_b.gif" alt="avatar"><br><img src="./1558190401755.png" alt="Alt text"></p>
+</blockquote>
+<h3 id="输出门-z-o"><a href="#输出门-z-o" class="headerlink" title="输出门$z_o$"></a>输出门$z_o$</h3><blockquote>
+<p>输出门<strong>决定下一个隐藏状态</strong>应该是什么。请记住，隐藏状态包含有关先前输入的信息，隐藏状态也可用于预测。首先，我们将先前的隐藏状态和当前输入传递给sigmoid函数。然后我们将新修改的单元状态传递给tanh函数。我们将tanh输出与sigmoid输出相乘，以确定隐藏状态应携带的信息，输出的是隐藏状态。然后将新的细胞状态和新的隐藏状态转移到下一个时间步。<br><img src="https://pic4.zhimg.com/v2-9f6e55b47555f741062211693f6857ff_b.gif" alt="avatar"><br><img src="./1558190458927.png" alt="Alt text"><br><img src="./1558190496501.png" alt="Alt text"><br><img src="./1558190506584.png" alt="Alt text"></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>【深層学習】CNN-Convolutional Neural Network(畳み込みニューラルネットワーク)</title>
+    <url>/2019/12/26/%E3%80%90%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E3%80%91CNN-Convolutional%20Neural%20Network(%E7%95%B3%E3%81%BF%E8%BE%BC%E3%81%BF%E3%83%8B%E3%83%A5%E3%83%BC%E3%83%A9%E3%83%AB%E3%83%8D%E3%83%83%E3%83%88%E3%83%AF%E3%83%BC%E3%82%AF)/</url>
+    <content><![CDATA[<h1 id="【深層学習】CNN-Convolutional-Neural-Network-畳み込みニューラルネットワーク"><a href="#【深層学習】CNN-Convolutional-Neural-Network-畳み込みニューラルネットワーク" class="headerlink" title="【深層学習】CNN:Convolutional Neural Network(畳み込みニューラルネットワーク)"></a>【深層学習】CNN:Convolutional Neural Network(畳み込みニューラルネットワーク)</h1><p><img src="./1558157308207.png" alt="Alt text"><br><img src="https://deepage.net/img/convolutional_neural_network/digit.gif" alt="avatar"><br><img src="./1558158122739.png" alt="Alt text"><br><img src="./1569717035010.png" alt="Alt text"></p>
+<h2 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h2><p><img src="https://deepage.net/img/convolutional_neural_network/animated_convolution.gif" alt="avatar"><br><img src="https://img-blog.csdn.net/20160707204048899" alt="avatar"></p>
+<h2 id="Pooling-池化"><a href="#Pooling-池化" class="headerlink" title="Pooling(池化)"></a>Pooling(池化)</h2><p><img src="./1558157803207.png" alt="Alt text"></p>
+<h2 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h2><p>卷积可以用$s(t)=(x*w)(t)$,x是输入,w是核函数</p>
+<p>卷积神经网络的原理<br><img src="./1569716966741.png" alt="Alt text"><br>一个神经元只负责一部分</p>
+<p><strong>一般感知机</strong><br><img src="./1569716982547.png" alt="Alt text"></p>
+<p><img src="./1569717019308.png" alt="Alt text"></p>
+<p><img src="./1569717125981.png" alt="Alt text"></p>
+<p>！！其实这就是卷积神经网络的原理<br><img src="./1569717279138.png" alt="Alt text"><br>每个神经元为自己负责的区域赋值上权重.</p>
+<p><strong>不是全连接，权值共享</strong></p>
+<p><strong>全连接层</strong><br><img src="./1569717736184.png" alt="Alt text"></p>
+<p>关于0填充<br><img src="./1569718942253.png" alt="Alt text"></p>
+<h2 id="参数更新"><a href="#参数更新" class="headerlink" title="参数更新"></a>参数更新</h2><h3 id="全连接层的参数更新"><a href="#全连接层的参数更新" class="headerlink" title="全连接层的参数更新"></a>全连接层的参数更新</h3><p><img src="./1569719303319.png" alt="Alt text"></p>
+<h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><h5 id="损失函数对上一层的输出求导"><a href="#损失函数对上一层的输出求导" class="headerlink" title="损失函数对上一层的输出求导"></a>损失函数对上一层的输出求导</h5><p><img src="./1569719385311.png" alt="Alt text"><br>a_i是n个x_k的线性求和</p>
+<p><img src="./1569719550478.png" alt="Alt text"><br><img src="./1569720741769.png" alt="Alt text"></p>
+<h5 id="损失函数对权重求导"><a href="#损失函数对权重求导" class="headerlink" title="损失函数对权重求导"></a>损失函数对权重求导</h5><p><img src="./1569720534338.png" alt="Alt text"><br><img src="./1569720746260.png" alt="Alt text"></p>
+<h5 id="对偏置系数求导"><a href="#对偏置系数求导" class="headerlink" title="对偏置系数求导"></a>对偏置系数求导</h5><p><img src="./1569720715391.png" alt="Alt text"><br><img src="./1569720753883.png" alt="Alt text"></p>
+<h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>feature map</p>
+<p><img src="./1569720005018.png" alt="Alt text"><br>彩色图片的卷积</p>
+<p><img src="./1569720105021.png" alt="Alt text"><br>如果用8个filter进行卷积，那filter的深度应该是4,卷积的结果深度是8.</p>
+<p><img src="./1569723077443.png" alt="Alt text"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>【Notification】BLOG内容恢复について (2019-12-26)</title>
     <url>/2019/12/26/%E3%80%90Notification%E3%80%91BLOG%E5%86%85%E5%AE%B9%E6%81%A2%E5%A4%8D%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%20(2019-12-26)/</url>
     <content><![CDATA[<h1 id="【Notification】BLOG内容恢复について-2019-12-26"><a href="#【Notification】BLOG内容恢复について-2019-12-26" class="headerlink" title="【Notification】BLOG内容恢复について (2019-12-26)"></a>【Notification】BLOG内容恢复について (2019-12-26)</h1><blockquote>
