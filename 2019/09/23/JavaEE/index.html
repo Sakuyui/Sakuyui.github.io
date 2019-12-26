@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,编程语言,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Lecture 1 num:18640857288jgh@dlut.edu.cn面向对象编程的特点：封装，继承，多态">
+<meta name="keywords" content="java,编程语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaEE">
+<meta property="og:url" content="http://yoursite.com/2019/09/23/JavaEE/index.html">
+<meta property="og:site_name" content="Sakuyui39のBLOG">
+<meta property="og:description" content="Lecture 1 num:18640857288jgh@dlut.edu.cn面向对象编程的特点：封装，继承，多态">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/09/23/JavaEE/1567661858460.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/23/JavaEE/1567665148700.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/23/JavaEE/1568905713835.png">
+<meta property="og:updated_time" content="2019-09-29T02:05:22.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaEE">
+<meta name="twitter:description" content="Lecture 1 num:18640857288jgh@dlut.edu.cn面向对象编程的特点：封装，继承，多态">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/23/JavaEE/1567661858460.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/23/JavaEE/">
+
+
+
+
+
+
+  <title>JavaEE | Sakuyui39のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+undefined
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Sakuyui" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sakuyui39のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">あ～よっしゃ行くぞー！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/JavaEE/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakuyui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuyui39のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JavaEE</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-23T18:28:37+08:00">
+                2019-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Software-Develop/" itemprop="url" rel="index">
+                    <span itemprop="name">Software Develop</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Lecture-1"><a href="#Lecture-1" class="headerlink" title="Lecture 1"></a>Lecture 1</h2><blockquote>
+<p>num:18640857288<br>jgh@dlut.edu.cn<br>面向对象编程的特点：<strong>封装，继承，多态</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> throw Exception</span>&#123;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span></span>&#123;   <span class="comment">//可以不抛出 或者抛出更少的检查异常，可以抛出子类异常.</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//要抛出更少的检查异常</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> throw IOException</span>&#123;</span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> throw Exception</span>&#123;   <span class="comment">//报错，不能抛出更多的异常</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//要抛出更少的检查异常</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>异常分为<strong>运行异常</strong>和<strong>检查异常</strong><br>运行异常不进行任何语法检查。<strong>运行异常不应该发生，可以靠编码解决</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> throw ClassNotCastException,NullPointerException,ArithmethicExcption....</span>&#123; <span class="comment">//运行异常不进行检查  </span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">B</span> <span class="keyword">extends</span> <span class="title">A</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span></span>&#123;   、</span><br><span class="line">         <span class="keyword">try</span>&#123;</span><br><span class="line">         &#125;<span class="keyword">catch</span>(IOException e)&#123;  &#125;  <span class="comment">//报错。因为try语句里面不可能抛出该异常</span></span><br><span class="line">     &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//要抛出更少的检查异常</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">     B b=<span class="keyword">new</span> B();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="覆盖"><a href="#覆盖" class="headerlink" title="覆盖"></a>覆盖</h3><p>1.不允许抛出父类函数没有抛出的检查异常<br>2.覆盖的访问权限不能覆盖父类的访问权限.不能比父类访问权限低.<br>service() throw ServeletException,IOException;</p>
+<p><strong>default</strong>语句<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req,ServletRespond res)</span>throw ServletException,IOException</span>&#123;</span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>集合<br>Map<br>List<br>Set<br>Collection</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Object&gt; set=<span class="keyword">new</span> HashSet&lt;String&gt;(); <span class="comment">//错误。   泛型必须明确 （不然后面可能添加object的，如果&lt;String&gt;的话..)</span></span><br><span class="line">Set&lt;? extends XXX&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>要记住这两个异常</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest req,ServletRespond res)</span>  throw ServletException,IOException</span>&#123;</span><br><span class="line">         </span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>java ME<br>java SE<br>java EE <strong>基于java SE</strong>.想开发javaEE必须先有SE.是对SE的拓展，只是增加了类库<br>增加了大量的接口。是抽象的。<br><strong>定义软件</strong><br><strong>看java EE的API规范</strong><br>Java EE SDK<br>学习抽象函数</p>
+<p>javax.jms   //针对消息编程<br>微软是 <strong>小端在前</strong> 先发送低位字节<br>java 是先发送高位字节</p>
+<p><strong>Application Server</strong>: tomact、jboss、  实现了抽象的接口。基于<strong>组件开发</strong>.也有组件规范。</p>
+<p>斜体字是接口</p>
+<p>javaEE的运行方式不同。首先启动应用服务器<br>javax.servlet   （let:小组件）<br>application是嵌入在网页上的</p>
+<p>记函数<br>组件具有生命周期管理函数<br>init()函数  new完后调用. 初始化实现最好实现在这<br>destory() 组件销毁<br>最重要的<strong>server()</strong></p>
+<p>HTTP协议的细节<br>heep传送了什么数据</p>
+<p>1.创建了一个socket链接(80)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Socket socket=<span class="keyword">new</span> Socket(<span class="string">"localhost"</span>,<span class="number">80</span>);</span><br><span class="line">InputWriter </span><br><span class="line">Printwriter</span><br><span class="line">BufferedReader</span><br><span class="line">pw.print...</span><br><span class="line">...</span><br><span class="line">###http协议 (encoding,Accept..)</span><br><span class="line">   Content=</span><br></pre></td></tr></table></figure>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>重点<br>组件的函数<br>ServletRequest<br>ServletRespond<br>Servlet<br><strong>http缓存原理..必考</strong></p>
+<h2 id="Course-2"><a href="#Course-2" class="headerlink" title="Course 2"></a>Course 2</h2><p>Servlet的概念<br>http协议<br>服务器向客户端推送 (*新技术,可能考)<br>建立socket连接，发送http协议的数据</p>
+<ul>
+<li><p>url三部分 :<br><img src="/2019/09/23/JavaEE/1567661858460.png" alt="Alt text"><br><strong>1.schema 2.服务器位置 3.资源路径</strong></p>
+<blockquote>
+<p><strong>node.js</strong>    js现在也可以写后端<br><strong>javascript</strong></p>
+</blockquote>
+</li>
+<li><p><strong>ServletRequest</strong>=&gt; HttpServletRequest<br>getParameter(String name)<br>getParameterValues(String s)<br>getParameterNames()</p>
+</li>
+<li><strong>ServletResponse</strong><br>目的是输出数据到浏览器<br>http的两部分内容:header body  ,header用\r\n区分,区分 两次回车换行<br><img src="/2019/09/23/JavaEE/1567665148700.png" alt="Alt text"><br><strong>常见header</strong></li>
+</ul>
+<blockquote>
+<p>unicode<br>gbk<br>utf-8<br><strong>ucs</strong> 任何一个字符4个字节<br>A:65 a:97 sp:32<br><strong>Base64</strong>:3个字节为一组=24=4<em>6=3</em>8<br><strong>query string 查询字符串</strong>   ?xxxxxxxxxx</p>
+</blockquote>
+<p><strong>http状态码</strong><br>404:文件不存在<br>500:服务器遇到外部故障<br><strong>content-type</strong>:<br>在传content之前一定先传type<br><strong>json</strong></p>
+<pre><code>private ServletConfig conig=null; 
+public void init(ServletConfig cong){
+    this.conig=cong;
+}
+public void destroy(){
+}
+public void serve(ServletRequest req,ServletResponse res) throw ServletException,IOException{
+}
+</code></pre><h2 id="Course-3"><a href="#Course-3" class="headerlink" title="Course 3"></a>Course 3</h2><p>servlet步骤</p>
+<ol>
+<li><strong>package a;</strong>    倒序   com.xxx,部门,项目:模块</li>
+<li>先写java se,再写java EE<br>import java.io.<em>;   //SE<br>import javax.servlet.</em>;  //EE<br>import javax.serlvet.http.*;<br>//第三方框架<br>//自己的类<br>3.<br>不在同包中必须public<br>//Servlet接口有5个函数</li>
+</ol>
+<p>Servlet名字要叫xxxServlet;</p>
+<pre><code class="lang-java">public class HelloServlet extends HttpServlet{
+    private ServletConfig config;
+    /*public void init(ServletConfig config) throws ServletException{
+       this.config=config;
+    }*/  //不用写
+
+
+//要实现初始化的话覆盖这个
+    @Override
+    public void init() throws ServletException{
+        System.out.println(1221);
+        message=&quot;init!!!&quot;;
+    }
+
+    /*  默认已经实现
+    @Ovrride
+    public void init(ServletConfig config) throws ServletException{
+          super(config);
+          init();
+    }*/
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException,ServletException{
+        response.setContentType(&quot;text/html;charset=UTF-8&quot;);  //默认ISO8859-1
+        PrintWriter out=response.getWriter();
+        out.println(&quot;&lt;h1&gt;this is servlet&lt;/h1&gt;&quot;);
+        //不要close()   谁创建的流谁负责关闭
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+
+    }
+
+    @Override
+    public void destroy(){
+        super.destroy();
+    }
+
+    @Override
+    public void serve(SevletRequest req,ServletResponse res) throws ServletException,IOException{
+
+
+
+           res.setContextType(&quot;text/html&quot;)
+           PrintWriter out=response.getWriter();
+           out.println(&quot;this is servlet&quot;);
+
+           //获取config
+           //getServletConfig();
+//!!!!考ServletConfig   的函数
+
+           HttpServletRquest hsr=(HttpServeltRequest) req;
+           HttpServletResponse hsres=(HttpServletResponse) res;
+           //GET / HTTP/1.1\r\n            获取资源
+           //GET /HTTP/a HTTP/1.1\r\n
+           String method=res.getMethod();
+           if(method.compareTo(&quot;POST&quot;)==0){
+               doPost(req,res);
+           }else if(&quot;GET&quot;.equals(method)){
+                doGet(req,res);
+           }
+
+    }           
+}
+</code></pre>
+<pre><code class="lang-java">    //请求
+    try{
+           Socket s=new Socket(&quot;localhost&quot;,&quot;8080&quot;);
+           InputStream in=s.getInputStream();
+           OutputStream out=s.getOutputStream();
+           PrintWriter pw=new     
+}
+</code></pre>
+<blockquote>
+<p>HttpServletResponse 继承了SevletResponse<br>HttpServletRequest 继承了ServletRequest<br>专门处理http</p>
+</blockquote>
+<p>有package编译时必须加-d</p>
+<p>3.cosntruct web app<br>xxxxxxxxxxxx\first<br>                  WEB-INF<br>                         classes<br>                         lib<br>                         web.xml<br>                  META-INF<br>                         context.xml    </p>
+<p>4.</p>
+<pre><code class="lang-xml">
+    考试题
+    &lt;servlet-mapping&gt;
+         &lt;servlet-name&gt;&lt;/servlet-name&gt;
+         &lt;url-pattern&gt;/abc/s.html (随便取名,php jpg asps..... 适配符号*都行  意味着后面不管什么东西都要处理)&lt;/url-pattern&gt;
+    &lt;/servlet-mapping&gt;
+</code></pre>
+<p>5.发布</p>
+<ol>
+<li>first拷贝到tomact web apps下<br>有web-inf就是web应用</li>
+</ol>
+<p><a href="http://localhost:8080/first/abc/a/a.html" target="_blank" rel="noopener">http://localhost:8080/first/abc/a/a.html</a><br>                        8080/代表根文件夹（可能有多个应用)</p>
+<p>发布到根目录下，而不是什么奇怪的文件夹下。（web-apps root）</p>
+<p>&lt;Host  ..虚拟主机</p>
+<p>&lt;Context ….    内容都放在哪个文件夹下  path=”/x”  通常不写，部署在根目录下</p>
+<pre><code>                             localhost:80/x/
+</code></pre><p>&lt;welcome-file  默认的主页文件     定义了多个的话，按顺序查找。一般只一个</p>
+<p>xml区分大小写 html可以</p>
+<p>context.xml里面可以写 <context path="/XYZ" ......=""> 可以指定放到某个文件夹下<br>war: 归档文件 可以直接放在tomacat</context></p>
+<p>tomcat manager. 远称部署</p>
+<h3 id="web-socket"><a href="#web-socket" class="headerlink" title="web socket:"></a>web socket:</h3><p>考试<br>sse:服务器主动推送  web socket:对等通信 ,建立在TCP上，建立的使用是用来http.<br>javax.socket.endpoint;<br>服务器端创建一个endpoint<br><strong>要看web socket包</strong><br>谁主动创建谁就是客户端<br>javax.webbsocket.server</p>
+<p>注解@ServerEndpoint(“/b”) 指定服务器资源<br>然后只需要3个<br>onOpen   传来了一个session   只要@onOpen 函数名可以随便,参数顺序不重要.<br>onClose<br>onError</p>
+<blockquote>
+<p>node.js</p>
+</blockquote>
+<p><strong>javax.servlet.http.HttpSession;</strong><br>!!!!!!!!session</p>
+<h2 id="course-4"><a href="#course-4" class="headerlink" title="course 4"></a>course 4</h2><p><strong>HttpSession</strong></p>
+<p>应该有<br>1.getID()返回session的唯一标识<br>2.创建时间</p>
+<pre><code class="lang-xml">
+&lt;session-config&gt; 
+    可以设置超时时间
+</code></pre>
+<p><strong>getMaxInactiveInterval()</strong><br><strong>removeAttribute()</strong><br><strong>setAttribute()</strong><br><strong>getAttribute()</strong></p>
+<p>负载均衡.将负载分配到不同的服务器</p>
+<pre><code class="lang-java">public SessionExampleServlet extends HttpSevlet{
+   public void service(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
+           HttpSession session= request.getSession();
+           Cart cart=new Cart();   //记得Cart要实现序列化,尤其是分布式计算
+           session.setAttribute(&quot;cart&quot;,cart);
+
+
+
+
+           Cart c=(Cart)session.getAttribute(&quot;cart&quot;);
+   }
+}
+</code></pre>
+<p>Q:如何识别一个request是某个会话的</p>
+<p>不可能发整个session,发的只是ID。</p>
+<p>tomcat有个全局的map.</p>
+<p>产生的session对象的id一定放在response中，返回给浏览器.下次请求会带上它</p>
+<p>手段1：cookies<br>手段2: URL重写 如果浏览器不支持Cookie或用户阻止了所有Cookie，可以把会话ID附加在HTML页面中所有的URL上，这些页面作为响应发送给客户。这样，当用户单击URL时，<strong>会话ID被自动作为请求行的一部分</strong>而不是作为头行发送回服务器。这种方法称为URL重写(URL rewriting)。<br>手段3:隐藏域     </p>
+<p>jsessionID ssessionID …</p>
+<p>刷新是个问题<br>有时不用httpsession, 把会话信息放在分布式存储系统。只要ID在就行</p>
+<p><strong>getCookies()</strong></p>
+<p>压缩要考</p>
+<p>json太长,需要压缩</p>
+<p><strong>RequestDispatcher</strong><br>请求由一个组件来处理是不显示了。可以用requestDispatcher来分发请求到多个组件去处理。</p>
+<blockquote>
+<p>rd.forward()<br>rd.include(request,response)   包含</p>
+</blockquote>
+<p>Interface SingleThreadMode()   //保证不会有多个线程执行service函数<br>解决并发访问的两种方法：<br>1.加锁<br>2.数据复制</p>
+<p><strong>ACID</strong></p>
+<p>Filter<br>FilterConfig</p>
+<h2 id="course-5"><a href="#course-5" class="headerlink" title="course 5"></a>course 5</h2><p>getContextPath():<br>返回当前页面所在的应用的名字.有可能是空。 无法从url判断。要看部署在哪里。</p>
+<h3 id="Fliter"><a href="#Fliter" class="headerlink" title="Fliter"></a>Fliter</h3><pre><code>interface Fliter{}
+</code></pre><p>init(FilterConfigure) 函数</p>
+<pre><code>doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+</code></pre><p>The doFilter method of the Filter is called by the container each time a request/response pair is passed through the chain due to a client request for a resource at the end of the chain.</p>
+<p><strong>把链对象也传过去了</strong></p>
+<pre><code class="lang-java">    import java.io.*;
+    import javax.servlet.*;
+    import javax.servlet.http.*;
+    public mFliter implements Fliter{
+       private FliterConfig config;
+       public void destroy(){
+       }
+       public void doFliter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException,IoException{
+           chain.doFilter(req,res);  //当前过滤器处理结束，往下一个过滤器
+           //预处理，后处理  不写这句话的话，相当于在这就结束了
+
+       }
+    }
+    //Filter通常要做的事情：
+    //Filter最最最早执行。
+    //在资源到达后端之前就执行了。  也就是拦截器
+    //数据写在session里
+    //常见作用:1.认证 不拦截/login.html 2.日志 3.数据转换 4.数据压缩 5.加密 6.
+</code></pre>
+<p>访问计时：  应该加在filter (面向切面编程)<br>getServletContext().log(“xxxxxxxxxxxx”);</p>
+<p><strong>把琐碎的逻辑分开</strong></p>
+<blockquote>
+<p>AOP使用的主要是动态代理 ， 过滤器使用的主要是函数回调；拦截器使用是反射机制 。<br>一个请求过来 ，先进行过滤器处理，看程序是否受理该请求 。 过滤器放过后 ， 程序中的拦截器进行处理 ，处理完后进入 被 AOP动态代理重新编译过的主要业务类进行处理 。</p>
+</blockquote>
+<p>乱码问题解决:</p>
+<pre><code>request.setCharcterEncoding(&quot;UTF-8&quot;); //可以用filter实现
+String wd=new String(wd.getBytes(&quot;ISO-8859-1&quot;),&quot;UTF-8&quot;);
+</code></pre><pre><code class="lang-java">     public class EncodingFilter(){
+         public void doFilter(...){
+             request.setCharacterEncoding(&quot;UTF-8&quot;);
+             chain.doiFliter(req,res);
+             //是ServletRquest，可以处理各种协议.
+             HttpServletRequest request=()req;
+             HttpServletRespond request=()res;
+             HttpSession session=request.getSession();
+             String name=()session.getAtrtribute(&quot;Username&quot;);
+               if(username==null || username.length()==0){
+                   request.getRepondDispatcher(&quot;/login.html&quot;).forward(req,res);
+
+             }
+         }
+     }
+     //之后还要部署
+
+
+
+         &lt;init-param&gt;&lt;param-name&gt;&lt;/&gt; &lt;param-value&gt;&lt;/&gt;&lt;/&gt;
+         [servletConfigure.getConfig().]getInitParameter();
+
+
+
+            &lt;/Filter&gt;
+    &lt;Filter-mapping&gt;
+        &lt;url-pattern&gt; /aa/*&lt;/url-pattern&gt;  //可以过滤任何匹配的资源
+        &lt;servlet-name&gt;&lt;/&gt;   //指定就过滤某个servlet
+        &lt;dispatcher&gt;REQUEST&lt;/&gt; //默认，容器内所产生的请求不拦截  想拦截可以 FORWARD INCLUDE [ERROR]() 都拦截写多个dispatcher
+    &lt;/Filter-mapping&gt;
+
+
+//登入服务里，登入完后，把值Set在session的attribute里
+request.getSession().inavaild()//把session里面的东西都释放掉
+
+在请求到达资源之前，先到过滤器
+filter后面一般处理respond.        
+用forward过滤器一般不起作用
+
+
+@WebFilter(dispatcherType={...,...})
+</code></pre>
+<p>servlet</p>
+<h2 id="Course-6"><a href="#Course-6" class="headerlink" title="Course 6"></a>Course 6</h2><pre><code class="lang-java">优先加载Listenrer
+&lt;Listener-class&gt;ApplicationInitlizer&lt;Listenre-class&gt;
+
+    public class ApllicationInitlizer implements ServletContextLisenter{
+        //最早最早执行的函数. 创建完context马上执行
+        public void contextinitialized(ServletContextEvent sce){
+            //创建连接池的代码就应该写在这里
+            //sce就一个函数     getServletContext()
+        }
+
+        public void contextDestroyed(ServletContextEvent sce){
+            //最后一个
+            一切事件都是来源于Event
+        }
+    }
+</code></pre>
+<p><strong>HttpSessionBindingListener</strong><br>调用setAttribute时触发</p>
+<ul>
+<li><strong>HttpSessionEvent</strong></li>
+</ul>
+<p>Event.getValue</p>
+<p>第一次jsp慢，需要编译.<br>-&gt;x_jsp.java</p>
+<p>jsp表达式<br>&lt;%= new java.util.Date() &amp;&gt;<br>jsp等价于servlet</p>
+<p>jsp不需要部署</p>
+<pre><code>&lt;Servlet&gt;
+    &lt;servlet-name&gt;a&lt;/servlet-name&gt;
+    &lt;jsp-file&gt;&lt;/jsp-file&gt;
+    &lt;init-param&gt;&lt;/init-param&gt;
+&lt;/servlet&gt;
+
+
+&lt;&amp;@ page import=&quot;java.util.*, java.io.*&quot; pageEncoding=&quot;utf-8&quot; 
+isErrorPage=&quot;true|false&quot;
+errorPage=&quot;/error.jsp&quot;
+session=&quot;true&quot; //自动生成 不能false.因为是servlet,要处理request,response
+ &amp;&gt;
+</code></pre><p>jsp implicit object<br><strong>request,response,config,application,session,exception(只有错误处理页面有),out</strong></p>
+<p><img src="/2019/09/23/JavaEE/1568905713835.png" alt="Alt text"></p>
+<h2 id="Course-7"><a href="#Course-7" class="headerlink" title="Course 7"></a>Course 7</h2><p>适配器模式<br>静态包含<br>&lt;%@include file=””%&gt;</p>
+<p>动态包含 </p>
+<pre><code>&lt;jsp:include page=&quot;&quot; &gt;&lt;jsp:include&gt;
+</code></pre><p>&lt;%   %&gt;</p>
+<pre><code>&lt;jsp:forward page=&quot;&quot; &gt;
+&lt;jsp:useBean id=&quot;&quot; class=&quot;com.xx.student&quot; scope=&quot;page|request|session|application&quot;&gt;
+//尽量少写java代码
+&lt;jsp:getProperty name=&quot;a&quot; property=&quot;age&quot;/&gt;
+&lt;jsp:setProperty name=&quot;a&quot; property=&quot;age&quot; value=&quot;20&quot;/&gt;   //jsp就是java程序
+&lt;jsp:setProperty name=&quot;a&quot; property=&quot;age&quot; param=&quot;age&quot;/&gt; // =student.setAge(Ingter.Parser( request.getParameter(&quot;age&quot;))
+</code></pre><p><strong>javaBean</strong></p>
+<p>把html改成jsp,把动态值扣掉。换成&lt;%%&gt;</p>
+<pre><code>public class NumberGuess{
+    private int count;
+    private String hint;
+    private int answer;
+    private booolean success;
+    public reset(){}
+    public NumberGuess(){reset();}
+    public void setGuess(String guess){
+        int g=Intger.parser(guess);
+        count++;
+        if(g==answer){
+        }            
+    }
+}
+page:bean只在当前页面存在.有的话a指向这个对象. request的话到request去找。getAttribute,
+session:在session对象中getAttribute有的话能返回 application.
+#考试题
+application 只有一个,都能用
+&lt;jsp:useBean id=&quot;a&quot; class=&quot;NumberGuess&quot; scope=&quot;session&quot;/&gt; 
+</code></pre><p>MUI设计模式</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"># java</a>
+          
+            <a href="/tags/编程语言/" rel="tag"># 编程语言</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/15/【ソフト工学】Gitコマンド/" rel="next" title="【ソフト工学】Gitコマンド">
+                <i class="fa fa-chevron-left"></i> 【ソフト工学】Gitコマンド
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/08/【统计学习】Beta分布与最大后验估计(MAP)/" rel="prev" title="【概率统计_统计学习】Beta分布与最大后验估计(MAP)">
+                【概率统计_统计学习】Beta分布与最大后验估计(MAP) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Sakuyui">
+            
+              <p class="site-author-name" itemprop="name">Sakuyui</p>
+              <p class="site-description motion-element" itemprop="description">Sakuyui的个人技术博客,主要涉及软件工程,编程语言,大数据处理,机器学习,深度学习等</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sakuyui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:405544641@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/microice17" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/roi.mic.9" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Lecture-1"><span class="nav-number">1.</span> <span class="nav-text">Lecture 1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖"><span class="nav-number">1.1.</span> <span class="nav-text">覆盖</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#key"><span class="nav-number">2.</span> <span class="nav-text">key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Course-2"><span class="nav-number">3.</span> <span class="nav-text">Course 2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Course-3"><span class="nav-number">4.</span> <span class="nav-text">Course 3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#web-socket"><span class="nav-number">4.1.</span> <span class="nav-text">web socket:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#course-4"><span class="nav-number">5.</span> <span class="nav-text">course 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#course-5"><span class="nav-number">6.</span> <span class="nav-text">course 5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Fliter"><span class="nav-number">6.1.</span> <span class="nav-text">Fliter</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Course-6"><span class="nav-number">7.</span> <span class="nav-text">Course 6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Course-7"><span class="nav-number">8.</span> <span class="nav-text">Course 7</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">Total 79.2k words</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python,数据可视化,数据分析,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="相关依赖 numpypandasseabornmatplotlib  Seaborn home page https://seaborn.pydata.org/这些依赖可以通过pip install xxx命令安装安装完按如下引入">
+<meta name="keywords" content="Python,数据可视化,数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python数据可视化(基于seaborn)">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/index.html">
+<meta property="og:site_name" content="Sakuyui39のBLOG">
+<meta property="og:description" content="相关依赖 numpypandasseabornmatplotlib  Seaborn home page https://seaborn.pydata.org/这些依赖可以通过pip install xxx命令安装安装完按如下引入">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163081362.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163318394.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163358008.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163445116.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163472010.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163500832.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163522407.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163559481.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163621936.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163632424.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163675792.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163695558.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163712535.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163743778.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163767578.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163856301.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163865733.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163876312.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163909626.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163917779.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163934310.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163992893.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164001484.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164044137.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164052427.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164062173.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164080143.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164088336.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164101992.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164132371.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164190309.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164221966.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164237917.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164258888.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164272272.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164282008.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164346047.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164363650.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164388530.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164402949.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164412556.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164461106.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164468811.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164479466.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164503284.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164544367.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164555193.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164561908.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164574123.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164608484.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164616939.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164623702.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164630370.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164639934.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164646875.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164711849.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164718472.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164728859.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164736225.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548164753983.png">
+<meta property="og:updated_time" content="2019-03-07T01:07:55.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python数据可视化(基于seaborn)">
+<meta name="twitter:description" content="相关依赖 numpypandasseabornmatplotlib  Seaborn home page https://seaborn.pydata.org/这些依赖可以通过pip install xxx命令安装安装完按如下引入">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/1548163081362.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/">
+
+
+
+
+
+
+  <title>Python数据可视化(基于seaborn) | Sakuyui39のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+undefined
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Sakuyui" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sakuyui39のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">あ～よっしゃ行くぞー！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/Python数据可视化(基于seaborn)/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakuyui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuyui39のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python数据可视化(基于seaborn)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-22T21:49:00+08:00">
+                2019-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据分析/" itemprop="url" rel="index">
+                    <span itemprop="name">数据分析</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="相关依赖"><a href="#相关依赖" class="headerlink" title="相关依赖"></a>相关依赖</h2><blockquote>
+<p>numpy<br>pandas<br>seaborn<br>matplotlib</p>
+</blockquote>
+<p>Seaborn home page <a href="https://seaborn.pydata.org/" target="_blank" rel="noopener">https://seaborn.pydata.org/</a><br>这些依赖可以通过pip install xxx命令安装<br>安装完按如下引入<a id="more"></a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br></pre></td></tr></table></figure></p>
+<h2 id="Bar-Plot"><a href="#Bar-Plot" class="headerlink" title="Bar Plot"></a>Bar Plot</h2><p>使用数据集tips<br>tips=sns.load_dataset(‘tips’)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163081362.png" alt="logo"><!--more--><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'tip'</span>,data=tips)</span><br><span class="line">plt.show()</span><br><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>,data=tips)</span><br><span class="line">plt.show()  </span><br><span class="line">``` </span><br><span class="line">![logo](./pics/<span class="number">1548163132017.</span>png)</span><br><span class="line">``` python</span><br><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'tip'</span>,data=tips,hue=<span class="string">'sex'</span>)</span><br><span class="line">plt.show()</span><br><span class="line">``` </span><br><span class="line">![logo](./pics/1548163180845.png)（hue参数分组绘图）&lt;!-- more --&gt;</span><br><span class="line">``` python</span><br><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'tip'</span>,data=tips,hue=<span class="string">'sex'</span>,palette=<span class="string">'winter_r'</span>)    <span class="comment">#palette 调色</span></span><br><span class="line">``` </span><br><span class="line">![logo](./pics/<span class="number">1548163227404.</span>png)</span><br><span class="line">``` python</span><br><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'tip'</span>,data=tips,hue=<span class="string">'sex'</span>,palette=<span class="string">'spring'</span>,order=[<span class="string">'Sat'</span>,<span class="string">'Fri'</span>,<span class="string">'Sun'</span>,<span class="string">'Thur'</span>])  <span class="comment">#添加order参数可改变显示顺序</span></span><br><span class="line">``` </span><br><span class="line">![logo](./pics/<span class="number">1548163254414.</span>png)</span><br><span class="line">-统计绘图参数是 estimator</span><br><span class="line">``` python</span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> median</span><br><span class="line">sns.barplot(x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>,data=tips,hue=<span class="string">'sex'</span>,palette=<span class="string">'spring'</span>,estimator=median)</span><br><span class="line"><span class="comment">#设置对每类变量的计算函数，默认为平均值，可修改为 max、median、max 等</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163318394.png" alt="logo"><br>//使用中位数。柱形显示的为相应数据取中位数后的结果</p>
+<p>参数Ci:置信区间<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.barplot(x=<span class="string">'smoker'</span>,y=<span class="string">'tip'</span>,data=tips,capsize=<span class="number">0.3</span>)</span><br></pre></td></tr></table></figure></p>
+<p>参数capsize:可调横线长度<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163358008.png" alt="logo"><br>Saturation：可设置颜色饱和度</p>
+<h2 id="Dist-Plot"><a href="#Dist-Plot" class="headerlink" title="Dist Plot"></a>Dist Plot</h2><p>//产生数据<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num=np.random.randn(<span class="number">150</span>)</span><br><span class="line">sns.distplot(num)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163445116.png" alt="logo"><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163472010.png" alt="logo"><br>对数据序列化<br>label_dist=pd.Series(num,name=”variable x”)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163500832.png" alt="logo"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.distplot(label_dist,vertical=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<p>vertical=True:可转过来显示<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163522407.png" alt="logo"><br>Hist=False:去除阴影<br>rug=True:显示频谱<br><strong>sns.distplot(label_dist,rug=True,hist=False)</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163559481.png" alt="logo"></p>
+<h2 id="Box-Plot"><a href="#Box-Plot" class="headerlink" title="Box Plot"></a>Box Plot</h2><p><strong>盒图</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163621936.png" alt="logo"><br>引入tips数据集<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163632424.png" alt="logo"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(x=tips[<span class="string">'size'</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163675792.png" alt="logo"></p>
+<p><strong>sns.boxplot(x=’sex’,y=’total_bill’,data=tips)</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163695558.png" alt="logo"><br><strong>sns.boxplot(x=’day’,hue=’sex’, y=’total_bill’,data=tips)</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163712535.png" alt="logo"><br><strong>sns.boxplot(data=iris,orient=”horizontal”)</strong><br>orient=”horizontal”  水平显示  ‘h’/’v’<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163743778.png" alt="logo"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.boxplot(data=tips,orient=<span class="string">"v"</span>,x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>,palette=<span class="string">"husl"</span>)</span><br><span class="line">sns.swarmplot(data=tips,x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>)  <span class="comment">#散点分布</span></span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163767578.png" alt="logo"></p>
+<h2 id="Strip-Plot"><a href="#Strip-Plot" class="headerlink" title="Strip Plot"></a>Strip Plot</h2><p><strong>sns.stripplot(x=tips[‘tip’])</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163856301.png" alt="logo"><br><strong>sns.stripplot(x=’day’,y=’total_bill’,data=tips)</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163865733.png" alt="logo"><br>添加抖动 jitter=True/数字<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163876312.png" alt="logo"><br>Linewidth=1.2  圆点描边大小<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163909626.png" alt="logo"><br>加上hue,对sex分类绘制<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163917779.png" alt="logo"><br>加上split=True  分离绘制<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163934310.png" alt="logo"><br><strong>Marker:形状标记  d菱形,o圆形,s正方形,+</strong><br>Markers参数可对分类后用不同形状绘制<br>Size:改变形状大小<br>Alpha:改变透明度<br>可以和盒图结合:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sns.stripplot(x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>,data=tips,split=<span class="keyword">True</span>,marker=<span class="string">'d'</span>)</span><br><span class="line">sns.boxplot(x=<span class="string">'day'</span>,y=<span class="string">'total_bill'</span>,data=tips)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548163992893.png" alt="logo"><br>Swarmplot()分簇散点图。用法与stripplot差不多。<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164001484.png" alt="logo"></p>
+<h2 id="Pair-Grid"><a href="#Pair-Grid" class="headerlink" title="Pair Grid"></a>Pair Grid</h2><p>iris=sns.load_dataset(‘iris’)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164044137.png" alt="logo"><br>x=sns.pairgird(iris)<br>x=x.map(plt.scatter)<br>plt.show()<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164052427.png" alt="logo"><br>x=sns.PairGrid(iris)<br>x=x.map_diag(plt.hist)<br>绘制变量的概率分布<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164062173.png" alt="logo"><br>x=sns.PairGrid(iris)<br>x=x.map_diag(plt.hist)<br>x=x.map_offdiag(plt.scatter)<br><strong>map_diag定义对角线单个属性图，map_offdiag定义非对角线两个属性关系图</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164080143.png" alt="logo"><br>对species分类   (使用hue=’species’)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164088336.png" alt="logo"><br>x=x.add_legend()<br>加上标注<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164101992.png" alt="logo"><br>x=x.map_diag(plt.hist,histtype=’step’)    #对角线柱形图，只留边框<br><strong>可用linewidth调整边框宽度</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164132371.png" alt="logo"><br>x=sns.PairGrid(iris,vars=[‘petal_length’,’petal_width’])<br>vars可指定某些变量进行绘图<br>edgecolor边框颜色<br>x_vars,y_vars 对x轴与y轴指定某些变量进行绘图<br>map_upper  对上对角线的图应用某函数<br>map_lower  对下对角线的图应用某函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">x=sns.PairGrid(iris,hue=’species’)</span><br><span class="line">x=x.map_diag(plt.hist)</span><br><span class="line">x=x.map_upper(plt.scatter)</span><br><span class="line">x=x.map_lower(sns.kdeplot)</span><br></pre></td></tr></table></figure></p>
+<p><strong>PairGrid中  hue_kws={‘marker’:[‘D’,’S’,’+’]}可分类指定形状</strong></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164190309.png" alt="logo"></p>
+<h2 id="Violin-Plot"><a href="#Violin-Plot" class="headerlink" title="Violin Plot"></a>Violin Plot</h2><p>sns.violinplot(x=tips[‘tip’])<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164221966.png" alt="logo"><br>sns.violinplot(x=’size’,y=’total_bill’,data=tips)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164237917.png" alt="logo"><br>Split=true 可合起来</p>
+<p>sns.violinplot(x=’size’,y=’total_bill’,data=tips,hue=’sex’,inner=’quartile’)<br><strong>内部加上四分位数</strong><br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164258888.png" alt="logo"><br>Scale=’count’指定大小方式<br>sns.violinplot(x=’day’,y=’total_bill’,data=tips,hue=’sex’,inner=’quartile’,scale=’count’,split=True)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164272272.png" alt="logo"><br>sns.violinplot(x=’day’,y=’total_bill’,data=tips,hue=’sex’,inner=’stick’,scale=’count’,split=True)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164282008.png" alt="logo"><br><strong>bw边界抖动</strong></p>
+<h2 id="Clustermap"><a href="#Clustermap" class="headerlink" title="Clustermap"></a>Clustermap</h2><p>flights=flights.pivot(‘month’,’year’,’passengers’)  #转换成一个二维表  行：月 列：年 内容：乘客数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flights=sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">print(flights.head())</span><br><span class="line">flights=flights.pivot(<span class="string">'month'</span>,<span class="string">'year'</span>,<span class="string">'passengers'</span>)  <span class="comment">#转换成一个二维表  行：月 列：年 内容：乘客数</span></span><br><span class="line">print(flights.head())</span><br><span class="line">sns.clustermap(flights)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164346047.png" alt="logo">层化的热力图<br>sns.clustermap(flights,col_cluster=False)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164363650.png" alt="logo">不显示列的连线</p>
+<p>sns.clustermap(flights,col_cluster=False,cmap=’coolwarm’) #调整对比颜色<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164388530.png" alt="logo"><br>Linewidth调整小格边框宽度<br>Figsize={int,int} 调整小格宽高<br>sns.clustermap(flights,col_cluster=False,cmap=’coolwarm’,standard_scale=1) #标准化<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164402949.png" alt="logo"><br>Z_socre=0<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164412556.png" alt="logo"><br>Z_socre=方差/Z_val</p>
+<h2 id="Heatmap"><a href="#Heatmap" class="headerlink" title="Heatmap"></a>Heatmap</h2><p>normal=np.random.rand(12,15) #随机生成12,15的矩阵<br>sns.heatmap(normal)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164461106.png" alt="logo"><br>Annot=True 在方格上显示数值<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164468811.png" alt="logo"><br>min,vmax 调整颜色表示的数值的最大值和最小值<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">flights=sns.load_dataset(<span class="string">'flights'</span>)</span><br><span class="line">print(flights.head())</span><br><span class="line">flights=flights.pivot(<span class="string">'month'</span>,<span class="string">'year'</span>,<span class="string">'passengers'</span>)  <span class="comment">#转换成一个二维表  行：月 列：年 内容：乘客数</span></span><br><span class="line">sns.heatmap(flights)</span><br></pre></td></tr></table></figure></p>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164479466.png" alt="logo"><br>sns.heatmap(flights,fmt=’d’,annot=True)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164503284.png" alt="logo"><br>Center=flight.loc[‘june’,1954]  #调整中心位置<br>Cbar=true/false  是否显示颜色条</p>
+<h2 id="FacetGrid"><a href="#FacetGrid" class="headerlink" title="FacetGrid"></a>FacetGrid</h2><p>x=sns.FacetGrid(tips,row=’smoker’,col=’time’)  #创建了2*2个图  对smoker与time分类<br>x=x.map(plt.hist,’total_bill’) #对total_bill绘制柱形图<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164544367.png" alt="logo"><br>x=x.map(plt.scatter,’total_bill’,’tip’) #绘制散点图<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164555193.png" alt="logo"><br>x=x.map(sns.regplot,’total_bill’,’tip’)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164561908.png" alt="logo"><br>x=sns.FacetGrid(tips,col=’time’,hue=’smoker’)<br>x=(x.map(sns.regplot,’total_bill’,’tip’)).add_legend();<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164574123.png" alt="logo"><br>Size:设置图的大小<br>Aspect=.4</p>
+<h2 id="KDEPlot"><a href="#KDEPlot" class="headerlink" title="KDEPlot"></a>KDEPlot</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mean=[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">cov=[[<span class="number">0.2</span>,<span class="number">0</span>],[<span class="number">0</span>,<span class="number">3</span>]]</span><br><span class="line">x_axis,y_axis=np.random.multivariate_normal(mean,cov,size=<span class="number">40</span>).T</span><br><span class="line">print(x_axis)</span><br><span class="line">print(y_axis)</span><br><span class="line">sns.kdeplot(x_axis)</span><br><span class="line">sns.kdeplot(y_axis)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164608484.png" alt="logo"><br>sns.kdeplot(x_axis,shade=True)<br>sns.kdeplot(y_axis,shade=True)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164616939.png" alt="logo"><br>sns.kdeplot(x_axis,y_axis)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164623702.png" alt="logo"><br>Shade=True  #添加阴影<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164630370.png" alt="logo"><br>sns.kdeplot(x_axis,y_axis,cmap=’RdBu’)   #调整比较色<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164639934.png" alt="logo"><br>N_levels:调整层数<br>sns.kdeplot(x_axis,y_axis,cmap=’RdBu’,n_levels=18)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164646875.png" alt="logo"><br>iris=sns.load_dataset(“iris”)<br>setosa=iris.loc[iris.species==’setosa’]<br>**选取iris中species==’setosa’的item</p>
+<h2 id="Joint-Plot"><a href="#Joint-Plot" class="headerlink" title="Joint Plot"></a>Joint Plot</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tips=sns.load_dataset(<span class="string">"tips"</span>)</span><br><span class="line">iris=sns.load_dataset(<span class="string">"iris"</span>)</span><br><span class="line">sns.jointplot(x=<span class="string">'total_bill'</span>,y=<span class="string">'tip'</span>,data=tips)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164711849.png" alt="logo"><br>sns.jointplot(x=’total_bill’,y=’tip’,data=tips,kind=’reg’)   #加上拟合曲线<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164718472.png" alt="logo"><br>sns.jointplot(x=’total_bill’,y=’tip’,data=tips,kind=’hex’)<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164728859.png" alt="logo"><br>Kind=’kde’<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164736225.png" alt="logo"></p>
+<h2 id="Reg-Plot"><a href="#Reg-Plot" class="headerlink" title="Reg Plot"></a>Reg Plot</h2><p>sns.regplot(x=’total_bill’,y=’tip’,data=tips)<br>plt.show()<br><img src="/2019/01/22/Python数据可视化(基于seaborn)/1548164753983.png" alt="logo"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+            <a href="/tags/数据可视化/" rel="tag"># 数据可视化</a>
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/27/Non-local Neural Networks学习笔记/" rel="next" title="Non-local Neural Networks 学习笔记">
+                <i class="fa fa-chevron-left"></i> Non-local Neural Networks 学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/06/概率论与数理统计笔记/" rel="prev" title="概率论与数理统计笔记">
+                概率论与数理统计笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Sakuyui">
+            
+              <p class="site-author-name" itemprop="name">Sakuyui</p>
+              <p class="site-description motion-element" itemprop="description">Sakuyui的个人技术博客,主要涉及软件工程,编程语言,大数据处理,机器学习,深度学习等</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sakuyui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:405544641@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/microice17" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/roi.mic.9" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关依赖"><span class="nav-number">1.</span> <span class="nav-text">相关依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bar-Plot"><span class="nav-number">2.</span> <span class="nav-text">Bar Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dist-Plot"><span class="nav-number">3.</span> <span class="nav-text">Dist Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Box-Plot"><span class="nav-number">4.</span> <span class="nav-text">Box Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Strip-Plot"><span class="nav-number">5.</span> <span class="nav-text">Strip Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pair-Grid"><span class="nav-number">6.</span> <span class="nav-text">Pair Grid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Violin-Plot"><span class="nav-number">7.</span> <span class="nav-text">Violin Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Clustermap"><span class="nav-number">8.</span> <span class="nav-text">Clustermap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heatmap"><span class="nav-number">9.</span> <span class="nav-text">Heatmap</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FacetGrid"><span class="nav-number">10.</span> <span class="nav-text">FacetGrid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KDEPlot"><span class="nav-number">11.</span> <span class="nav-text">KDEPlot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Joint-Plot"><span class="nav-number">12.</span> <span class="nav-text">Joint Plot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reg-Plot"><span class="nav-number">13.</span> <span class="nav-text">Reg Plot</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">Total 79.2k words</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

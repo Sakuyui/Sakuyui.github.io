@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="1 复变函数论1.1 复数及复数计算代数式:z&#x3D;x+iy实部:**Re z**  虚部:**Im z** $$指数式:z&#x3D;\rho (cos \alpha+isin \alpha) \\ z&#x3D;\rho e^{i\alpha}$$ $\alpha$为**辐角**，记作**Arg z**.$\rho$为**模**,$0\le Arg z \le 2\pi$的解为**主值\主辐角**,记为**arg z">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复变函数学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="1 复变函数论1.1 复数及复数计算代数式:z&#x3D;x+iy实部:**Re z**  虚部:**Im z** $$指数式:z&#x3D;\rho (cos \alpha+isin \alpha) \\ z&#x3D;\rho e^{i\alpha}$$ $\alpha$为**辐角**，记作**Arg z**.$\rho$为**模**,$0\le Arg z \le 2\pi$的解为**主值\主辐角**,记为**arg z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1552044725599.png">
+<meta property="article:published_time" content="2019-12-26T12:54:32.752Z">
+<meta property="article:modified_time" content="2019-12-26T13:48:55.787Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/1552044725599.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>复变函数学习笔记 | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          复变函数学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:54:32 / Modified: 21:48:55" itemprop="dateCreated datePublished" datetime="2019-12-26T20:54:32+08:00">2019-12-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>3 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="1-复变函数论"><a href="#1-复变函数论" class="headerlink" title="1 复变函数论"></a>1 复变函数论</h2><h3 id="1-1-复数及复数计算"><a href="#1-1-复数及复数计算" class="headerlink" title="1.1 复数及复数计算"></a>1.1 复数及复数计算</h3><script type="math/tex; mode=display">代数式:z=x+iy</script><center>实部:**Re z** 
+虚部:**Im z**</center>
+$$指数式:z=\rho (cos \alpha+isin \alpha) \\ z=\rho e^{i\alpha}$$
+$\alpha$为**辐角**，记作**Arg z**.$\rho$为**模**,$0\le Arg z \le 2\pi$的解为**主值\主辐角**,记为**arg z**
+**共轭复数:**$z^*=x-iy$
+####1.1.1 复球面
+![Alt text](./1551957165927.png)
+####1.1.2 复数的运算
+1) 加减法略
+2)乘法,按四则运算相乘即可
+3)除法:
+$$\frac{z_1}{z_2}=\frac{x_1x_2+y_1y_2}{x_2^2+y_2^2}+i\frac{x_2y_1-x_1y_2}{x_2^2+y_2^2}$$
+>虚实部分母均为z2的模平方，实部为数量积，虚部为向量积的相反数
+
+4)三角式下:
+乘:两模相乘,辐角相加
+除:两模相除,辐角相减
+幂运算:略
+
+###1.2 复变函数
+$$\omega=f(z) \quad z\in E$$
+$$sin z=\frac{1}{2i}(e^{iz}-e^{-iz})$$
+$$cos z=\frac{1}{2}(e^{iz}+e^{-iz})$$
+$$sh z=\frac{1}{2}(e^{z}-e^{-z})$$
+$$ch z=\frac{1}{2}(e^{z}+e^{-z})$$
+**(sh与ch具有纯虚周期2pi*i)**
+复数->二元实变函数
+$z=x+iy----->z=u(x,y)+iv(x,y)$
+
+###1.3 导数
+实变函数只能沿x轴逼近。复变函数可以沿各个方向逼近。
+**1.沿实轴逼近时: lim=**$\frac{\partial u}{\partial x}+i\frac{\partial v}{\partial x}$
+**1.沿虚轴逼近时: lim=**$\frac{\partial v}{\partial y}-i\frac{\partial u}{\partial y}$
+<center>**柯西-黎曼方程\柯西黎曼条件（C-R条件）：**
+$\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}$
+$\frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}$
+**这是复变函数可导的必要条件（非充分）**
+</center>
+
+
+<center>
+**复变函数可导的充要条件为:**
+**1)对两个函数的四个偏导全部存在**
+**2)4个偏导都连续**
+**3)满足C-R条件**
+</center>
+
+<center>
+**极坐标下的柯西-黎曼方程:**
+$\frac{\partial u}{\partial \rho}=\frac{1}{\rho}\frac{\partial v}{\partial \varphi}$
+$\frac{1}{\rho}\frac{\partial u}{\partial \varphi}=-\frac{\partial v}{\partial \rho}$
+$\rho$变成$\varphi$后乘个1/p就行
+
+</center>
+
+<h3 id="1-4-解析函数"><a href="#1-4-解析函数" class="headerlink" title="1.4 解析函数"></a>1.4 解析函数</h3><p><strong>解析:</strong>f(z)在z_0邻域上处处可导，即f(z)在z_0处<strong>解析</strong><br><strong>解析函数:</strong>f(z)在区域B上处处解析。<br><strong>调和函数:f=u+iv</strong>在区域B上解析。则u和v是B上的调和函数<br>也就是满足<center>**拉普拉斯方程**
+$\triangledown^2H=0$在区域B连续且满足拉普拉斯方程的H(x,y)称为调和函数
+u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是同一个负数的实部与虚部，所以为
+**共轭调和函数**
+</center></p>
+<p>由一个调和函数确定解析函数:<br>运用C-R条件确定<br>$dv=-\frac{\partial u}{\partial y}dx+\frac{\partial u}{\partial x}dy$也就是一个全微分<br>之后3种积分法积出v<br><strong>①曲线积分:</strong><br><strong>②凑全微分</strong><br><strong>③不定积分法</strong><br>P.S 见数学分析</p>
+<p>解题步骤:<br>1.对给定函数验证是调和函数<br>2.利用C-R条件求出4个偏导，记住C-R得到的那两个偏导<br>3.dv=C-R条件得到的那两个偏导分别乘dx dy<br>4.积分得到v<br>路径无关条件:对于Qdx+Pdy  Q对y求导=P对x求导</p>
+<h4 id="1-4-1-解析函数的性质"><a href="#1-4-1-解析函数的性质" class="headerlink" title="1.4.1 解析函数的性质"></a>1.4.1 解析函数的性质</h4><p>1.u(x,y)=C1 v(x,y)=C2 (C1,C2为常数)。两组曲线簇<strong>正交</strong><br>实际上,C-R条件相乘。得到$\triangledown u+\triangledown v=0$<br>说明两梯度正交。而两梯度是曲线簇的法向量。于是两曲线簇正交</p>
+<h3 id="1-5-平面标量场"><a href="#1-5-平面标量场" class="headerlink" title="1.5 平面标量场"></a>1.5 平面标量场</h3><p>例:<br>若u(x,y)=C1为电势(这样的解析函数称为<strong>复势</strong>)，等势线簇。则v(x,y)=C2为电场线簇。且对v沿某路径积分能得到通量。因此v也叫<strong>通量函数</strong></p>
+<h3 id="1-6-多值函数"><a href="#1-6-多值函数" class="headerlink" title="1.6 多值函数"></a>1.6 多值函数</h3><p>如:$\omega=\sqrt z $可得到<br>$\omega_1=\sqrt{|Z|}e^{i(arg z)/2}\\ \omega_2=\sqrt{|Z|}e^{i(arg z)/2+i\pi}=-\omega_1$<br>称为两个单值分支<br>性质:从某点z_0出发，沿包围z=0的闭合路径一圈能够进入另一个单值分支。（不包围则不变）<br><strong>支点:</strong>绕该点一圈w不复原。且该点单值分支函数值相同<br><strong>n-1阶支点</strong>:绕n圈w函数值复原.如z=0是1阶支点(z=无穷大也是1阶支点)</p>
+<h4 id="1-6-1-黎曼面"><a href="#1-6-1-黎曼面" class="headerlink" title="1.6.1 黎曼面:"></a>1.6.1 <strong>黎曼面:</strong></h4><p>(假设绕的第一圈和第二圈在两个复平面上运行)<br><img src="./1552044725599.png" alt="Alt text"></p>
+<h2 id="2-复变函数积分"><a href="#2-复变函数积分" class="headerlink" title="2 复变函数积分"></a>2 复变函数积分</h2><h3 id="2-1-复变函数的积分"><a href="#2-1-复变函数的积分" class="headerlink" title="2.1 复变函数的积分"></a>2.1 复变函数的积分</h3><p>$f(z)=u(x,y)+iv(x,y)$<br>1.<strong>路积分</strong> 将一条路径分段后积分</p>
+<script type="math/tex; mode=display">\int_lf(z)dz=\int_lu(x,y)dx-v(x,y)dy+i\int_lv(x,y)dx+u(x,y)dy</script><p>复变函数的积分与路径有关</p>
+<h3 id="2-2-柯西定理"><a href="#2-2-柯西定理" class="headerlink" title="2.2 柯西定理"></a>2.2 柯西定理</h3><h4 id="2-2-1-单连通区域的柯西定理"><a href="#2-2-1-单连通区域的柯西定理" class="headerlink" title="2.2.1 单连通区域的柯西定理"></a>2.2.1 单连通区域的柯西定理</h4><script type="math/tex; mode=display">\oint_lf(z)dz=0</script><h4 id="2-2-2-复连通区域的柯西定理"><a href="#2-2-2-复连通区域的柯西定理" class="headerlink" title="2.2.2 复连通区域的柯西定理"></a>2.2.2 复连通区域的柯西定理</h4><script type="math/tex; mode=display">\oint_lf(z)dz+\sum_{i=1}^n\oint_{l_i}f(z)dz=0</script><p>l_i为区域内边界线,l为外边界线<br>f(z)若在单连通域B上解析，则沿B上任一路径l的积分值与路径无关</p>
+<h3 id="2-3-不定积分"><a href="#2-3-不定积分" class="headerlink" title="2.3 不定积分"></a>2.3 不定积分</h3><p>由<strong>柯西定理</strong>知f(z)若在单连通域B上解析，则沿B上任一路径l的积分值与路径无关.于是起点z_0确定后，到终点z的积分能够形成函数</p>
+<script type="math/tex; mode=display">F(z)=\int_{z_0}^zf(\xi)d\xi</script><p>性质:<br>①F(z)在B上解析<br>②F’(z)=f(z)<br>③路积分值=原函数改变量</p>
+<script type="math/tex; mode=display">\frac{1}{2\pi i}\oint_l\frac{dz}{z-\alpha}=
+f(x)=\begin{cases}
+0& \text{l不包围}\alpha\\
+1& \text{l包围}\alpha
+\end{cases}</script><h3 id="2-4-柯西公式"><a href="#2-4-柯西公式" class="headerlink" title="2.4 柯西公式"></a>2.4 柯西公式</h3><p><strong>若f(z)在连通区域</strong>$\overline{B}$,l为区域$\overline{B}的边界$,$\alpha$为区域内任意一点</p>
+<script type="math/tex; mode=display">f(\alpha)=\frac{1}{2\pi i}\oint_i \frac{f(z)}{z-\alpha}dz</script><p>其将任一点的函数值用沿边界线l的积分表示了出来</p>
+<p>复连通域上的柯西公式仍然成立。l为所有边界线，且均取正方形</p>
+<p>性质、推论:<br>①解析函数可以任意求导多次</p>
+<script type="math/tex; mode=display">f^{(n)}(z)=\frac{n!}{2\pi i}\oint_l\frac{f(\xi)}{(\xi-z)^{n+1}}d\xi</script><p>②<strong>模数定理</strong>:f(z)在某个闭区域上解析，|f(z)|只能在边界线上取得极大值<br>③刘维尔定理:f(z)在全平面上解析，f(z)只能为常数</p>
+<h2 id="3-幂级数展开"><a href="#3-幂级数展开" class="headerlink" title="3 幂级数展开"></a>3 幂级数展开</h2><h3 id="3-1-复数项级数"><a href="#3-1-复数项级数" class="headerlink" title="3.1 复数项级数"></a>3.1 复数项级数</h3><script type="math/tex; mode=display">\sum_{k=0}^\infty w_k=w_0+w_1+...+w_n\\w_k=u_k+iv_k</script><p><strong>柯西收敛判定：</strong><br>级数各项模的和的级数收敛，则级数<strong>绝对收敛</strong></p>
+<p>两个绝对收敛的级数，逐项相乘仍然收敛，且和=AB</p>
+<script type="math/tex; mode=display">\sum_{k=0}^\infty p_k \sum_{l=0}^\infty q_l=\sum\sum p_kq_l=\sum c_n=AB\\c_n=p_kq_{n-k}</script><p>一致收敛:<br>N与z无关</p>
+<script type="math/tex; mode=display">|\sum_{k=n+1}^{n+p}w_k(z)|<\epsilon</script><p>对给定小正数$\epsilon$必有N(z)存在,n&gt;N(z)时上式成立</p>
+<p>性质:<br>1.连续保持:若<strong>每一项都是连续函数</strong>,和也是连续函数<br>2.积分:可以逐项积分<br>3.求导：可以逐项求导。且求导结果在任意子闭区域内一致收敛</p>
+<p>如果$|w_k(z)|\le m_k$ $\sum m_k$为正的常数项级数，且收敛。则 wk<strong>绝对且一致收敛</strong></p>
+<h3 id="3-2-幂级数"><a href="#3-2-幂级数" class="headerlink" title="3.2 幂级数"></a>3.2 幂级数</h3><script type="math/tex; mode=display">\sum_{k=0}^\infty a_k(z-z_0)^k</script><p>收敛判断:<br>1.求收敛半径$R=\lim_{k-&gt;\infty}|\frac{a_k}{a_{k+1}}|$ 若$|z-z_0|&lt;R$则绝对收敛<br>2.对于正项级数<strong>根植判断</strong>:每项根号k后，k取极限，若&lt;1则绝对收敛<br>3.逐项积分\逐项求导不改变收敛半径</p>
+<h3 id="3-3-泰勒级数展开"><a href="#3-3-泰勒级数展开" class="headerlink" title="3.3 泰勒级数展开"></a>3.3 泰勒级数展开</h3><center>**定理**</center>
+<center>$f(z)=\sum_{k=0}^\infty a_k(z-z_0)^k$
+则f(z)在以z_0为圆心的圆C_R内解析。f(z)可展开为幂级数
+$a_k=\frac{f^{(k)}(z_0)}{k!}$
+以z_0为中心的泰勒级数
+$f(z)=\frac{f^{(k)}(z_0)}{k!}(z-z_0)^k$
+<center>
+
+###3.4 解析延拓
+就是使用合理的方法，使定义域扩大。具有唯一性
+###3.5 洛朗级数
+**双边幂级数**
+$...+a_{-2}(z-z_0)^{-2}+a_{-1}(z-z_0)^{-1}+a_0+a_{1}(z-z_0)+a_{2}(z-z_0)^{2}+...$
+分为两个部分。正的部分收敛半径为R1，代换1/z-z_0,得到负项部分半径1/R_2.  则R2<|z-z_0|<R1为**收敛环**
+
+**洛朗级数展开**
+<center>f(z)在环形区域R2<|z-z_0|<R1内解析
+则$f(z)=\sum_{-\infty}^\infty a_k(z-z_0)^k$
+$a_k=\frac{1}{2\pi i}\oint_C\frac{f(\epsilon)}{(\epsilon-z_0)^{k+1}}d\epsilon$
+C为环域内任一逆时针闭合路径
+</center>
+###3.6 独立奇点的分类
+在z0不可导，在Z0任意小邻域能除z0外处处可导。则为**独立奇点**
+**可去奇点**:洛朗级数没有负幂项
+**极点**:洛朗级数只有有限个负幂项
+**本性奇点**:无限个负幂项
+##4 留数定理
+###4.1 留数定理
+(单个奇点下)
+**留数**:$(z-z_0)^{-1}$项的系数$a_{-1}$有特别的地位。因此称为f(z)在$z_0$的**留数**.记作**Res f(z_0)**
+根据柯西定理在比$l$小的回路$l_0$上积分，除-1项外全部为0
+
+**于是**$\oint_l f(z)dz=2\pi iRes f(z_0)$
+
+---
+<center>**留数定理(Residue theorem)**
+设函数$f(z)$在回路**l**所围区域**B**上除**有限**个奇点b1,b2,..,bn外**处处解析**。在闭区域$\hat{B}$上除b1,b2,...,bn外**处处连续**.
+则$\oint_l f(z)dz=2\pi i\sum_{j=1}^n Res f(b_j)$
+</center>
+
+<hr>
+<p><strong>留数定理将回路积分归结为被积函数在回路所围区域上奇点留数的和</strong></p>
+<p>对于1阶极点z_0<br>$Res f(z_0)=\lim_{z-&gt;z_0}(z-z_0)\frac{P(z)}{Q(z)}=\frac{P(z_0)}{Q’(z_0)}$(计算留数)<br>$\lim_{z-&gt;z_0}(z-z_0)^mf(z)=非0有限值$(判断极点的阶)</p>
+<h3 id="4-2-应用留数定理计算实变函数积分"><a href="#4-2-应用留数定理计算实变函数积分" class="headerlink" title="4.2 应用留数定理计算实变函数积分"></a>4.2 应用留数定理计算实变函数积分</h3><h4 id="4-2-1-三角函数有理式型"><a href="#4-2-1-三角函数有理式型" class="headerlink" title="4.2.1 三角函数有理式型"></a>4.2.1 三角函数有理式型</h4><script type="math/tex; mode=display">\int_0^{2\pi}R(cos x,sin x) dx</script><p>step1:作变换$z=e^{ix}$.x从0到2pi变化。则z沿逆时针绕单位圆走一圈<br>step2:利用第一章的变换。把sin\cos换成z表示：<br>$cos x=\frac{1}{2}(z+z^{-1})$<br>$sin x=\frac{1}{2i}(z-z^{-1})$<br>$dx=\frac{1}{iz}dz$<br>step3:求积分<br>$\oint_{|z|=1}R(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i})dz/iz$</p>
+<p>利用留数定理积分步骤:<br>1.找出极点<br>2.判断每个极点是否在回路内，不在的不管<br>3.对在回路内的极点利用留数定理积分</p>
+<h4 id="4-2-2-正负无穷的积分"><a href="#4-2-2-正负无穷的积分" class="headerlink" title="4.2.2 正负无穷的积分"></a>4.2.2 正负无穷的积分</h4><script type="math/tex; mode=display">f_{-\infty}^\infty f(z)=2\pi i{f(x)在上半平面所有奇点的留数之和}</script><h4 id="4-2-3-0到无穷大与三角函数积分"><a href="#4-2-3-0到无穷大与三角函数积分" class="headerlink" title="4.2.3 0到无穷大与三角函数积分"></a>4.2.3 0到无穷大与三角函数积分</h4><script type="math/tex; mode=display">\int_0^\infty F(x)cos mxdx=\frac{1}{2}\int_{-\infty}^\infty F(x)e^{imx}dx</script><script type="math/tex; mode=display">\int_0^\infty G(x)sin mxdx=\frac{1}{2i}\int_{-\infty}^\infty G(x)e^{imx}dx</script><p><strong>约当定理</strong>:<br>$C_R$为上半圆。z-&gt;无穷大时F(z)一致的-&gt;0<br>则</p>
+<script type="math/tex; mode=display">lim_{R->0}\int_{C_R}F(z)e^{imz}dz=0</script><p>于是又可得到</p>
+<script type="math/tex; mode=display">\int_0^\infty F(x)cos mxdx=\pi i{\{F(z)e^{imz}}在上平面所有奇点留数之和\}</script><script type="math/tex; mode=display">\int_0^\infty G(x)sin mxdx=\pi {\{G(z)e^{imz}}在上平面所有奇点留数之和\}</script>
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="prev" title="創造情報学入学試験について">
+      <i class="fa fa-chevron-left"></i> 創造情報学入学試験について
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="概率论与数理统计学习笔记">
+      概率论与数理统计学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-复变函数论"><span class="nav-number">1.</span> <span class="nav-text">1 复变函数论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-复数及复数计算"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 复数及复数计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-解析函数"><span class="nav-number">1.2.</span> <span class="nav-text">1.4 解析函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-解析函数的性质"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.4.1 解析函数的性质</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-平面标量场"><span class="nav-number">1.3.</span> <span class="nav-text">1.5 平面标量场</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-多值函数"><span class="nav-number">1.4.</span> <span class="nav-text">1.6 多值函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-1-黎曼面"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.6.1 黎曼面:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-复变函数积分"><span class="nav-number">2.</span> <span class="nav-text">2 复变函数积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-复变函数的积分"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 复变函数的积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-柯西定理"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 柯西定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-单连通区域的柯西定理"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.2.1 单连通区域的柯西定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-复连通区域的柯西定理"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2.2 复连通区域的柯西定理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-不定积分"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 不定积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-柯西公式"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 柯西公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-幂级数展开"><span class="nav-number">3.</span> <span class="nav-text">3 幂级数展开</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-复数项级数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 复数项级数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-幂级数"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 幂级数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-泰勒级数展开"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 泰勒级数展开</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-应用留数定理计算实变函数积分"><span class="nav-number">3.4.</span> <span class="nav-text">4.2 应用留数定理计算实变函数积分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-1-三角函数有理式型"><span class="nav-number">3.4.1.</span> <span class="nav-text">4.2.1 三角函数有理式型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-2-正负无穷的积分"><span class="nav-number">3.4.2.</span> <span class="nav-text">4.2.2 正负无穷的积分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-3-0到无穷大与三角函数积分"><span class="nav-number">3.4.3.</span> <span class="nav-text">4.2.3 0到无穷大与三角函数积分</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">NaNm</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="【概率模型】CRF:Conditional Random Field(条件随机场) CRF主要用于序列标注，可以简单理解为对序列的每一帧都进行分类 逐帧softmax为了解决上述问题。可以利用逐帧softmax将这个序列用 CNN 或者 RNN 进行编码后，接一个全连接层用 softmax 激活，如下图所示： 条件随机场然而，当我们设计标签时，比如用 s、b、m、e 的 4 个标签来做字标注法的分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【概率模型】CRF_Conditional Random Field(条件随机场)">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="【概率模型】CRF:Conditional Random Field(条件随机场) CRF主要用于序列标注，可以简单理解为对序列的每一帧都进行分类 逐帧softmax为了解决上述问题。可以利用逐帧softmax将这个序列用 CNN 或者 RNN 进行编码后，接一个全连接层用 softmax 激活，如下图所示： 条件随机场然而，当我们设计标签时，比如用 s、b、m、e 的 4 个标签来做字标注法的分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557629879751.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557630131916.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557630124813.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557630182441.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557665166565.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557665178660.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557665271002.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557665438893.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557666060888.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557666558002.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557666653710.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557666778762.png">
+<meta property="article:published_time" content="2019-12-26T12:46:34.782Z">
+<meta property="article:modified_time" content="2019-12-26T12:27:12.000Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/1557629879751.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>【概率模型】CRF_Conditional Random Field(条件随机场) | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91CRF_Conditional%20Random%20Field(%E6%9D%A1%E4%BB%B6%E9%9A%8F%E6%9C%BA%E5%9C%BA)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【概率模型】CRF_Conditional Random Field(条件随机场)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:46:34 / Modified: 20:27:12" itemprop="dateCreated datePublished" datetime="2019-12-26T20:46:34+08:00">2019-12-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="【概率模型】CRF-Conditional-Random-Field-条件随机场"><a href="#【概率模型】CRF-Conditional-Random-Field-条件随机场" class="headerlink" title="【概率模型】CRF:Conditional Random Field(条件随机场)"></a>【概率模型】CRF:Conditional Random Field(条件随机场)</h1><blockquote>
+<p>CRF主要用于序列标注，可以简单理解为对序列的每一帧都进行分类</p>
+<h2 id="逐帧softmax"><a href="#逐帧softmax" class="headerlink" title="逐帧softmax"></a>逐帧softmax</h2><p>为了解决上述问题。可以利用逐帧softmax<br>将这个序列用 CNN 或者 RNN 进行编码后，接一个全连接层用 softmax 激活，如下图所示：<br><img src="./1557629879751.png" alt="Alt text"></p>
+<h2 id="条件随机场"><a href="#条件随机场" class="headerlink" title="条件随机场"></a>条件随机场</h2><p>然而，当我们设计标签时，比如用 s、b、m、e 的 4 个标签来做字标注法的分词，目标输出序列本身会带有一些上下文关联，比如 s 后面就不能接 m 和 e，等等。逐标签 softmax 并没有考虑这种输出层面的上下文关联，所以它意味着把这些关联放到了编码层面，希望模型能自己学到这些内容，但有时候会“强模型所难”。 </p>
+</blockquote>
+<p>而 CRF 则更直接一点，它<strong>将输出层面的关联分离了出来</strong>，这使得模型在学习上更为“从容”：<br><img src="./1557630131916.png" alt="Alt text"><br>而在序列标注任务中，我们的正确答案是一般是唯一的。比如“今天天气不错”，如果对应的分词结果是“今天/天气/不/错”，那么目标输出序列就是 bebess，除此之外别的路径都不符合要求。</p>
+<p>换言之，在序列标注任务中，我们的研究的基本单位应该是路径，我们要做的事情，是从 k^n 条路径选出正确的一条，那就意味着，如果将它<strong>视为一个分类问题</strong>，那么将是 k^n 类中选一类的分类问题。<br><img src="./1557630124813.png" alt="Alt text"><br>这就是逐帧 softmax 和 CRF 的根本不同了：<strong>前者将序列标注看成是 n 个 k 分类问题，后者将序列标注看成是 1 个 k^n 分类问题。</strong><br>具体来讲，在 CRF 的序列标注问题中，我们要计算的是条件概率：<br><img src="./1557630182441.png" alt="Alt text"></p>
+<p>我们举个例子：<br><img src="./1557665166565.png" alt="Alt text"><br>我们可以得到以下模型图：<br><img src="./1557665178660.png" alt="Alt text"><br>当模型输入句子 ”Dog caught the cat“ 时，我们希望模型能够输出标注序列：“n v a n”的概率最大<br>那么如何根据这个状态图计算出序列”n v a n“的出现的概率呢？<br>这里就引出了<strong>概率无向图模型</strong>：（注：个人认为条件随机场模型是一个概率无向图模型，而线性链条件随机场是一个有向图模型）</p>
+<p>对于上列图，我们定义两种特征</p>
+<ul>
+<li><strong>转移特征</strong><br>定义在边上的特征。<img src="./1557665271002.png" alt="Alt text"><br>表示观察序列X在i及i-1位置上的标记转移概率</li>
+<li><strong>状态特征</strong><br>定义在点上的特征<script type="math/tex; mode=display">s_k(y_i,X,i)</script>表示对于观察序列X其i位置的标记概率</li>
+</ul>
+<p><img src="./1557665438893.png" alt="Alt text"><br><img src="./1557666060888.png" alt="Alt text"></p>
+<h4 id="定义CRF中的特征函数"><a href="#定义CRF中的特征函数" class="headerlink" title="定义CRF中的特征函数"></a>定义CRF中的特征函数</h4><p>现在，我们正式地定义一下什么是CRF中的特征函数，所谓特征函数，就是这样的函数，它接受四个参数： </p>
+<ol>
+<li>句子s（就是我们要标注词性的句子） </li>
+<li>i，用来表示句子s中第i个单词 </li>
+<li>l_i，表示要评分的标注序列给第i个单词标注的词性 </li>
+<li>l_i-1，表示要评分的标注序列给第i-1个单词标注的词性</li>
+</ol>
+<p>它的输出值是0或者1,0表示要评分的标注序列不符合这个特征，1表示要评分的标注序列符合这个特征。</p>
+<p>Note:这里，我们的特征函数仅仅依靠当前单词的标签和它前面的单词的标签对标注序列进行评判，这样建立的CRF也叫作线性链CRF，这是CRF中的一种简单情况。为简单起见，本文中我们仅考虑线性链CRF。</p>
+<h2 id="最大熵模型"><a href="#最大熵模型" class="headerlink" title="最大熵模型"></a>最大熵模型</h2><p>考虑NLP中的消除歧义问题。集合$A$是结果候选集合，$B$是歧义点的上下文<br>于是$f(a,b)$为一个特征<br>运用最大熵模型</p>
+<script type="math/tex; mode=display">\hat p(a|b)=argmax_{p\in P} H(p)</script><p>可以看出最大熵模型，是寻找一个分布，在这个分布下熵达到最大</p>
+<script type="math/tex; mode=display">H(p)=H(A|B)=\sum_b p(b)H(A|B=b)=-\sum_{a,b}p(b)[p(a|b)\log p(a|b)]</script><p>于是可以转换为问题</p>
+<script type="math/tex; mode=display">\hat p(a|b)=argmax (-\sum_{a,b}\hat p(b)[p(a|b)\log p(a|b)])</script><script type="math/tex; mode=display">\hat p(a,b)\approx \frac{Count(a,b)}{\sum_{A,B}Count(a,b)}=\frac{1}{Z(b)}exp(\sum_{i=1}^l \lambda_i\centerdot f_i(a,b))\\Z(b)为归一化因子,使\sum_a \hat p(a|b)=1</script><h4 id="从特征函数到概率"><a href="#从特征函数到概率" class="headerlink" title="从特征函数到概率"></a>从特征函数到概率</h4><p>定义好一组特征函数后，我们要给每个特征函数f_j赋予一个权重λ_j。现在，只要有一个句子s，有一个标注序列l，我们就可以利用前面定义的特征函数集来对l评分<br><img src="./1557666558002.png" alt="Alt text"><br>标准化<br><img src="./1557666653710.png" alt="Alt text"><br><img src="./1557666778762.png" alt="Alt text"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>[1] <a href="https://www.jiqizhixin.com/articles/2018-05-23-3" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/2018-05-23-3</a></li>
+<li>[2] <a href="https://blog.csdn.net/dcx_abc/article/details/78319246" target="_blank" rel="noopener">https://blog.csdn.net/dcx_abc/article/details/78319246</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E3%80%90%E3%82%BD%E3%83%95%E3%83%88%E5%B7%A5%E5%AD%A6%E3%80%91Git%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89/" rel="prev" title="【ソフト工学】Gitコマンド">
+      <i class="fa fa-chevron-left"></i> 【ソフト工学】Gitコマンド
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E3%80%90%E6%A6%82%E7%8E%87%E6%A8%A1%E5%9E%8B%E3%80%91HMM(%E9%9A%90%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%A8%A1%E5%9E%8B)/" rel="next" title="【概率模型】HMM(隐马尔可夫模型)">
+      【概率模型】HMM(隐马尔可夫模型) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#【概率模型】CRF-Conditional-Random-Field-条件随机场"><span class="nav-number">1.</span> <span class="nav-text">【概率模型】CRF:Conditional Random Field(条件随机场)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逐帧softmax"><span class="nav-number">1.1.</span> <span class="nav-text">逐帧softmax</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件随机场"><span class="nav-number">1.2.</span> <span class="nav-text">条件随机场</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义CRF中的特征函数"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">定义CRF中的特征函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最大熵模型"><span class="nav-number">1.3.</span> <span class="nav-text">最大熵模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从特征函数到概率"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">从特征函数到概率</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">NaNm</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

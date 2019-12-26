@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="AI,Machine Learning,機械学習,统计学习,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考:[1]https://www.cnblogs.com/Peyton-Li/p/7607858.html[2]http://blog.csdn.net/zouxy09/article/details/24971995  0.简介其中第一项是损失函数的计算。也就是真实值与估计值的误差。后面的$\Omega$就是正则项。我们训练希望让真实值与估计值的误差尽可能的小。也就是模型尽可能拟合训练数据。">
+<meta name="keywords" content="AI,Machine Learning,機械学習,统计学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【统计学习】L0&amp;L1&amp;L2正则化">
+<meta property="og:url" content="http://yoursite.com/2019/04/12/【统计学习】正则化/index.html">
+<meta property="og:site_name" content="Sakuyui39のBLOG">
+<meta property="og:description" content="参考:[1]https://www.cnblogs.com/Peyton-Li/p/7607858.html[2]http://blog.csdn.net/zouxy09/article/details/24971995  0.简介其中第一项是损失函数的计算。也就是真实值与估计值的误差。后面的$\Omega$就是正则项。我们训练希望让真实值与估计值的误差尽可能的小。也就是模型尽可能拟合训练数据。">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/【统计学习】正则化/1555081516545.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/【统计学习】正则化/1555082630892.png">
+<meta property="og:image" content="http://yoursite.com/2019/04/12/【统计学习】正则化/1555082551370.png">
+<meta property="og:updated_time" content="2019-04-12T15:27:20.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【统计学习】L0&amp;L1&amp;L2正则化">
+<meta name="twitter:description" content="参考:[1]https://www.cnblogs.com/Peyton-Li/p/7607858.html[2]http://blog.csdn.net/zouxy09/article/details/24971995  0.简介其中第一项是损失函数的计算。也就是真实值与估计值的误差。后面的$\Omega$就是正则项。我们训练希望让真实值与估计值的误差尽可能的小。也就是模型尽可能拟合训练数据。">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/12/【统计学习】正则化/1555081516545.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/12/【统计学习】正则化/">
+
+
+
+
+
+
+  <title>【统计学习】L0&L1&L2正则化 | Sakuyui39のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+undefined
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Sakuyui" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sakuyui39のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">あ～よっしゃ行くぞー！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/12/【统计学习】正则化/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakuyui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuyui39のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【统计学习】L0&L1&L2正则化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-12T23:25:23+08:00">
+                2019-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考:<br>[1]<a href="https://www.cnblogs.com/Peyton-Li/p/7607858.html" target="_blank" rel="noopener">https://www.cnblogs.com/Peyton-Li/p/7607858.html</a><br>[2]<a href="http://blog.csdn.net/zouxy09/article/details/24971995" target="_blank" rel="noopener">http://blog.csdn.net/zouxy09/article/details/24971995</a></p>
+</blockquote>
+<h1 id="0-简介"><a href="#0-简介" class="headerlink" title="0.简介"></a>0.简介</h1><p><img src="/2019/04/12/【统计学习】正则化/1555081516545.png" alt="Alt text"><br>其中第一项是损失函数的计算。也就是真实值与估计值的误差。后面的$\Omega$就是正则项。<br>我们训练希望让真实值与估计值的误差尽可能的小。也就是模型尽可能拟合训练数据。<strong>但是，我们不仅希望模型训练误差小，测试误差也小（也就是泛化能力强），而复杂的模型可能会产生过拟合（也就是过度拟合训练数据，但是整体数据集上不能很好的拟合）</strong>，于是我们加上第二项，也就是<strong>正则化项（regularizer）或者惩罚项（penalty term）</strong><a id="more"></a>，这是一个约束项，目的是去约束模型，让其变得简单。</p>
+<p>规格化函数$Omega$有很多种，常见的有<strong>零范数、一范数、二范数、迹范数、Frobenius范数和核范数</strong>等等</p>
+<h2 id="一、L0范数与L1范数"><a href="#一、L0范数与L1范数" class="headerlink" title="一、L0范数与L1范数"></a>一、L0范数与L1范数</h2><p><strong>L0范数是指向量中的非零个数</strong>，如果用L0来规格化一个<strong>参数矩阵</strong>的话就是<strong>希望W的大部分元素都为0。</strong>，也就是让W的参数是稀疏的。</p>
+<p>但是会发现。各类文章中提到的更多是<strong>L1范数</strong>。为什么大家都用L1而不是L0呢？<br>这也是这节的题目把L0和L1放在一起的原因，因为他们有着某种不寻常的关系。<br> L1范数是指向量中各个元素绝对值之和，也叫<strong>“稀疏规则算子”（Lasso regularization）</strong>，同L0一样，都能使得参数矩阵稀疏化。</p>
+<p> Q：为什么L1会使W变得稀疏呢？<br> 因为L1范数是L0范数的<strong>最优凸近似</strong>，<strong>任何的规则化算子，如果他在Wi=0的地方不可微，并且可以分解为一个“求和”的形式，那么这个规则化算子就可以实现稀疏</strong></p>
+<blockquote>
+<p>W的L1范数是绝对值，|w|在w=0处不可微</p>
+</blockquote>
+<p>因为L0难以优化（优化问题很难求解，NP难问题），因此人们更多使用L1范数</p>
+<p>总结:<strong>L1范数和L0范数可以实现稀疏，L1因具有比L0更好的优化求解特性而被广泛应用。</strong></p>
+<p><strong>参数稀疏的好处</strong><br>1.特征选择((Feature Selection)<br>有些影响较小，或者没有影响的特性，它会学习地去掉这些没有信息的特征，也就是把这些特征对应的权重置为0。</p>
+<p>2.可解释性<br>通过观察权值。可以知道哪些特征更有用，或者说只由哪些特征决定</p>
+<p><img src="/2019/04/12/【统计学习】正则化/1555082630892.png" alt="Alt text"></p>
+<blockquote>
+<p>彩色实线是的等值线，黑色实线是L1正则的等值线。二维空间（权重向量只有和）上，L1正则项的等值线是方形，方形与的等值线相交时相交点为顶点的概率很大，所以或等于零的概率很大。所以使用L1正则项的解具有稀疏性。</p>
+</blockquote>
+<h2 id="L2范数"><a href="#L2范数" class="headerlink" title="L2范数"></a>L2范数</h2><p>使用L2范数的回归，可以叫<strong>岭回归（Ridge Regression）或者“权值衰减（weight decay）”</strong><br>它的强大功效是改善机器学习里面一个非常重要的问题：<strong>过拟合</strong></p>
+<p>  L2范数是指向量各元素的平方和然后求平方根。<strong>我们让L2范数的规则项||W||2最小</strong>，<strong>可以使得W的每个元素都很小</strong>，<strong>都接近于0</strong>，但与L1范数不同，它不会让它等于0，而是接近于0，这里是有很大的区别的哦。而越小的参数说明模型越简单，越简单的模型则越不容易产生过拟合现象。<br><img src="/2019/04/12/【统计学习】正则化/1555082551370.png" alt="Alt text"></p>
+<blockquote>
+<p>彩色实线是$J_0$的等值线，黑色实线是$L2$正则的等值线。二维空间（权重向量只有和）上，L2正则项的等值线是圆，与的等值线相交时或等于零的概率很小。所以使用L2正则项的解<strong>不具有稀疏性</strong>。在求解过程中，L2通常倾向让权值尽可能小，最后构造一个所有参数都比较小的模型。因为<strong>一般认为参数值小的模型比较简单</strong>，能适应不同的数据集，也在一定程度上避免了过拟合现象。参数足够小，数据偏移得多一点也不会对结果造成什么影响，可以说“抗扰动能力强”。</p>
+</blockquote>
+<h1 id="Key"><a href="#Key" class="headerlink" title="Key"></a>Key</h1><h3 id="ill-condition"><a href="#ill-condition" class="headerlink" title="ill-condition"></a>ill-condition</h3>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/AI/" rel="tag"># AI</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/機械学習/" rel="tag"># 機械学習</a>
+          
+            <a href="/tags/统计学习/" rel="tag"># 统计学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/09/【统计学习】逐步回归(Step Regression and) 和 分段回归(Stagewise regression)/" rel="next" title="【统计学习】*逐步回归(Step Regression and) 和 分段回归(Stagewise regression)">
+                <i class="fa fa-chevron-left"></i> 【统计学习】*逐步回归(Step Regression and) 和 分段回归(Stagewise regression)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/【矩阵论_线性代数】特征值分解，奇异值分解（SVD）/" rel="prev" title="【矩阵论|线性代数】特征值分解，奇异值分解（SVD）">
+                【矩阵论|线性代数】特征值分解，奇异值分解（SVD） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Sakuyui">
+            
+              <p class="site-author-name" itemprop="name">Sakuyui</p>
+              <p class="site-description motion-element" itemprop="description">Sakuyui的个人技术博客,主要涉及软件工程,编程语言,大数据处理,机器学习,深度学习等</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sakuyui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:405544641@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/microice17" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/roi.mic.9" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0-简介"><span class="nav-number">1.</span> <span class="nav-text">0.简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、L0范数与L1范数"><span class="nav-number">1.1.</span> <span class="nav-text">一、L0范数与L1范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L2范数"><span class="nav-number">1.2.</span> <span class="nav-text">L2范数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Key"><span class="nav-number">2.</span> <span class="nav-text">Key</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ill-condition"><span class="nav-number">2.0.1.</span> <span class="nav-text">ill-condition</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">Total 79.2k words</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

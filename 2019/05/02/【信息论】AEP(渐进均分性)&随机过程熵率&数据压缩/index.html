@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+      
+    
+    
+      
+    
+  <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+  <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-flash.min.css" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="信息论,情報理論,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="AEP-\frac{1}{n}\log p(X_1,X_2,...,X_n)\rightarrow H(X),依概率证明很简单。就是X_i与X_j是相互独立的，然后就可以把联合分布展开出来，就变成均值公式了，依概率后就是期望了 典型集是序列$(x_1,x_2,…,x_n)\in \mathscr{X}$的集合">
+<meta name="keywords" content="信息论,情報理論">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【信息论】AEP(渐进均分性)&amp;随机过程熵率&amp;数据压缩">
+<meta property="og:url" content="http://yoursite.com/2019/05/02/【信息论】AEP(渐进均分性)&随机过程熵率&数据压缩/index.html">
+<meta property="og:site_name" content="Sakuyui39のBLOG">
+<meta property="og:description" content="AEP-\frac{1}{n}\log p(X_1,X_2,...,X_n)\rightarrow H(X),依概率证明很简单。就是X_i与X_j是相互独立的，然后就可以把联合分布展开出来，就变成均值公式了，依概率后就是期望了 典型集是序列$(x_1,x_2,…,x_n)\in \mathscr{X}$的集合">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-05-02T03:05:42.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【信息论】AEP(渐进均分性)&amp;随机过程熵率&amp;数据压缩">
+<meta name="twitter:description" content="AEP-\frac{1}{n}\log p(X_1,X_2,...,X_n)\rightarrow H(X),依概率证明很简单。就是X_i与X_j是相互独立的，然后就可以把联合分布展开出来，就变成均值公式了，依概率后就是期望了 典型集是序列$(x_1,x_2,…,x_n)\in \mathscr{X}$的集合">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/02/【信息论】AEP(渐进均分性)&随机过程熵率&数据压缩/">
+
+
+
+
+
+
+  <title>【信息论】AEP(渐进均分性)&随机过程熵率&数据压缩 | Sakuyui39のBLOG</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+undefined
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+<a href="https://github.com/Sakuyui" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sakuyui39のBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">あ～よっしゃ行くぞー！</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>
+            
+            Schedule
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/02/【信息论】AEP(渐进均分性)&随机过程熵率&数据压缩/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sakuyui">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sakuyui39のBLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【信息论】AEP(渐进均分性)&随机过程熵率&数据压缩</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-02T11:04:22+08:00">
+                2019-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础学科/" itemprop="url" rel="index">
+                    <span itemprop="name">基础学科</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="AEP"><a href="#AEP" class="headerlink" title="AEP"></a>AEP</h2><script type="math/tex; mode=display">-\frac{1}{n}\log p(X_1,X_2,...,X_n)\rightarrow H(X),依概率</script><p>证明很简单。就是X_i与X_j是相互独立的，然后就可以把联合分布展开出来，就变成均值公式了，依概率后就是期望了</p>
+<h2 id="典型集"><a href="#典型集" class="headerlink" title="典型集"></a>典型集</h2><p>是序列$(x_1,x_2,…,x_n)\in \mathscr{X}$的集合<a id="more"></a></p>
+<script type="math/tex; mode=display">H(X)-\epsilon\le -\frac{1}{n}\log p(x_1,x_2,...,x_n)\le H(X)+\epsilon</script><p>典型集的概率近似为1</p>
+<p>典型集的大小为$2^{n(H+\epsilon)}$<br>于是典型序列需要${n(H+\epsilon)}+2\approx nH$bit来描述(每个变量都约需要H来描述,个数为n的序列就是nH)<br>加2是因为<br>1.为了防止非整数长度，加了个1<br>2.为了表示是典型集，加一个标志位</p>
+<h2 id="最小概率集"><a href="#最小概率集" class="headerlink" title="最小概率集"></a>最小概率集</h2><script type="math/tex; mode=display">a_n\doteq b_n$$表示
+$$\lim_{n\rightarrow n}\frac{1}{n}\log\frac{a_n}{b_n}=0</script><p>最小概率集</p>
+<script type="math/tex; mode=display">|B_\delta^{(n)}|\doteq 2^{nH}</script><h2 id="随机过程熵率"><a href="#随机过程熵率" class="headerlink" title="随机过程熵率"></a>随机过程熵率</h2><p><strong>平稳随机过程:</strong><br>联合分布随时间下标位移不变<br>（就是某序列的联合分布，序列里全部随机变量下标加上相同时间后，这个联合分布的概率还是不变）</p>
+<h3 id="求解平稳概率"><a href="#求解平稳概率" class="headerlink" title="求解平稳概率"></a>求解平稳概率</h3><p>解<script type="math/tex">\mu P=\mu</script><br>即可。$P$是概率转移矩阵<br>$\mu$是平稳概率矩阵。要求的是$\mu$<br>$\sum\mu_i=1$<br>某时刻状态n的熵</p>
+<script type="math/tex; mode=display">H(X_n)=H(\mu_1,\mu_2,...)</script><h3 id="熵率"><a href="#熵率" class="headerlink" title="熵率"></a>熵率</h3><center>
+两种定义方式
+$H(\mathscr{X})=\lim_{n\rightarrow\infty}\frac{1}{n}H(X_1,X_2,...,X_n)$
+$H'(\mathscr{X})=\lim_{n\rightarrow\infty}H(X_n|X_1,X_2,...,X_{n-1})$
+对于平稳随机过程两者相等
+</center>
+
+
+<p>马尔科夫链函数(隐马尔可夫模型)</p>
+<script type="math/tex; mode=display">H(Y_n|X_{n-1},...,Y_1,X_1)\le H(\mathscr{Y}) \le H(Y_n|Y_{n-1},...,Y_1)</script><p>Y_i是X_i加了个映射。服从p(y|x)<br>可以看到<br>1.H(y)的不确定度小于”知道前n-1个状态下,y_n状态的不确定度””<br>2.但是H(y)的不确定度又大于知道前n-1个y而且又知道x_1的情况下y_n状态的不确定度</p>
+<h2 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h2><h3 id="Kraft不等式"><a href="#Kraft不等式" class="headerlink" title="Kraft不等式"></a>Kraft不等式</h3><p>对于即时码（可以自动划分的）<br>有</p>
+<script type="math/tex; mode=display">\sum D^{-l_i}\le 1</script><p>证明过程就是画颗树。然后剪枝，计算就行</p>
+<h3 id="香农码"><a href="#香农码" class="headerlink" title="香农码"></a>香农码</h3><p>非最优<br>平均码长$L=\sum p_il_i$<br>香农取$l_i=log_D\frac{1}{p_i}向上取整$</p>
+<h3 id="Huffman码"><a href="#Huffman码" class="headerlink" title="Huffman码"></a>Huffman码</h3><p>最优</p>
+<h3 id="偏码"><a href="#偏码" class="headerlink" title="偏码"></a>偏码</h3><p>如果真实分布为p(x)<br>却使用了非真实分布q(x)<br>那么不等式需要加个<strong>KL散度</strong>作为惩罚项</p>
+<script type="math/tex; mode=display">H(p)+D(p||q)\le L\le H(p)+D(p||q)+1</script><h3 id="随机过程"><a href="#随机过程" class="headerlink" title="随机过程"></a>随机过程</h3><p>对于平稳过程。L_n码长依概率逼近于熵率<br>否则<br>$\frac{H(X_1,X_2,…,X_n)}{n}\le L_n\le\frac{H(X_1,X_2,…,X_n)}{n}+\frac{1}{n}$</p>
+<h2 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h2><p><strong>双倍率</strong></p>
+<script type="math/tex; mode=display">W(b,p)=\sum_{k=1}^mp_k\log b_ko_k</script><p>b表示投资比例向量。合为1<br>p_k表示第k个博弈事件成功概率<br>o_k表示k th博弈成功收益(为投资比例的相对值)</p>
+<p><strong>按比例博弈是最优的</strong></p>
+<script type="math/tex; mode=display">W*(p)=\max_b W(b,p)=\sum p_i\log o_i-H(p)</script><p>移向可以发现存在<strong>守恒定律</strong><br><strong>双倍率和熵率之和为常数</strong></p>
+<p><strong>边信息</strong><br>由边信息Y，导致的双倍率增量为</p>
+<script type="math/tex; mode=display">\Delta W=I(X;Y)</script>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/信息论/" rel="tag"># 信息论</a>
+          
+            <a href="/tags/情報理論/" rel="tag"># 情報理論</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/02/【信息论】Entropy、Relative Entropy,K-L distance/" rel="next" title="【信息论】Entropy、Relative Entropy,K-L distance">
+                <i class="fa fa-chevron-left"></i> 【信息论】Entropy、Relative Entropy,K-L distance
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/10/【NLP】LSA(Latent Semantic Analysis潜在语义分析)/" rel="prev" title="【NLP】LSA(Latent Semantic Analysis:潜在语义分析)">
+                【NLP】LSA(Latent Semantic Analysis:潜在语义分析) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="Sakuyui">
+            
+              <p class="site-author-name" itemprop="name">Sakuyui</p>
+              <p class="site-description motion-element" itemprop="description">Sakuyui的个人技术博客,主要涉及软件工程,编程语言,大数据处理,机器学习,深度学习等</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">60</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Sakuyui" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:405544641@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://twitter.com/microice17" target="_blank" title="Twitter">
+                      
+                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/roi.mic.9" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://youtube.com/yourname" target="_blank" title="YouTube">
+                      
+                        <i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#AEP"><span class="nav-number">1.</span> <span class="nav-text">AEP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#典型集"><span class="nav-number">2.</span> <span class="nav-text">典型集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最小概率集"><span class="nav-number">3.</span> <span class="nav-text">最小概率集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#随机过程熵率"><span class="nav-number">4.</span> <span class="nav-text">随机过程熵率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#求解平稳概率"><span class="nav-number">4.1.</span> <span class="nav-text">求解平稳概率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#熵率"><span class="nav-number">4.2.</span> <span class="nav-text">熵率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据压缩"><span class="nav-number">5.</span> <span class="nav-text">数据压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kraft不等式"><span class="nav-number">5.1.</span> <span class="nav-text">Kraft不等式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#香农码"><span class="nav-number">5.2.</span> <span class="nav-text">香农码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Huffman码"><span class="nav-number">5.3.</span> <span class="nav-text">Huffman码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏码"><span class="nav-number">5.4.</span> <span class="nav-text">偏码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#随机过程"><span class="nav-number">5.5.</span> <span class="nav-text">随机过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#博弈论"><span class="nav-number">6.</span> <span class="nav-text">博弈论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">Total 79.2k words</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</html>

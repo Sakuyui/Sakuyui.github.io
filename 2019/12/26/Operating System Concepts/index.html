@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Operating System Concepts[TOC] Chapter 1 Introduction(介绍)1.1 What OS Do?A computer system can be divided roughly into four components: the hardware, the operating system, the application programs,and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Operating System Concepts">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="Operating System Concepts[TOC] Chapter 1 Introduction(介绍)1.1 What OS Do?A computer system can be divided roughly into four components: the hardware, the operating system, the application programs,and">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552728926122.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552730553032.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552731054149.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552731541789.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552732221601.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552732309932.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552733022090.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552733107211.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552733465957.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552733800515.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552734674000.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552735817737.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552735865692.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552735956426.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552736201373.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552736911733.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552737044796.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552737162694.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552737173089.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552737210202.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552738190888.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552738507541.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552738557383.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552738864025.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552739139108.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552739184872.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552739310149.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552739460392.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552739477121.png">
+<meta property="article:published_time" content="2019-12-26T12:54:23.602Z">
+<meta property="article:modified_time" content="2019-12-26T12:19:12.000Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/1552728926122.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Operating System Concepts | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Operating System Concepts
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:54:23 / Modified: 20:19:12" itemprop="dateCreated datePublished" datetime="2019-12-26T20:54:23+08:00">2019-12-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>5.1k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>5 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Operating-System-Concepts"><a href="#Operating-System-Concepts" class="headerlink" title="Operating System Concepts"></a>Operating System Concepts</h1><p>[TOC]</p>
+<h2 id="Chapter-1-Introduction-介绍"><a href="#Chapter-1-Introduction-介绍" class="headerlink" title="Chapter 1 Introduction(介绍)"></a>Chapter 1 Introduction(介绍)</h2><h3 id="1-1-What-OS-Do"><a href="#1-1-What-OS-Do" class="headerlink" title="1.1 What OS Do?"></a>1.1 What OS Do?</h3><p>A computer system can be divided roughly into <strong>four</strong> components: the <strong>hardware</strong>, the <strong>operating system</strong>, the <strong>application programs</strong>,and a <strong>user</strong></p>
+<h4 id="1-1-1-User-View"><a href="#1-1-1-User-View" class="headerlink" title="1.1.1 User View"></a>1.1.1 User View</h4><p><img src="./1552728926122.png" alt="Alt text"><br>Some Computer have little or no user view,such as <strong>embedded computers(嵌入式计算机)</strong></p>
+<h4 id="1-1-2-System-View"><a href="#1-1-2-System-View" class="headerlink" title="1.1.2 System View"></a>1.1.2 System View</h4><p>we can view OS as a <strong>resource allocator</strong></p>
+<h4 id="1-1-3-Defining-OS"><a href="#1-1-3-Defining-OS" class="headerlink" title="1.1.3 Defining OS"></a>1.1.3 Defining OS</h4><p><strong>middleware</strong>:a set of software frameworks that provide additional services to application developers<br>In summary OS include:<br><strong>Kernal(内核):</strong>alway running<br><strong>Middleware(中间件)</strong>:ease application development and provide features<br><strong>system programs(系统程序)</strong>:aid in managing the system while it is running</p>
+<h3 id="1-2-Computer-System-Organization"><a href="#1-2-Computer-System-Organization" class="headerlink" title="1.2 Computer-System Organization"></a>1.2 Computer-System Organization</h3><p><img src="./1552730553032.png" alt="Alt text"></p>
+<h4 id="1-2-1-Interrupts-中断"><a href="#1-2-1-Interrupts-中断" class="headerlink" title="1.2.1 Interrupts(中断)"></a>1.2.1 Interrupts(中断)</h4><p>Start a <strong>I/O operation</strong>:<br>(1)device driver loads the appropriate registers in the device controller.<br>(2)device controller  examines the contents of these registers to determine what action to take</p>
+<h5 id="1-2-1-1-Overview"><a href="#1-2-1-1-Overview" class="headerlink" title="1.2.1.1 Overview"></a>1.2.1.1 Overview</h5><p><img src="./1552731054149.png" alt="Alt text"><br><strong>interrupt vector</strong> is the memory location of an interrupt handler</p>
+<h5 id="1-2-1-2-Implementation"><a href="#1-2-1-2-Implementation" class="headerlink" title="1.2.1.2 Implementation"></a>1.2.1.2 Implementation</h5><p>the device controller <strong>raises</strong> an interrupt by asserting a signal on the<br>interrupt request line, the CPU <strong>catches</strong> the interrupt and <strong>dispatches</strong> it to the<br>interrupt handler, and the handler <strong>clears</strong> the interrupt by servicing the device<br><img src="./1552731541789.png" alt="Alt text"><br>Most CPUs have two <strong>interrupt request lines</strong>. One is the <strong>nonmaskable interrupt(不可屏蔽中断)</strong><br>,another is <strong>maskable interrupt(可屏蔽中断)</strong></p>
+<h4 id="1-2-2-Storage-Structure"><a href="#1-2-2-Storage-Structure" class="headerlink" title="1.2.2 Storage Structure"></a>1.2.2 Storage Structure</h4><p><strong>bootstrap(引导程序)</strong><br><img src="./1552732221601.png" alt="Alt text"></p>
+<h4 id="1-2-3-I-O-Structure"><a href="#1-2-3-I-O-Structure" class="headerlink" title="1.2.3 I/O Structure"></a>1.2.3 I/O Structure</h4><p><img src="./1552732309932.png" alt="Alt text"><br><strong>DMA(Direct Memory Access)</strong>:After setting up buffers, pointers, and counters for the I/O device, the device controller transfers an entire block of data directly to or from the device and main memory, with no intervention by the CPU. Only one interrupt is generated per block, to tell the device driver that the operation has completed, rather than the one interrupt per byte generated for low-speed devices. (为I/O设备设置好<strong>缓冲区</strong>，<strong>指针</strong>，和<strong>计时器</strong>后。设备控制器就传输完整的数据块在主存和设备之间，不需要CPU干预。整个过程只有一次<strong>中断</strong>-通知操作完成)</p>
+<h3 id="1-3-Computer-System-Architecture"><a href="#1-3-Computer-System-Architecture" class="headerlink" title="1.3 Computer-System Architecture"></a>1.3 Computer-System Architecture</h3><h4 id="1-3-1-Single-Processor-System-单道程序系统"><a href="#1-3-1-Single-Processor-System-单道程序系统" class="headerlink" title="1.3.1 Single-Processor System(单道程序系统)"></a>1.3.1 Single-Processor System(单道程序系统)</h4><p>All of these special-purpose processors run a limited instruction set and do not run processes.<br>只有一个程序,顺序执行,独占资源,结果可再现性</p>
+<h4 id="1-3-2-MultiProcessor-System-多道程序系统"><a href="#1-3-2-MultiProcessor-System-多道程序系统" class="headerlink" title="1.3.2 MultiProcessor System(多道程序系统)"></a>1.3.2 MultiProcessor System(多道程序系统)</h4><p><strong>symmetric multiprocessing(对称多处理):</strong><br><strong>SMP (symmetric multiprocessing) </strong>is the processing of programs by multiple processors that share a common operating system and memory.<br><img src="./1552733022090.png" alt="Alt text"><br><strong>多核处理器的结构和缓存</strong><br><img src="./1552733107211.png" alt="Alt text"><br><strong>non-uniform memory access(NUMA,非均匀存储器存储):</strong> is a computer memory design used in multiprocessing, where the memory access time depends on the memory location relative to the processor<br><img src="./1552733465957.png" alt="Alt text"></p>
+<h4 id="1-3-3-Clustered-Systems-集群系统"><a href="#1-3-3-Clustered-Systems-集群系统" class="headerlink" title="1.3.3 Clustered Systems(集群系统)"></a>1.3.3 Clustered Systems(集群系统)</h4><p>Clustering is usually used to provide <strong>high-availability service</strong><br><img src="./1552733800515.png" alt="Alt text"></p>
+<h3 id="1-4-Operating-System-Operations"><a href="#1-4-Operating-System-Operations" class="headerlink" title="1.4 Operating-System Operations"></a>1.4 Operating-System Operations</h3><p>计算器启动:<br><strong>第一阶段</strong><br>1.最先读取BIOS（里面包含自检程序,CMOS设置程序,系统自动装载程序、主要I/O驱动和中断服务）<br>2.自检<br>3.控制权转交到引导设备<br><strong>第二阶段</strong><br>1.读取主引导记录(512B)<br>2.运行启动管理器<br>3,转交启动管理器</p>
+<h4 id="1-4-1-Multiprogramming-and-Multitasking"><a href="#1-4-1-Multiprogramming-and-Multitasking" class="headerlink" title="1.4.1 Multiprogramming and Multitasking"></a>1.4.1 Multiprogramming and Multitasking</h4><h4 id="1-4-2-Dual-Mode-and-Multimode-Operation"><a href="#1-4-2-Dual-Mode-and-Multimode-Operation" class="headerlink" title="1.4.2 Dual-Mode and Multimode Operation"></a>1.4.2 Dual-Mode and Multimode Operation</h4><p>存在两种模式<br><strong>user mode</strong> and <strong>kernel mode(also called supervisor mode, system mode, or privileged mode)</strong><br>在hardware里加个模式位<br><img src="./1552734674000.png" alt="Alt text"><br>系统启动时处于<strong>kernel mode</strong><br><strong>转换到user mode 的命令本身就是privileged instruction</strong><br>When a <strong>system call</strong> is executed, it is typically treated by the hardware as a <strong>software interrupt</strong>. Control passes through the <strong>interrupt vector</strong> to a service routine in the operating system, and the mode bit is set to <strong>kernel mode</strong><br>(系统调用被看作软中断，然后会变成kernel mode)</p>
+<h4 id="1-4-3-Timer"><a href="#1-4-3-Timer" class="headerlink" title="1.4.3 Timer"></a>1.4.3 Timer</h4><p>防止死循环，维持对系统的控制</p>
+<h3 id="1-5-Resource-Management-资源管理"><a href="#1-5-Resource-Management-资源管理" class="headerlink" title="1.5 Resource Management(资源管理)"></a>1.5 Resource Management(资源管理)</h3><h4 id="1-5-1-Process-Management-进程管理"><a href="#1-5-1-Process-Management-进程管理" class="headerlink" title="1.5.1 Process Management(进程管理)"></a>1.5.1 Process Management(进程管理)</h4><h4 id="1-5-2-Process-Management-内存管理"><a href="#1-5-2-Process-Management-内存管理" class="headerlink" title="1.5.2 Process Management(内存管理)"></a>1.5.2 Process Management(内存管理)</h4><h4 id="1-5-3-File-System-Management-文件系统管理"><a href="#1-5-3-File-System-Management-文件系统管理" class="headerlink" title="1.5.3 File-System Management(文件系统管理)"></a>1.5.3 File-System Management(文件系统管理)</h4><h4 id="1-5-4-Mass-Storage-Management-大容量存储器管理"><a href="#1-5-4-Mass-Storage-Management-大容量存储器管理" class="headerlink" title="1.5.4 Mass-Storage Management(大容量存储器管理)"></a>1.5.4 Mass-Storage Management(大容量存储器管理)</h4><h4 id="1-5-5-Cache-Management-缓存管理"><a href="#1-5-5-Cache-Management-缓存管理" class="headerlink" title="1.5.5 Cache Management(缓存管理)"></a>1.5.5 Cache Management(缓存管理)</h4><h4 id="1-5-6-I-O-System-Management-I-O系统管理"><a href="#1-5-6-I-O-System-Management-I-O系统管理" class="headerlink" title="1.5.6 I/O System Management(I/O系统管理)"></a>1.5.6 I/O System Management(I/O系统管理)</h4><h3 id="1-6-Security-and-Protection-安全与保护"><a href="#1-6-Security-and-Protection-安全与保护" class="headerlink" title="1.6 Security and Protection(安全与保护)"></a>1.6 Security and Protection(安全与保护)</h3><h3 id="1-7-Virtualization-虚拟化"><a href="#1-7-Virtualization-虚拟化" class="headerlink" title="1.7 Virtualization(虚拟化)"></a>1.7 Virtualization(虚拟化)</h3><h3 id="1-8-Distributed-Systems-分布式系统"><a href="#1-8-Distributed-Systems-分布式系统" class="headerlink" title="1.8 Distributed Systems(分布式系统)"></a>1.8 Distributed Systems(分布式系统)</h3><h3 id="1-9-Distributed-Systems-核心数据结构"><a href="#1-9-Distributed-Systems-核心数据结构" class="headerlink" title="1.9 Distributed Systems(核心数据结构)"></a>1.9 Distributed Systems(核心数据结构)</h3><p>略<br><strong>Bitmaps：</strong>实际上是一个字符串。不过可以对字符串的位进行操作</p>
+<h3 id="1-10-Computing-Environments"><a href="#1-10-Computing-Environments" class="headerlink" title="1.10 Computing Environments"></a>1.10 Computing Environments</h3><p>传统计算、移动计算、C\S计算、<br><img src="./1552735817737.png" alt="Alt text"><br>P2P计算<br>云计算<br><img src="./1552735865692.png" alt="Alt text"><br><img src="./1552735956426.png" alt="Alt text"></p>
+<h2 id="Chapter-2-Operating-System-Structures"><a href="#Chapter-2-Operating-System-Structures" class="headerlink" title="Chapter 2:Operating System Structures"></a>Chapter 2:Operating System Structures</h2><h3 id="2-1-Operating-System-Services-OS服务"><a href="#2-1-Operating-System-Services-OS服务" class="headerlink" title="2.1 Operating-System Services(OS服务)"></a>2.1 Operating-System Services(OS服务)</h3><p><img src="./1552736201373.png" alt="Alt text"></p>
+<h3 id="2-2-User-and-Operating-System-Interface"><a href="#2-2-User-and-Operating-System-Interface" class="headerlink" title="2.2 User and Operating-System Interface"></a>2.2 User and Operating-System Interface</h3><p>也就<br>命令解释器<br>GUI<br>触屏</p>
+<h3 id="2-3-System-Calls-系统调用"><a href="#2-3-System-Calls-系统调用" class="headerlink" title="2.3 System Calls(系统调用)"></a>2.3 System Calls(系统调用)</h3><p><strong>System calls</strong> provide an interface to the services made available by an operating system.</p>
+<h4 id="2-3-2-API"><a href="#2-3-2-API" class="headerlink" title="2.3.2 API"></a>2.3.2 API</h4><p>好处:提高可移植性,可以在任何支持同样API的系统上运行</p>
+<h4 id="2-3-3-Types-of-System-Calls"><a href="#2-3-3-Types-of-System-Calls" class="headerlink" title="2.3.3 Types of System Calls"></a>2.3.3 Types of System Calls</h4><p><strong>process control</strong>,<strong>file management</strong>, <strong>device management</strong>, <strong>information maintenance</strong>, <strong>communications</strong>,and <strong>protection</strong><br>(进程控制，文件管理，设备管理，信息维护，交流，保护)</p>
+<h3 id="2-4-System-Services-系统程序"><a href="#2-4-System-Services-系统程序" class="headerlink" title="2.4 System Services(系统程序)"></a>2.4 System Services(系统程序)</h3><p><strong>System services</strong>, also known as <strong>system utilities</strong>,<br><strong>File management.</strong><br><strong>Status information</strong><br><strong>File modificatio(文件修改)</strong><br><strong>Programming-language support.(编程语言支持)</strong><br><strong>Program loading and execution.</strong><br><strong>Communications.</strong><br><strong>Background services.</strong></p>
+<h3 id="2-5-Linker-and-Loader"><a href="#2-5-Linker-and-Loader" class="headerlink" title="2.5 Linker and Loader"></a>2.5 Linker and Loader</h3><p><img src="./1552736911733.png" alt="Alt text"><br>Linker链接文件后，统一了代码逻辑地址</p>
+<h3 id="2-8-Operating-System-Structure"><a href="#2-8-Operating-System-Structure" class="headerlink" title="2.8 Operating-System Structure"></a>2.8 Operating-System Structure</h3><p><img src="./1552737044796.png" alt="Alt text"></p>
+<h4 id="2-8-1-Monolithic-Structure-整体架构"><a href="#2-8-1-Monolithic-Structure-整体架构" class="headerlink" title="2.8.1 Monolithic Structure(整体架构)"></a>2.8.1 Monolithic Structure(整体架构)</h4><p><img src="./1552737162694.png" alt="Alt text"></p>
+<h4 id="2-8-2-Layered-Approach"><a href="#2-8-2-Layered-Approach" class="headerlink" title="2.8.2 Layered Approach"></a>2.8.2 Layered Approach</h4><p><img src="./1552737173089.png" alt="Alt text"></p>
+<h4 id="2-8-3-Microkernels-微内核"><a href="#2-8-3-Microkernels-微内核" class="headerlink" title="2.8.3 Microkernels(微内核)"></a>2.8.3 Microkernels(微内核)</h4><p><img src="./1552737210202.png" alt="Alt text"><br>内核只有基本功能。</p>
+<h3 id="2-9-Building-and-Booting-an-Operating-System-启动"><a href="#2-9-Building-and-Booting-an-Operating-System-启动" class="headerlink" title="2.9 Building and Booting an Operating System(启动)"></a>2.9 Building and Booting an Operating System(启动)</h3><h4 id="2-9-2-System-Boot"><a href="#2-9-2-System-Boot" class="headerlink" title="2.9.2 System Boot"></a>2.9.2 System Boot</h4><ol>
+<li>A small piece of code known as the bootstrap program(In <strong>BIOS</strong>) or boot loader<br>locates the kernel.(This initial boot loader usually does nothing more than load<br>a second boot loader, which is located at a fixed disk location called the <strong>boot block</strong>.)</li>
+<li>The kernel is loaded into memory and started.</li>
+<li>The kernel initializes hardware.</li>
+<li>The root file system is mounted.</li>
+</ol>
+<p><strong>UEFI</strong></p>
+<h2 id="Chapter-3-Process"><a href="#Chapter-3-Process" class="headerlink" title="Chapter 3 Process"></a>Chapter 3 Process</h2><h3 id="3-1-Process-Concept"><a href="#3-1-Process-Concept" class="headerlink" title="3.1 Process Concept"></a>3.1 Process Concept</h3><h4 id="3-1-1-The-Process"><a href="#3-1-1-The-Process" class="headerlink" title="3.1.1 The Process"></a>3.1.1 The Process</h4><p><img src="./1552738190888.png" alt="Alt text"><br><strong>Text section:</strong>the executable  code<br><strong>Data section:</strong>global variables<br><strong>Heap section:</strong>动态分配的内存(memory that is dynamically allocated during program run<br>time)<br><strong>Stack section:</strong>临时数据存储。<br><img src="./1552738507541.png" alt="Alt text"></p>
+<h4 id="3-1-2-Process-State"><a href="#3-1-2-Process-State" class="headerlink" title="3.1.2 Process State"></a>3.1.2 Process State</h4><p><img src="./1552738557383.png" alt="Alt text"><br>k核,n进程时<br><strong>等待状态:</strong>最多n个(全部死锁),最少0个<br><strong>运行状态:</strong>最多k个(全核运行),最少0个(死锁)<br><strong>就绪状态:</strong>最多n-k个(全核运行，没有等待的进行),最少0个(一部分运行，一部分等待)</p>
+<h4 id="3-1-3-Process-Control-Block（PCB）"><a href="#3-1-3-Process-Control-Block（PCB）" class="headerlink" title="3.1.3 Process Control Block（PCB）"></a>3.1.3 Process Control Block（PCB）</h4><p><img src="./1552738864025.png" alt="Alt text"><br>有进程状态，进程变化(pid),程序计数器，寄存器，内存界限，打开文件列表等</p>
+<h3 id="3-2-Process-Scheduling"><a href="#3-2-Process-Scheduling" class="headerlink" title="3.2 Process Scheduling"></a>3.2 Process Scheduling</h3><h4 id="3-2-1-Scheduling-Queues"><a href="#3-2-1-Scheduling-Queues" class="headerlink" title="3.2.1 Scheduling Queues"></a>3.2.1 Scheduling Queues</h4><p><img src="./1552739139108.png" alt="Alt text"><br><img src="./1552739184872.png" alt="Alt text"></p>
+<h4 id="3-2-2-CPU-Scheduling"><a href="#3-2-2-CPU-Scheduling" class="headerlink" title="3.2.2 CPU Scheduling"></a>3.2.2 CPU Scheduling</h4><h4 id="3-2-3-Context-Switch"><a href="#3-2-3-Context-Switch" class="headerlink" title="3.2.3 Context Switch"></a>3.2.3 Context Switch</h4><p><img src="./1552739310149.png" alt="Alt text"></p>
+<h3 id="3-3-Operations-on-Processes"><a href="#3-3-Operations-on-Processes" class="headerlink" title="3.3 Operations on Processes"></a>3.3 Operations on Processes</h3><h4 id="3-3-1-Process-Creation"><a href="#3-3-1-Process-Creation" class="headerlink" title="3.3.1 Process Creation"></a>3.3.1 Process Creation</h4><p><img src="./1552739460392.png" alt="Alt text"><br><img src="./1552739477121.png" alt="Alt text"></p>
+<blockquote>
+<p>pid＝fork()<br>执行这一句时，PC在下一句<br>fork()内会用一段嵌入式汇编进行系统调用<br>copy_process将父进程的内容复制给子进程，但是子进程tss中的eax值赋值为0（这也是为什么子进程中返回0的原因）<br>当赋值完成 后，copy_process会返回新进程（该子进程）的pid，这个值会被保存到eax中。这时子进程就产生了，此时子进程与父进程拥有相同的代码空 间，程序指针寄存器eip指向相同的下一条指令地址</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/26/Note_Automata%20Theory%20Languages,and%20Computation(%E5%BD%A2%E5%BC%8F%E8%AF%AD%E8%A8%80%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%9C%BA)/" rel="prev" title="Note:Automata Theory Languages,and Computation(形式语言与自动机)">
+      <i class="fa fa-chevron-left"></i> Note:Automata Theory Languages,and Computation(形式语言与自动机)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/" rel="next" title="創造情報学入学試験について">
+      創造情報学入学試験について <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Operating-System-Concepts"><span class="nav-number">1.</span> <span class="nav-text">Operating System Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-1-Introduction-介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Chapter 1 Introduction(介绍)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-What-OS-Do"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 What OS Do?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-1-User-View"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1.1.1 User View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-2-System-View"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">1.1.2 System View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-3-Defining-OS"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">1.1.3 Defining OS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Computer-System-Organization"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 Computer-System Organization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-1-Interrupts-中断"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1.2.1 Interrupts(中断)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-1-1-Overview"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">1.2.1.1 Overview</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#1-2-1-2-Implementation"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">1.2.1.2 Implementation</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-2-Storage-Structure"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">1.2.2 Storage Structure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-3-I-O-Structure"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">1.2.3 I&#x2F;O Structure</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-Computer-System-Architecture"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 Computer-System Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-1-Single-Processor-System-单道程序系统"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1.3.1 Single-Processor System(单道程序系统)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-2-MultiProcessor-System-多道程序系统"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">1.3.2 MultiProcessor System(多道程序系统)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-3-Clustered-Systems-集群系统"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">1.3.3 Clustered Systems(集群系统)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-Operating-System-Operations"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 Operating-System Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-1-Multiprogramming-and-Multitasking"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">1.4.1 Multiprogramming and Multitasking</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-2-Dual-Mode-and-Multimode-Operation"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">1.4.2 Dual-Mode and Multimode Operation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-3-Timer"><span class="nav-number">1.1.4.3.</span> <span class="nav-text">1.4.3 Timer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-Resource-Management-资源管理"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 Resource Management(资源管理)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-1-Process-Management-进程管理"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">1.5.1 Process Management(进程管理)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-2-Process-Management-内存管理"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">1.5.2 Process Management(内存管理)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-3-File-System-Management-文件系统管理"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">1.5.3 File-System Management(文件系统管理)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-4-Mass-Storage-Management-大容量存储器管理"><span class="nav-number">1.1.5.4.</span> <span class="nav-text">1.5.4 Mass-Storage Management(大容量存储器管理)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-5-Cache-Management-缓存管理"><span class="nav-number">1.1.5.5.</span> <span class="nav-text">1.5.5 Cache Management(缓存管理)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-6-I-O-System-Management-I-O系统管理"><span class="nav-number">1.1.5.6.</span> <span class="nav-text">1.5.6 I&#x2F;O System Management(I&#x2F;O系统管理)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-Security-and-Protection-安全与保护"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 Security and Protection(安全与保护)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-7-Virtualization-虚拟化"><span class="nav-number">1.1.7.</span> <span class="nav-text">1.7 Virtualization(虚拟化)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-8-Distributed-Systems-分布式系统"><span class="nav-number">1.1.8.</span> <span class="nav-text">1.8 Distributed Systems(分布式系统)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-9-Distributed-Systems-核心数据结构"><span class="nav-number">1.1.9.</span> <span class="nav-text">1.9 Distributed Systems(核心数据结构)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-10-Computing-Environments"><span class="nav-number">1.1.10.</span> <span class="nav-text">1.10 Computing Environments</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-2-Operating-System-Structures"><span class="nav-number">1.2.</span> <span class="nav-text">Chapter 2:Operating System Structures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-Operating-System-Services-OS服务"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 Operating-System Services(OS服务)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-User-and-Operating-System-Interface"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 User and Operating-System Interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-System-Calls-系统调用"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3 System Calls(系统调用)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-API"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">2.3.2 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-3-Types-of-System-Calls"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">2.3.3 Types of System Calls</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-System-Services-系统程序"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 System Services(系统程序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5-Linker-and-Loader"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.5 Linker and Loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-8-Operating-System-Structure"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.8 Operating-System Structure</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-1-Monolithic-Structure-整体架构"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">2.8.1 Monolithic Structure(整体架构)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-2-Layered-Approach"><span class="nav-number">1.2.6.2.</span> <span class="nav-text">2.8.2 Layered Approach</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-8-3-Microkernels-微内核"><span class="nav-number">1.2.6.3.</span> <span class="nav-text">2.8.3 Microkernels(微内核)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-9-Building-and-Booting-an-Operating-System-启动"><span class="nav-number">1.2.7.</span> <span class="nav-text">2.9 Building and Booting an Operating System(启动)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-9-2-System-Boot"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">2.9.2 System Boot</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Chapter-3-Process"><span class="nav-number">1.3.</span> <span class="nav-text">Chapter 3 Process</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-Process-Concept"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 Process Concept</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-1-The-Process"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">3.1.1 The Process</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-2-Process-State"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">3.1.2 Process State</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-3-Process-Control-Block（PCB）"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">3.1.3 Process Control Block（PCB）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Process-Scheduling"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 Process Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-1-Scheduling-Queues"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">3.2.1 Scheduling Queues</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-2-CPU-Scheduling"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">3.2.2 CPU Scheduling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-3-Context-Switch"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">3.2.3 Context Switch</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Operations-on-Processes"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 Operations on Processes</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-3-1-Process-Creation"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">3.3.1 Process Creation</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">NaNm</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

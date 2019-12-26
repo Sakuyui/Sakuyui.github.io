@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="創造情報学入学試験について[TOC] 1.試験涉及内容              基础科目         科目         考过的名词         考过的知识点         教材         是否已学                   線形代数(线性代数)                           《演習大学院入試問題〈数学〉I》         Y">
+<meta property="og:type" content="article">
+<meta property="og:title" content="創造情報学入学試験について">
+<meta property="og:url" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="創造情報学入学試験について[TOC] 1.試験涉及内容              基础科目         科目         考过的名词         考过的知识点         教材         是否已学                   線形代数(线性代数)                           《演習大学院入試問題〈数学〉I》         Y">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307625814.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307633406.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307639312.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307698892.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307705097.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307708824.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307282501.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307537527.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307551019.png">
+<meta property="article:published_time" content="2019-12-26T12:54:28.580Z">
+<meta property="article:modified_time" content="2019-12-26T12:19:04.000Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/1552307625814.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>創造情報学入学試験について | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E5%89%B5%E9%80%A0%E6%83%85%E5%A0%B1%E5%AD%A6%E5%85%A5%E5%AD%A6%E8%A9%A6%E9%A8%93%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          創造情報学入学試験について
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:54:28 / Modified: 20:19:04" itemprop="dateCreated datePublished" datetime="2019-12-26T20:54:28+08:00">2019-12-26</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>2 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="創造情報学入学試験について"><a href="#創造情報学入学試験について" class="headerlink" title="創造情報学入学試験について"></a>創造情報学入学試験について</h1><p>[TOC]</p>
+<h2 id="1-試験涉及内容"><a href="#1-試験涉及内容" class="headerlink" title="1.試験涉及内容"></a>1.試験涉及内容</h2><table><tbody>
+    <tr>
+        <th rowspan="6">基础科目</th>
+        <th>科目</th>
+        <th>考过的名词</th>
+        <th>考过的知识点</th>
+        <th>教材</th>
+        <th>是否已学</th>
+    </tr>
+    <tr>
+        <td>線形代数(<b>线性代数</b>)</td>
+        <td></td>
+        <td></td>
+        <td>《演習大学院入試問題〈数学〉I》</td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td><b>复数分析</b> </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Y</td>
+    </tr>
+     <tr>
+        <td><b>矢量分析</b> </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>解析（<b>数学分析</b>) </td>
+        <td></td>
+        <td></td>
+        <td>《複素関数問題集》《新版 複素解析 (基礎数学)》《演習と応用 ベクトル解析.》《微分方程式問題集》《演習微分積分..》</td>
+        <td>Y</td>
+    </tr>
+     <tr>
+        <td>確率・統計 （<b>概率与统计</b>） [注意名词] </td>
+        <td>共分散分析(协方差分析)</td>
+        <td></td>
+        <td>《演習 大学院入試問題[数学]II》</td>
+        <td>I</td>
+    </tr>
+     <tr>
+        <th rowspan="23">专业科目</th>
+         <th>科目</th>
+        <th>考过的名词</th>
+        <th>考过的知识点</th>
+        <th>教材</th>
+        <th>是否已系统学习</th>
+    </tr>
+     <tr>
+        <td>アルゴリズム（数据结构\算法）</td>
+        <td>旅行商问题,分治法</td>
+        <td></td>
+        <td>《データ構造とアルゴリズム 》</td>
+        <td>Y</td>
+    </tr>
+    <tr>
+        <td>深度学习**</td>
+        <td>CPU加速、增强学习</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>自然语言处理**</td>
+        <td>TD-IDF</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>计算机视觉**</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+     <tr>
+        <td>机器学习**</td>
+        <td></td>
+        <td>线性回归</td>
+        <td></td>
+        <td></td>
+    </tr>
+     <tr>
+        <td>論理回路(数字电路)</td>
+        <td>组合数字电路</td>
+        <td></td>
+        <td>《論理回路入門》 </td>
+        <td>Y</td>
+    </tr>
+     <tr>
+        <td>操作系统</td>
+        <td></td>
+        <td></td>
+        <td>《オペレーティングシステムの仕組み》《オペレーティングシステム (情報処理入門コース 2)》</td>
+        <td>I</td>
+    </tr>
+         <tr>
+        <td>计算机组成原理</td>
+        <td>流水线风险,register renaming<计算机体系结构></td>
+        <td></td>
+        <td>《コンピュータアーキテクチャ》《コンピュータの構成と設計~ハードウエアとソフトウエアのインタフェース 第3版 》 </td>
+        <td>Y</td>
+    </tr>
+         <tr>
+        <td>计算机网络</td>
+        <td>TCPウィンドウ制御</td>
+        <td></td>
+        <td></td>
+         <td>I</td>
+    </tr>
+     </tr>
+         <tr>
+        <td>计算机图形学**</td>
+        <td></td>
+        <td></td>
+        <td></td>
+         <td></td>
+    </tr>
+     </tr>
+         <tr>
+        <td>形式语言与自动机</td>
+        <td>RE和RG</td>
+        <td></td>
+        <td></td>
+         <td>I</td>
+    </tr>
+     </tr>
+         <tr>
+        <td>编译原理**</td>
+        <td>register renaming(寄存器重命名)</td>
+        <td></td>
+        <td></td>
+         <td></td>
+    </tr>
+     </tr>
+         <tr>
+        <td>软件工程</td>
+        <td>持续集成</td>
+        <td></td>
+        <td>《ソフトウェア工学の基礎知識 》</td>
+        <td>Y</td>
+    </tr>
+     </tr>
+         <tr>
+        <td>网络安全</td>
+        <td>ゼロデイ攻撃</td>
+        <td></td>
+        <td></td>
+        <td>N</td>
+    </tr>
+     </tr>
+         <tr>
+        <td>机器人论**</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+   </tr>
+         <tr>
+        <td>密码学**</td>
+        <td>公钥和私钥</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tr>
+         <tr>
+        <td>离散数学</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Y</td>
+    </tr>
+       </tr>
+         <tr>
+        <td>信息论</td>
+        <td></td>
+        <td></td>
+        <td>《情報理論》</td>
+        <td></td>
+    </tr>
+     </tr>
+         <tr>
+        <td>通信原理</td>
+        <td>Vector quantization,Kalman filter</td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+      </tr>
+         <tr>
+        <td>控制论</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>  
+
+
+<p>夏入试可选数学或者编程。<br>冬入试只能选编程。<br>算法书籍；<br>ACM/ICPCの問題集<br>AIZU ONLINE JUDGE: Programming Challenge<br>プログラミングコンテストチャレンジブック [第2版] ?問題解決のアルゴリズム活用力とコーディングテクニックを鍛える?</p>
+<p>数学书籍：<br><img src="./1552307625814.png" alt="Alt text"><br><img src="./1552307633406.png" alt="Alt text"><br><img src="./1552307639312.png" alt="Alt text"><br><img src="./1552307698892.png" alt="Alt text"><br><img src="./1552307705097.png" alt="Alt text"><br><img src="./1552307708824.png" alt="Alt text"></p>
+<h2 id="2-真实面试问题"><a href="#2-真实面试问题" class="headerlink" title="2.真实面试问题"></a>2.真实面试问题</h2><p>1.<strong>「当該分野について何か勉強などしていますか？その内容について説明してください」</strong>(在这个领域有学过什么吗?说明一下)</p>
+<p>2.<strong>卒論などこれまで行って来た研究についておしえて</strong>(请说一下毕业论文还有来这之后的研究打算)</p>
+<h2 id="3-语义说明对策"><a href="#3-语义说明对策" class="headerlink" title="3.语义说明对策"></a>3.语义说明对策</h2><p>アルゴリズム・システムアーキテクチャ＞情報理論・離散数学＞＞プログラミング用語＞暗号理論＞人工知能・ロボット・CG＞＞データベース・ネットワーク</p>
+<p>算法数据结构，系统结构&gt;情报理论<em>离散数学&gt;编程语言&gt;密码学&gt;人工智能,机器人论,CG&gt;&gt;数据库</em>计算机网络</p>
+<p>方法：利用维基<br>勉強手順<br>wikiを見て軽く理解する→４～８行で説明出来るか確認する→出来たら次の言葉へ、出来なかったらwikiを読み直す<br>この繰り返しで語彙を増やすことができます。また、説明の際に図を書くと高い点数がもらえる傾向にあるそうなので、意識して勉強するといいかもしれません</p>
+<blockquote>
+<p>对于某个词汇首先在wiki上简单了解。然后用4~8行文字说明出来。如果能说明出来的话，就进入下一个词语。不行的话重新看wiki.直到可以。<br>然后说明时画图有高分倾向，最好养成习惯.</p>
+</blockquote>
+<h2 id="4-大题结构"><a href="#4-大题结构" class="headerlink" title="4.大题结构"></a>4.大题结构</h2><h3 id="問1"><a href="#問1" class="headerlink" title="問1"></a>問1</h3><p><img src="./1552307282501.png" alt="Alt text"><br>特点:出题范围窄，好好研究算法就行<br>出过的问题:<br>（10）斐波那契数列和高数化<br>（10）背包问题<br>（09）有向最短路径<br>（08）记录和顺序搜索、二分搜索、散列表<br>（07）整数和约数个数、素因数分解<br>（08）ソーティングネットワーク、复杂度分析<br>（05） 文字列置換、削除、追加、編集距離、再帰式 </p>
+<h3 id="問2"><a href="#問2" class="headerlink" title="問2"></a>問2</h3><p>特点：涉及硬件、OS、记忆与技巧为主的东西较多,词汇题中也常出现<br>出现过的问题:</p>
+<p>2010冬 状態遷移図(ミーリ型・ムーア型)、回路図  （状态转移图、电路图）</p>
+<p>2010夏 命令セットアーキテクチャの設計（指令集设计）</p>
+<p>2009 加算器と乗算器と遅延時間の減少方法   （减少加法器和乘法器延迟时间的方法）</p>
+<p>2008 同期式4bit<em>4桁カウンタの設計、状態遷移、Dフリップフロップ、遅延時間 （同步4</em>4计数器,状态迁移,D触发器,延迟时间）</p>
+<p>2007 並列コンピュータの排他制御（プログラムも）、test and set、compare and swap、セマフォ、メッセージ通信、3台以上のコンピュータの制御</p>
+<p>2006 センサからのデータ入力、プログラムの時間ダイアグラム、並列処理システム設計の際の注意点</p>
+<p>2005 プロセッサのキャッシュメモリ、2-way set associativeのキャッシュメモリのブロック図、ヒット率向上のハードウェア技術とプログラミング技法</p>
+<p><img src="./1552307537527.png" alt="Alt text"><img src="./1552307551019.png" alt="Alt text"></p>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/26/Operating%20System%20Concepts/" rel="prev" title="Operating System Concepts">
+      <i class="fa fa-chevron-left"></i> Operating System Concepts
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/26/%E5%A4%8D%E5%8F%98%E5%87%BD%E6%95%B0%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="复变函数学习笔记">
+      复变函数学习笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#創造情報学入学試験について"><span class="nav-number">1.</span> <span class="nav-text">創造情報学入学試験について</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-試験涉及内容"><span class="nav-number">1.1.</span> <span class="nav-text">1.試験涉及内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-真实面试问题"><span class="nav-number">1.2.</span> <span class="nav-text">2.真实面试问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-语义说明对策"><span class="nav-number">1.3.</span> <span class="nav-text">3.语义说明对策</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-大题结构"><span class="nav-number">1.4.</span> <span class="nav-text">4.大题结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#問1"><span class="nav-number">1.4.1.</span> <span class="nav-text">問1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#問2"><span class="nav-number">1.4.2.</span> <span class="nav-text">問2</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">NaNm</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">NaN:aN</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
