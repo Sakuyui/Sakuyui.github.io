@@ -31,6 +31,8 @@
                精确路径匹配&gt;最长路径匹配&gt;扩展匹配     /a/*.xxx 这样方式会报错。不能混搭。
 注：Filter不会像servlet只匹配一个。 顺序与定义顺序相同
 /*和/** 后者会匹配更多的目录 (Ant path匹配。spring支持。还支持正则表达式,进行更复杂的匹配)
+</code></pre><p>关于url-pattern的/, 同样在struts中，默认映射了<em>.action </em>.do ,  /无法覆盖他们<br>strut2的配置文件加载顺序为： </p>
+<pre><code>   Struts-default.xml---&gt; struts-plugin.xml--&gt; struts.xml--&gt;   struts.properties--&gt; web.xml
 </code></pre><p><strong>使用servlet</strong></p>
 <pre><code>//AServlet.java
 package a; //倒序 com.xxx,部门,项目:模块
@@ -74,7 +76,7 @@ public class AServlet extends HttpServlet{
 
 
 
-       res.setContextType(&quot;text/html&quot;)
+       res.setContextType(&quot;text/html&quot;)；
        PrintWriter out=response.getWriter();
        out.println(&quot;this is servlet&quot;);
 
@@ -107,7 +109,7 @@ public class AServlet extends HttpServlet{
 </li>
 </ul>
 <ul>
-<li>用<strong>this.getServletConfig().getInitParameter(String);</strong> 获取servlet的初始化参数<br><img src="./1576752145733.png" alt="Alt text"><br>每个servlet有一个servletconfig,但是全局只有一个servletcontext (servletcontext也是applicationContext,是最大的web域对象)</li>
+<li>用<strong>this.getServletConfig().getInitParameter(String);</strong> 获取servlet的初始化参数<br><img src="./1576752145733.png" alt="Alt text"><br>每个servlet有一个servletconfig,但是全局只有一个servletcontext (每个web应用仅有一个，servletcontext也可以叫applicationContext,是最大的web域对象)</li>
 </ul>
 <p>使用<strong>response.setContentType(String);</strong>设置 如text/html;charset=UTF-8</p>
 <ul>
@@ -117,7 +119,7 @@ public class AServlet extends HttpServlet{
 <p>setContentType(String) 和 setCharacterEncoding()的区别:前者设置的是页面的静态文字编码（浏览器显示的编码），后者关系到动态参数的编码</p>
 <p>HTTP缓存<strong>(必考)</strong></p>
 <ul>
-<li><p>http缓存有<strong>强缓存</strong>,<strong>协商缓存</strong><br>+步骤1. 浏览器先根据这个资源的http头信息来判断是否命中强缓存。如果命中则直接加在缓存中的资源，并不会将请求发送到服务器。 (返回<strong>200</strong>)<br>2.如果未命中强缓存，则浏览器会将资源加载请求发送到服务器。服务器来判断浏览器本地缓存是否失效。若可以使用，则服务器并不会返回资源信息，浏览器继续从缓存加载资源。<br>3.如果未命中协商缓存，则服务器会将完整的资源返回给浏览器，浏览器加载新资源，并更新缓存。</p>
+<li><p>http缓存有<strong>强缓存</strong>,<strong>协商缓存</strong><br>步骤1. 浏览器先根据这个资源的http头信息来判断是否命中强缓存。如果命中则直接加在缓存中的资源，并不会将请求发送到服务器。 (返回<strong>200</strong>)<br>2.如果未命中强缓存，则浏览器会将资源加载请求发送到服务器。服务器来判断浏览器本地缓存是否失效。若可以使用，则服务器并不会返回资源信息，浏览器继续从缓存加载资源。<br>3.如果未命中协商缓存，则服务器会将完整的资源返回给浏览器，浏览器加载新资源，并更新缓存。</p>
 </li>
 <li><p><strong>强缓存</strong>: 利用http的返回头中的<strong>Expires</strong>或者<strong>Cache-Control</strong>两个字段来控制的。前者表示缓存过期时间(具体时间)，后者表示相对时间。如Cache-Control:3600，代表着资源的有效期是3600秒。所以服务器与客户端时间偏差也不会导致问题。<br><strong>同时启用的时候Cache-Control优先级高</strong></p>
 </li>
@@ -132,7 +134,11 @@ public class AServlet extends HttpServlet{
 <p><img src="./1576666287803.png" alt="Alt text"></p>
 <p><strong>ServletRequest</strong><br><strong>&gt;&gt;getAttribute(String)</strong> //获取存在request的属性  是Object<br><strong>&gt;&gt;getAttributeNames()</strong>  //Enumeration  用hasMoreElements() nextElement()进行遍历<br><strong>&gt;&gt;getParameter(String)</strong>//获取存在request的参数  只能是String  (可以获得通过get post传进来的数据)<br><strong>&gt;&gt;getParameterNames()</strong> //返回迭代器<br><strong>&gt;&gt;getParameterValues()</strong>  //返回String[]<br><img src="./1576668415360.png" alt="Alt text"></p>
 <p><strong>&gt;&gt;getProtocol()</strong><br><strong>&gt;&gt;getRealPath(String path)</strong> //寻找某个资源在服务器文件系统上的实际地址<br><strong>&gt;&gt;getServletContext()</strong></p>
-<p><strong>HttpServletResponse</strong><br><strong>&gt;&gt;addCookie(Cookie cookie)</strong><br><strong>&gt;&gt;getHeader(String name)</strong><br><strong>&gt;&gt;addHeader(String name, String value)</strong><br>//继承来的<br><strong>&gt;&gt;    getWriter()</strong><br><strong>&gt;&gt;setContentType(String type)</strong></p>
+<p><strong>HttpServletResponse</strong><br><strong>&gt;&gt;addCookie(Cookie cookie)</strong>      //添加一个cookies</p>
+<blockquote>
+<p>new Cookie(String name, String value)  之后可以用setMaxAge设置有效时间(秒)</p>
+</blockquote>
+<p><strong>&gt;&gt;getHeader(String name)</strong><br><strong>&gt;&gt;addHeader(String name, String value)</strong><br>//继承来的<br><strong>&gt;&gt;    getWriter()</strong><br><strong>&gt;&gt;setContentType(String type)</strong></p>
 <ul>
 <li><strong>ServletConfig getServletConfig(); //必考</strong></li>
 </ul>
@@ -142,10 +148,19 @@ public class AServlet extends HttpServlet{
 <li><strong>getServletName()</strong></li>
 <li><strong>getServletContext()</strong></li>
 </ul>
-<p>!!!! 必考<strong>ServletContext</strong><br>context可以直接在servlet里get,也可以从request.getSession().getServletContext() 也可以 request.getServletContext();</p>
+<p>!!!! 必考<strong>ServletContext</strong><br>context可以直接在servlet里get,也可以从request.getSession().getServletContext() 也可以 request.getServletContext();<br>常见的有6种方式可以Get到serveletContext:</p>
+<ul>
+<li>在servlet类里get</li>
+<li>reques.get   //从request get   (域对象 )</li>
+<li>request.getSession().get  //从http session get   (域对象)</li>
+<li>servletConfig.get  //从servletconfig里get</li>
+<li>ServletContextEvent对象里get</li>
+<li>PageContext里get   (域对象)</li>
+</ul>
+<p>也就是从另外三大web域对象都可以get到,再加上从context事件还有servlet配置，还有servlet本身get</p>
 <p>servletcontent.getRealPath(“/“)和servletcontent.getContextPath()的区别<br>前面是获取ServletContext 所在的文件系统上的实际位置。  后者是获取配置的servletContext路径</p>
 <blockquote>
-<p>ServletContext官方叫servlet上下文。服务器会为每一个<strong>工程创建一个对象</strong>，这个对象就是ServletContext对象。这个对象全局唯一，而且工程内部的所有servlet都共享这个对象。所以叫全局应用程序共享对象。<br>凡是域对象都有如下3个方法：</p>
+<p>ServletContext官方叫servlet上下文。服务器会为每一个<strong>应用创建一个对象</strong>，这个对象就是ServletContext对象。这个对象全局唯一，而且工程内部的所有servlet都共享这个对象。所以叫全局应用程序共享对象。<br>凡是域对象都有如下3个方法：</p>
 </blockquote>
 <p><strong>setAttribute(name,value);</strong>name是String类型，value是Object类型；</p>
 <p>往域对象里面添加数据，添加时以key-value形式添加</p>
@@ -256,7 +271,7 @@ socket.addEventListener(&#39;message&#39;, function (event) {
 });
 
 //javaee
-@ServerEndpoint(&quot;/chatroom/{roomId}/{nickName}&quot;)
+@ServerEndpoint(&quot;/chatroom/{roomId}/{nickName}&quot;)    //挂一个服务器资源
 public class ChatRoomServer{
         @OnOpen//连接打开时
         public void onOpen(Session session,@PathParam(&quot;roomId&quot;) long roomId,
@@ -324,8 +339,8 @@ public void onError(Throwable t) throws Throwable {
 
 
 public static void main(String[] args) throws Exception {
-    WebSocketContainer container = ContainerProvider.getWebSocketContainer();
-    container.connectToServer(WebSocketClienet.class, URI.create(&quot;ws://localhost:8080/websocket1/b&quot;));
+    WebSocketContainer container = ContainerProvider.getWebSocketContainer();  //获取web容器
+    container.connectToServer(WebSocketClienet.class, URI.create(&quot;ws://localhost:8080/websocket1/b&quot;));   //连接到服务器
 
     for(int i = 0; i &lt; 10; i++) {
         Thread.sleep(1000);
@@ -369,8 +384,8 @@ evtSource.addEventListener(&#39;testEvent&#39;, function (e) {
 <p>所以…. session &lt;-&gt; WebSocketContainer 可以相互获取。  session是从container连接服务器后来的.</p>
 <p>至于<strong>Endpoint</strong>,客户端和服务器都是一个Endpoint</p>
 <h3 id="HttpSession"><a href="#HttpSession" class="headerlink" title="HttpSession"></a>HttpSession</h3><pre><code>import javax.servlet.http.*;
-</code></pre><p>其是一个域对象。因此也具有<br><strong>getAttribute(String)</strong>,<strong>setAttribute(String,Object)</strong>等函数<br>同时有<strong>getID()</strong>,<strong>getServletContext()</strong>等函数<br><strong>创建时间 getCreationTime()</strong><br><strong>getMaxInactiveInterval()</strong> //超时时间</p>
-<p>设置超时时间<br>在web.xml中</p>
+</code></pre><p>其是一个域对象。因此也具有<br><strong>getAttribute(String)</strong>,<strong>setAttribute(String,Object)</strong>等函数<br>同时有<strong>getID()</strong>,<strong>getServletContext()</strong>等函数<br><strong>创建时间 getCreationTime()</strong><br><strong>set/getMaxInactiveInterval()</strong> //超时时间</p>
+<p>设置超时时间<br>也可以在web.xml中</p>
 <pre><code>&lt;session-config&gt;
     &lt;session-timeout&gt;2&lt;/session-timeout&gt;  //2分钟,默认为30
 &lt;/session-config&gt;
@@ -381,7 +396,7 @@ evtSource.addEventListener(&#39;testEvent&#39;, function (e) {
 <blockquote>
 <p><strong>Q:如何识别一个request是某个会话的</strong><br>tomcat有个全局的map,产生的session对象的id一定放在<strong>response中，返回给浏览器.</strong>下次请求会带上它</p>
 </blockquote>
-<p>一般来说Session是基于Cookie实现的,<br><strong>会话追踪手段</strong></p>
+<p>一般来说Session是基于Cookie实现的,<br><strong>!!!会话追踪手段</strong></p>
 <ul>
 <li>手段1：cookies.</li>
 <li>手段2: URL重写 如果浏览器不支持Cookie或用户阻止了所有Cookie，可以把会话ID附加在HTML页面中所有的URL上，这些页面作为响应发送给客户。这样，当用户单击URL时，<strong>会话ID被自动作为请求行的一部分</strong>而不是作为头行发送回服务器。这种方法称为URL重写(URL rewriting)。</li>
@@ -393,6 +408,10 @@ evtSource.addEventListener(&#39;testEvent&#39;, function (e) {
 <p>刷新是个问题<br>有时不用httpsession, 把会话信息放在分布式存储系统。只要ID在就行</p>
 <h4 id="Cookies"><a href="#Cookies" class="headerlink" title="Cookies"></a>Cookies</h4><pre><code>response.addCookies(Cookies);
 //Cookie(String name, String value)
+还可以setMaxAge()设置生存时间
+还有serDomain设置有效域 （于是可以跨域共享cookie）
+setPath(String uri) 也和上面差不多，可以指定cookie有效的地址（支持通配符）
+setHttpOnly(boolean isHttpOnly)
 </code></pre><h4 id="压缩-要考"><a href="#压缩-要考" class="headerlink" title="压缩(要考)"></a>压缩(要考)</h4><p><strong>gzip</strong>是一种数据格式，默认且目前仅使用deflate算法压缩data部分；<br><img src="./1576837387364.png" alt="Alt text"><br><img src="./1576837550820.png" alt="Alt text"></p>
 <h4 id="RequestDispatcher"><a href="#RequestDispatcher" class="headerlink" title="RequestDispatcher"></a>RequestDispatcher</h4><p>可以用requestDispatcher来分发请求到多个组件去处理。</p>
 <blockquote>
@@ -494,7 +513,7 @@ filter后面一般处理response.
     //还可以传参
     //因为指令&lt;%@include 会导致两个jsp合并成为同一个java文件，所以就不存在传参的问题，在发出hello.jsp 里定义的变量，直接可以在footer.jsp中访问。
     //而动作其实是对footer.jsp进行了一次独立的访问，那么就有传参的需要。
-    &lt;jsp:include page=&quot;footer.jsp&quot;&gt;
+    &lt;jsp:include page=&quot;footer2.jsp&quot;&gt;
         &lt;jsp:param  name=&quot;year&quot; value=&quot;2017&quot; /&gt;  //参数是扔到request的parameters里的
     &lt;/jsp:include&gt;
     在footer.jsp中
@@ -600,7 +619,14 @@ return false;
       Date d = new Date(System.currentTimeMillis());
       out.println(df.format(d));
     %&gt;
-</code></pre><h3 id="JSP动作指令"><a href="#JSP动作指令" class="headerlink" title="JSP动作指令"></a>JSP动作指令</h3><ul>
+</code></pre><h4 id="补充PageContext相关"><a href="#补充PageContext相关" class="headerlink" title="补充PageContext相关"></a>补充PageContext相关</h4><pre><code>getSession(),    getServletContext() , getServletConfig()
+    getRequest(),     getRequest()     forward(String relativeUrlPath)
+        include(String relativeUrlPath)     include(String relativeUrlPath,boolean flush)
+</code></pre><p>关于flush:</p>
+<blockquote>
+<p>默认为false，在include另一个jsp文件时，默认情况下，服务器会等待该文件被读到底端，然后才输出到客户端，并且销毁该次访问的request和response。而当把flush属性赋为真值 时，在缓存累积了一定数据时，服务器会先提供一部分数据给浏览器，并等待后续内容 。</p>
+</blockquote>
+<h3 id="JSP动作指令"><a href="#JSP动作指令" class="headerlink" title="JSP动作指令"></a>JSP动作指令</h3><ul>
 <li><strong>jsp:forward</strong><figure class="highlight plain"><figcaption><span>page</span></figcaption><table><tr><td class="code"><pre><span class="line">既可以转发到静态的 HTML 页面，也可以转发到动态的 JSP 页面，或者转发到容器中的 Servlet。</span><br><span class="line">&#96;&#96;&#96;xml</span><br><span class="line">	&lt;jsp:forward page&#x3D;&quot;&#123;relativeURL | &lt;%&#x3D;expression%&gt;&#125;&quot; &gt;</span><br><span class="line">    &#123;&lt;jsp:param ... &#x2F;&gt;&#125;  &#x2F;&#x2F;可以用getParameter获取</span><br><span class="line">	&lt;&#x2F;jsp:forward&gt;</span><br><span class="line">比如</span><br><span class="line">	&lt;jsp:forward page&#x3D;&quot;form.jsp&quot;&gt;</span><br><span class="line">	    &lt;jsp:param name&#x3D;&quot;age&quot; value&#x3D;&quot;29&quot; &#x2F;&gt;</span><br><span class="line">	&lt;&#x2F;jsp:forward&gt;</span><br><span class="line">	&lt;input type&#x3D;&quot;hidden&quot; name&#x3D;&quot;age&quot; value&#x3D;&quot;&lt;%&#x3D;request.getParameter(&quot;age&quot;)%&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
@@ -643,10 +669,13 @@ return false;
 </ul>
 <p>web.xml中的监听器设置</p>
 <pre><code>&lt;listener&gt;
-&lt;listener-class&gt;nc.xyzq.listener.WebServicePublishListener&lt;/listener-class&gt;
+    &lt;listener-class&gt;nc.xyzq.listener.WebServicePublishListener&lt;/listener-class&gt;
 &lt;/listener&gt; 
 // 该元素用来注册一个监听器类。可以收到事件什么时候发生以及用什么作为响应的通知。事件监听程序在建立、修改和删除会话或servlet环境时得到通知。常与context-param联合使用。
-</code></pre><p> listen-class 指定了监听类，该类继承<strong>ServletContextListener </strong>包含<strong>初始化方法contextInitialized(ServletContextEvent event) </strong>和<strong>销毁方法contextDestoryed(ServletContextEvent event)；</strong><br><img src="./1576926948994.png" alt="Alt text"><br>可以用标注@WebListener<br>HttpSessionBindingEvent(session,name,value) //session属性变化时<br>HttpSessionEvent(HttpSession source)<br>ServletRequestEvent(ServletContext sc, ServletRequest request)<br>ServletContextEvent(ServletContext source)<br>HttpSessionAttributeListener:      attributeAdded,    attributeRemoved,    attributeRemoved都可以<br>参数为(HttpSessionBindingEvent event)  和binding不同，binding是监听属性绑定，解绑事件</p>
+</code></pre><p> listen-class 指定了监听类，该类继承<strong>ServletContextListener </strong>包含<strong>初始化方法contextInitialized(ServletContextEvent event) </strong>和<strong>销毁方法contextDestoryed(ServletContextEvent event)；</strong></p>
+<p><img src="./1576926948994.png" alt="Alt text"><br>可以用标注@WebListener<br><strong>HttpSessionBindingEvent(session,name,value) //session属性变化时</strong><br>HttpSessionEvent(HttpSession source)<br>ServletRequestEvent(ServletContext sc, ServletRequest request)<br>ServletContextEvent(ServletContext source)<br>HttpSessionAttributeListener:      attributeAdded,    attributeRemoved,    attributeRemoved都可以<br>参数为(HttpSessionBindingEvent event)  和binding不同，binding是监听属性绑定，解绑事件</p>
+<p>监听三个作用域的创建和销毁的监听器<br>都只有两个函数 一个是   xxxxDestroyed(xxxxEvent ) 另一个是 xxxxInitialized(xxxxEvent )</p>
+<p>监听三个作用域属性变更的监听器:<br>有3个函数     attributeAdded(xxxEvent)      attributeAdded(xxxEvent)      attributeAdded(xxx)  就是监听属性的增删改</p>
 <h4 id="PageBean"><a href="#PageBean" class="headerlink" title="PageBean"></a>PageBean</h4><blockquote>
 <p> 在开发中有时需要将数据库中的数据显示到页面中，数据中的数据又比较多，使用一页是显示不了的。此时需要在数据库中分页查询，然后分页显示在页面中。如果使用一个通用的分页工具类，会比较方便。只需在创建该类时传入每页显示的行数，总行数（数据库中的数据总行数），以及当前页码。就可以求出总页数，并且对传入的页码数进行判断。</p>
 </blockquote>
@@ -1992,6 +2021,52 @@ ${sessionScope.user[data]}中data 是一个变量
 <pre><code>&lt; %=request. getParameter(“username”)% &gt; 等价于 ${ param. username }
 &lt;%=request.getAttribute(“userlist”) %&gt; 等价于$ { requestScope.userlist }
 &lt;%=user.getAddr( ) %&gt; 等价于 ${user.addr}
+</code></pre><h3 id="补充struts2"><a href="#补充struts2" class="headerlink" title="补充struts2"></a>补充struts2</h3><p><img src="./1577511378663.png" alt="Alt text"></p>
+<p>struts2的前端控制器改成了filter而不是servlet</p>
+<pre><code>&lt;filter&gt;
+    &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+    &lt;filter-class&gt;org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter&lt;/filter-class&gt;
+    &lt;init-param&gt;
+        &lt;param-name&gt;config&lt;/param-name&gt;
+        &lt;param-value&gt;struts-default.xml,struts-plugin.xml,../struts2.xml&lt;/param-value&gt;
+    &lt;/init-param&gt;
+&lt;/filter&gt;
+    &lt;filter-mapping&gt;
+        &lt;filter-name&gt;struts2&lt;/filter-name&gt;
+        &lt;url-pattern&gt;/*&lt;/url-pattern&gt;
+    &lt;/filter-mapping&gt;
+</code></pre><p>Action也和strut1不同。strut1只有一个execute函数而且需要4个参数(request,response,form,mapping)<br>strut2可以自定义函数</p>
+<pre><code>//编写Action充当控制器
+public class LoginAction extends ActionSupport {
+    private String username;
+    private String password;
+    public String getUsername(){
+        return this.username;
+    }
+    public void setUsername(String s){
+        this.username = s;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+    public void setPassword(String s){
+        this.password = s;
+    }
+
+    public String execute() throws Exception{
+
+        if(getUsername().equals(&quot;walker&quot;)&amp;&amp;getPassword().equals(&quot;yam&quot;)){
+            return &quot;sucess&quot;;
+        }
+        return “error”;  //返回的是逻辑名
+    }
+}
+
+对应action 配置
+ &lt;action name=&quot;login&quot; class=&quot;mypackage.LoginAction&quot;&gt;
+        &lt;result name=&quot;error&quot;&gt;/error.jsp&lt;/result&gt;
+        &lt;result name=&quot;success&quot;&gt;/index.jsp&lt;/result&gt;
+  &lt;/action&gt;
 </code></pre>]]></content>
   </entry>
   <entry>

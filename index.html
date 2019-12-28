@@ -234,14 +234,14 @@
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2019-12-27 21:34:14" itemprop="dateCreated datePublished" datetime="2019-12-27T21:34:14+08:00">2019-12-27</time>
+              <time title="Created: 2019-12-27 21:35:14" itemprop="dateCreated datePublished" datetime="2019-12-27T21:35:14+08:00">2019-12-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-28 11:41:30" itemprop="dateModified" datetime="2019-12-28T11:41:30+08:00">2019-12-28</time>
+                <time title="Modified: 2019-12-28 13:47:06" itemprop="dateModified" datetime="2019-12-28T13:47:06+08:00">2019-12-28</time>
               </span>
 
           <br>
@@ -250,14 +250,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>78k</span>
+              <span>79k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1:11</span>
+              <span>1:12</span>
             </span>
 
         </div>
@@ -297,72 +297,9 @@
                精确路径匹配&gt;最长路径匹配&gt;扩展匹配     /a/*.xxx 这样方式会报错。不能混搭。
 注：Filter不会像servlet只匹配一个。 顺序与定义顺序相同
 /*和/** 后者会匹配更多的目录 (Ant path匹配。spring支持。还支持正则表达式,进行更复杂的匹配)
+</code></pre><p>关于url-pattern的/, 同样在struts中，默认映射了<em>.action </em>.do ,  /无法覆盖他们<br>strut2的配置文件加载顺序为： </p>
+<pre><code>   Struts-default.xml---&gt; struts-plugin.xml--&gt; struts.xml--&gt;   struts.properties--&gt; web.xml
 </code></pre><p><strong>使用servlet</strong></p>
-<pre><code>//AServlet.java
-package a; //倒序 com.xxx,部门,项目:模块
-
-////先引入这3个包
-import javax.servlet.*;
-import javax.servlet.http.*;
-import java.io.*;
-public class AServlet extends HttpServlet{
-
-
-   /*  默认已经实现
-   private ServletConfig config;
-   @Ovrride
-   public void init(ServletConfig config) throws ServletException{
-      super(config);
-      init();
-    }*/
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws    IOException,ServletException{
-    response.setContentType(&quot;text/html;charset=UTF-8&quot;);  //默认ISO8859-1
-    response.setCharacterEncoding(&quot;UTF-8&quot;)//设置编码
-    PrintWriter out=response.getWriter();
-    out.println(&quot;&lt;h1&gt;this is servlet&lt;/h1&gt;&quot;);
-    //不要close()   谁创建的流谁负责关闭
-        }
-
-    @Ovrride
-    protected void doPost(HttpServletRequest request,HttpServletResponse){
-    }
-
-/*
-    @Override
-    public void destroy(){
-        super.destroy();
-    }
-
-    @Override
-    public void service(SevletRequest req,ServletResponse res) throws ServletException,IOException{
-
-
-
-       res.setContextType(&quot;text/html&quot;)
-       PrintWriter out=response.getWriter();
-       out.println(&quot;this is servlet&quot;);
-
-       //获取config
-       //getServletConfig();
-        //!!!!考ServletConfig   的函数
-
-       HttpServletRquest hsr=(HttpServeltRequest) req;
-       HttpServletResponse hsres=(HttpServletResponse) res;
-       //GET / HTTP/1.1\r\n            获取资源
-       //GET /HTTP/a HTTP/1.1\r\n
-       String method=res.getMethod();
-       if(method.compareTo(&quot;POST&quot;)==0){
-           doPost(req,res);
-       }else if(&quot;GET&quot;.equals(method)){
-            doGet(req,res);
-       }
-
-}      
-*/
-   }
-</code></pre><p>注意事项</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
@@ -1560,12 +1497,12 @@ u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">282k</span>
+    <span title="Symbols count total">283k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:16</span>
+    <span title="Reading time total">4:17</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>
