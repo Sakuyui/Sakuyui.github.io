@@ -47,17 +47,18 @@
   };
 </script>
 
-  <meta name="description" content="根据上课的笔记整理与补充。contact: 405544641@qq.com  Spring的思想 控制翻转:让容器管理对象的创建与销毁，依赖注入:利用反射实现，动态地向一个对象提供其所需的其他对象 JavaEE三大组件: Servlet, Filter, Listener组件必须有 init(conf)  destroy() web容器(servlet容器)请求怎么来到servlet呢？答案是">
+  <meta name="description" content="JavaEE复习笔记 根据上课的笔记整理与补充。contact: 405544641@qq.com  Spring的思想 控制翻转:让容器管理对象的创建与销毁，依赖注入:利用反射实现，动态地向一个对象提供其所需的其他对象 JavaEE三大组件: Servlet, Filter, Listener组件必须有 init(conf)  destroy() web容器(servlet容器)请求怎么来到se">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaEE复习笔记">
 <meta property="og:url" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="SakuyuiのBLOG">
-<meta property="og:description" content="根据上课的笔记整理与补充。contact: 405544641@qq.com  Spring的思想 控制翻转:让容器管理对象的创建与销毁，依赖注入:利用反射实现，动态地向一个对象提供其所需的其他对象 JavaEE三大组件: Servlet, Filter, Listener组件必须有 init(conf)  destroy() web容器(servlet容器)请求怎么来到servlet呢？答案是">
+<meta property="og:description" content="JavaEE复习笔记 根据上课的笔记整理与补充。contact: 405544641@qq.com  Spring的思想 控制翻转:让容器管理对象的创建与销毁，依赖注入:利用反射实现，动态地向一个对象提供其所需的其他对象 JavaEE三大组件: Servlet, Filter, Listener组件必须有 init(conf)  destroy() web容器(servlet容器)请求怎么来到se">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576752145733.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576666287803.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576668415360.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576751175527.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1577526473068.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576755405347.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576755801639.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576837387364.png">
@@ -100,7 +101,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1577445397929.png">
 <meta property="og:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1577511378663.png">
 <meta property="article:published_time" content="2019-12-27T13:35:14.000Z">
-<meta property="article:modified_time" content="2019-12-28T05:47:06.601Z">
+<meta property="article:modified_time" content="2019-12-28T15:16:54.742Z">
 <meta property="article:author" content="Sakuyui39">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/1576752145733.png">
@@ -290,7 +291,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-28 13:47:06" itemprop="dateModified" datetime="2019-12-28T13:47:06+08:00">2019-12-28</time>
+                <time title="Modified: 2019-12-28 23:16:54" itemprop="dateModified" datetime="2019-12-28T23:16:54+08:00">2019-12-28</time>
               </span>
 
           
@@ -306,7 +307,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>79k</span>
+              <span>80k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -325,7 +326,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
+        <h2 id="JavaEE复习笔记"><a href="#JavaEE复习笔记" class="headerlink" title="JavaEE复习笔记"></a>JavaEE复习笔记</h2><blockquote>
 <p>根据上课的笔记整理与补充。<br>contact: 405544641@qq.com</p>
 </blockquote>
 <p>Spring的思想 <strong>控制翻转</strong>:让容器管理对象的创建与销毁，<strong>依赖注入</strong>:利用<strong>反射</strong>实现，动态地向一个对象提供其所需的其他对象</p>
@@ -408,7 +409,7 @@ public class AServlet extends HttpServlet{
 
        HttpServletRquest hsr=(HttpServeltRequest) req;
        HttpServletResponse hsres=(HttpServletResponse) res;
-       //GET / HTTP/1.1\r\n            获取资源
+       //GET / HTTP/1.1\r\n            
        //GET /HTTP/a HTTP/1.1\r\n
        String method=res.getMethod();
        if(method.compareTo(&quot;POST&quot;)==0){
@@ -439,7 +440,7 @@ public class AServlet extends HttpServlet{
 <li>HttpServlet 中已存在 service()方法.缺省的服务功能是调用与 HTTP 请求的方法相应的 do 功能。<br>例如,如果 HTTP 请求方法为 GET,则缺省情况下就调用 doGet()。   super(req,res)</li>
 </ul>
 <p>setContentType(String) 和 setCharacterEncoding()的区别:前者设置的是页面的静态文字编码（浏览器显示的编码），后者关系到动态参数的编码</p>
-<p>HTTP缓存<strong>(必考)</strong></p>
+<p>HTTP缓存<strong>(课上说的必考，但是考纲好像又没有)</strong></p>
 <ul>
 <li><p>http缓存有<strong>强缓存</strong>,<strong>协商缓存</strong><br>步骤1. 浏览器先根据这个资源的http头信息来判断是否命中强缓存。如果命中则直接加在缓存中的资源，并不会将请求发送到服务器。 (返回<strong>200</strong>)<br>2.如果未命中强缓存，则浏览器会将资源加载请求发送到服务器。服务器来判断浏览器本地缓存是否失效。若可以使用，则服务器并不会返回资源信息，浏览器继续从缓存加载资源。<br>3.如果未命中协商缓存，则服务器会将完整的资源返回给浏览器，浏览器加载新资源，并更新缓存。</p>
 </li>
@@ -514,7 +515,9 @@ public class AServlet extends HttpServlet{
 <blockquote>
 <p><strong>编码</strong> base64:3个字节为一组  ucs:任何一个字符都是4字节</p>
 </blockquote>
-<p><strong>http状态码：</strong><br>404 资源不存在<br>500 服务器遇到外部故障,一般是异常<br>2xx OK<br>3xx 重定向<br>4xx 客户端错误<br>—&gt;401 客户端证书无效<br>—&gt;403 请求结构正确。但是服务器不想处理.403暗示了所请求的资源确实存在。跟401一样，若服务器不想透露此信息，它可以谎报一个404<br>—&gt;405 请求方法错误。比如用了不支持的协议，或者不支持get,结果用了get</p>
+<p><strong>http状态码：</strong></p>
+<p>2xx OK<br>3xx 重定向<br>—&gt;302 Object Moved <img src="./1577526473068.png" alt="Alt text"> 要根据Location重新发请求</p>
+<p>4xx 客户端错误<br>—&gt;401 (访问拒绝)客户端证书无效,账号密码错误<br>—&gt;403 Access Forbidden 请求结构正确。但是服务器不想处理.403暗示了所请求的资源确实存在。跟401一样，若服务器不想透露此信息，它可以谎报一个404<br>—&gt;404 资源不存在<br>—&gt;405 请求方法错误。比如用了不支持的协议，或者不支持get,结果用了get</p>
 <p>5xx:服务器端错误<br>502 代理错误<br>500 异常<br>501 服务器不能识别一个方法。类似405,但是405是能够被服务器识别，但是资源不支持该方法.<br><strong>101表示服务器已经理解了客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。</strong></p>
 <p><strong>web.xml</strong></p>
 <pre><code>&lt;welcome-file-list&gt;  //可以设置多个,可以访问到web-inf内的文件,会返回第一个找到的文件，找不到就404,首页的路径只能是一个实际存在的物理文件地址，不能将首页设置成Servlet或Controller的地址，再通过来Servlet或Controller返回一个页面
@@ -737,6 +740,7 @@ setHttpOnly(boolean isHttpOnly)
 </code></pre><h4 id="压缩-要考"><a href="#压缩-要考" class="headerlink" title="压缩(要考)"></a>压缩(要考)</h4><p><strong>gzip</strong>是一种数据格式，默认且目前仅使用deflate算法压缩data部分；<br><img src="./1576837387364.png" alt="Alt text"><br><img src="./1576837550820.png" alt="Alt text"></p>
 <h4 id="RequestDispatcher"><a href="#RequestDispatcher" class="headerlink" title="RequestDispatcher"></a>RequestDispatcher</h4><p>可以用requestDispatcher来分发请求到多个组件去处理。</p>
 <blockquote>
+<p>从ServletRequest.getRequestDispatcher(java.lang.String)获取</p>
 <p>rd.forward() //转发，让其他组件去处理，自己不管了<br>rd.include(request,response) 包含.是让其他组件去处理，但是还会返回来，自己继续处理</p>
 </blockquote>
 <p>!!<strong>Interface SingleThreadMode()   //保证不会有多个线程执行service函数</strong></p>
@@ -927,7 +931,7 @@ return false;
 <p>tld文件有点变化,要加上属性声明</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">		&lt;tag&gt;</span><br><span class="line">	        &lt;!-- 标签的名称 --&gt;</span><br><span class="line">	        &lt;name&gt;set&lt;&#x2F;name&gt;</span><br><span class="line">	        &lt;!-- 继承了SimpleTagSupport的标签处理类 --&gt;</span><br><span class="line">		   &lt;tag-class&gt;com.lyu.tag.SetTag&lt;&#x2F;tag-class&gt;</span><br><span class="line">        &lt;!-- 标签的内容，empty就表示是一个单标签 --&gt;</span><br><span class="line">        &lt;body-content&gt;empty&lt;&#x2F;body-content&gt;</span><br><span class="line">        &lt;!-- 属性1 --&gt;</span><br><span class="line">        &lt;attribute&gt;</span><br><span class="line">            &lt;!-- 属性名 --&gt;</span><br><span class="line">            &lt;name&gt;var&lt;&#x2F;name&gt;</span><br><span class="line">            &lt;!-- 该属性是否必须 --&gt;</span><br><span class="line">            &lt;required&gt;true&lt;&#x2F;required&gt;</span><br><span class="line">            &lt;!-- 该属性是否可以接受运行时表达式的值(EL表达式) --&gt;</span><br><span class="line">            &lt;rtexprvalue&gt;false&lt;&#x2F;rtexprvalue&gt;</span><br><span class="line">        &lt;&#x2F;attribute&gt;</span><br><span class="line">        &lt;!-- 属性2 --&gt;</span><br><span class="line">        &lt;attribute&gt;</span><br><span class="line">            &lt;!-- 属性名 --&gt;</span><br><span class="line">            &lt;name&gt;value&lt;&#x2F;name&gt;</span><br><span class="line">            &lt;!-- 该属性是否必须 --&gt;</span><br><span class="line">            &lt;required&gt;true&lt;&#x2F;required&gt;</span><br><span class="line">            &lt;!-- 该属性是否可以接受运行时表达式的值(EL表达式) --&gt;</span><br><span class="line">            &lt;rtexprvalue&gt;true&lt;&#x2F;rtexprvalue&gt;</span><br><span class="line">        &lt;&#x2F;attribute&gt;</span><br><span class="line">        &lt;!-- 属性3 --&gt;</span><br><span class="line">        &lt;attribute&gt;</span><br><span class="line">            &lt;!-- 属性名 --&gt;</span><br><span class="line">            &lt;name&gt;scope&lt;&#x2F;name&gt;</span><br><span class="line">            &lt;!-- 该属性是否必须 --&gt;</span><br><span class="line">            &lt;required&gt;false&lt;&#x2F;required&gt;</span><br><span class="line">            &lt;!-- 该属性是否可以接受运行时表达式的值(EL表达式) --&gt;</span><br><span class="line">            &lt;rtexprvalue&gt;false&lt;&#x2F;rtexprvalue&gt;</span><br><span class="line">        &lt;&#x2F;attribute&gt;</span><br><span class="line">    &lt;&#x2F;tag&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果不用SimpleTagSupport类，我们也可以自己写类继承TagSupport<br>然后重写doEngTag()和doStartTag()函数<br>//doTag() throws JspException,IOException<br>//doStartTag() throws Jspxception<br>是适配器模式设计模式</p>
-<p>在jsp2.0还可以使用更简单的方式<br>在<strong>WEB-INF/tags</strong>下创建tag文件</p>
+<p>在jsp2.0还可以使用更简单的方式<br>在<strong>WEB-INF/tags</strong>下创建tag文件 (time.tag)</p>
 <pre><code>&lt;%@ tag import=&quot;java.util.*&quot; import=&quot;java.text.*&quot; %&gt;
 &lt;%
   DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
@@ -935,12 +939,12 @@ return false;
   out.println(df.format(d));
 %&gt;
 </code></pre><p>引用</p>
-<pre><code>    &lt;%@ tag import=&quot;java.util.*&quot; import=&quot;java.text.*&quot; %&gt;
-    &lt;%
-      DateFormat df = DateFormat.getDateInstance(DateFormat.LONG);
-      Date d = new Date(System.currentTimeMillis());
-      out.println(df.format(d));
-    %&gt;
+<pre><code>&lt;%@ taglib prefix=&quot;util&quot; tagdir=&quot;/WEB-INF/tags&quot; %&gt;
+&lt;util:time/&gt;
+</code></pre><p>有参数的标签</p>
+<pre><code>&lt;%@ attribute name=&quot;count&quot; type=&quot;java.lang.Integer&quot; required=&quot;true&quot; %&gt;
+&lt;%@ attribute name=&quot;value&quot; type=&quot;java.lang.String&quot; required=&quot;true&quot; %&gt;
+&lt;%!....%&gt;
 </code></pre><h4 id="补充PageContext相关"><a href="#补充PageContext相关" class="headerlink" title="补充PageContext相关"></a>补充PageContext相关</h4><pre><code>getSession(),    getServletContext() , getServletConfig()
     getRequest(),     getRequest()     forward(String relativeUrlPath)
         include(String relativeUrlPath)     include(String relativeUrlPath,boolean flush)
@@ -994,8 +998,9 @@ return false;
     &lt;listener-class&gt;nc.xyzq.listener.WebServicePublishListener&lt;/listener-class&gt;
 &lt;/listener&gt; 
 // 该元素用来注册一个监听器类。可以收到事件什么时候发生以及用什么作为响应的通知。事件监听程序在建立、修改和删除会话或servlet环境时得到通知。常与context-param联合使用。
-</code></pre><p> listen-class 指定了监听类，该类继承<strong>ServletContextListener </strong>包含<strong>初始化方法contextInitialized(ServletContextEvent event) </strong>和<strong>销毁方法contextDestoryed(ServletContextEvent event)；</strong></p>
-<p><img src="./1576926948994.png" alt="Alt text"><br>可以用标注@WebListener<br><strong>HttpSessionBindingEvent(session,name,value) //session属性变化时</strong><br>HttpSessionEvent(HttpSession source)<br>ServletRequestEvent(ServletContext sc, ServletRequest request)<br>ServletContextEvent(ServletContext source)<br>HttpSessionAttributeListener:      attributeAdded,    attributeRemoved,    attributeRemoved都可以<br>参数为(HttpSessionBindingEvent event)  和binding不同，binding是监听属性绑定，解绑事件</p>
+</code></pre><p>也可以用标注@WebListener 就不用上面的xml定义监听器了<br> listen-class 指定了监听类，上例中该类实现<strong>ServletContextListener </strong>(也可以实现其他的监听器) 包含<strong>初始化方法contextInitialized(ServletContextEvent event) </strong>和<strong>销毁方法contextDestoryed(ServletContextEvent event)；</strong></p>
+<p><img src="./1576926948994.png" alt="Alt text"></p>
+<p><strong>HttpSessionBindingEvent(session,name,value) //session属性变化时</strong><br>HttpSessionEvent(HttpSession source)<br>ServletRequestEvent(ServletContext sc, ServletRequest request)<br>ServletContextEvent(ServletContext source)<br>HttpSessionAttributeListener:      attributeAdded,    attributeRemoved,    attributeRemoved都可以<br>参数为(HttpSessionBindingEvent event)  和binding不同，binding是监听属性绑定，解绑事件</p>
 <p>监听三个作用域的创建和销毁的监听器<br>都只有两个函数 一个是   xxxxDestroyed(xxxxEvent ) 另一个是 xxxxInitialized(xxxxEvent )</p>
 <p>监听三个作用域属性变更的监听器:<br>有3个函数     attributeAdded(xxxEvent)      attributeAdded(xxxEvent)      attributeAdded(xxx)  就是监听属性的增删改</p>
 <h4 id="PageBean"><a href="#PageBean" class="headerlink" title="PageBean"></a>PageBean</h4><blockquote>
@@ -1856,7 +1861,13 @@ public void onStartup(Set&lt;Class&lt;?&gt;&gt; webAppInitializerClasses, Servle
             &lt;input type=&quot;submit&quot; name=&quot;upload&quot; value=&quot;上传&quot;&gt;
         &lt;/form&gt;
 </code></pre><p>在doPost中request.getPart(“file”); //Servlet3.0中新引入的方法，用来处理multipart/form-data类型编码的表单<br>然后part.write(“路径”)即可完成上传</p>
-<h3 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h3><p>所有EL都是以${为起始、以}为结尾的</p>
+<pre><code>@MultipartConfig(localtion=&quot;c:\aaa&quot;,fileSizeThreshold=0,maxFileSize=102400,     maxRequestSize=102400)
+/*fileSizeThreshold默认0，多少字节后存到文件系统上，mfs:最大文件大小 mrs:最大请求的multipart form大小*/
+对应xml
+&lt;multipart-config&gt;
+    &lt;location&gt;c:\aaa&lt;/location&gt;
+&lt;/ultipart-config&gt;
+</code></pre><h3 id="EL表达式"><a href="#EL表达式" class="headerlink" title="EL表达式"></a>EL表达式</h3><p>所有EL都是以${为起始、以}为结尾的</p>
 <p><img src="./1577353107292.png" alt="Alt text"><br><strong>如果你要用EL输出一个常量的话，字符串要加双引号，不然的话EL会默认把你认为的常量当做一个变量来处理，</strong></p>
 <h3 id="Spring-Controller"><a href="#Spring-Controller" class="headerlink" title="Spring Controller"></a>Spring Controller</h3><p>再次上这张图<br><img src="./1577357845641.png" alt="Alt text"></p>
 <blockquote>
@@ -2260,6 +2271,7 @@ public String modify(@PathVariable(&quot;studentid&quot;) String studentid) {
 </code></pre><p>Model, ModelAndView, View 在后面说</p>
 <h3>redirect和forward有何区别？!!!</h3>
 
+<p>response.sendRedirect(“”)<br>request.getDispatcher().forward()</p>
 <p>forward是服务器内部重定向，使用的是同一个request  客户端浏览器的网址是不会发生变化的。<br>本质上说：forward转发是服务器上的行为，而redirect是客户端行为<br><img src="./1577442308648.png" alt="Alt text"></p>
 <h4 id="View"><a href="#View" class="headerlink" title="View"></a>View</h4><p>视图解析，视图类的选择，可以使用配置来完成。<br>应用程序只管定义模型，更新模型的内容。</p>
 <p>如果选择jsp视图技术<br>那么配置如下：</p>
@@ -2333,7 +2345,21 @@ public class MyService {
 <h3 id="JSP-1"><a href="#JSP-1" class="headerlink" title="JSP"></a>JSP</h3><p><img src="./1577445252136.png" alt="Alt text"><br><img src="./1577445264912.png" alt="Alt text"><br><img src="./1577445271623.png" alt="Alt text"><br>(上面的笔记也讲过)</p>
 <p><img src="./1577445317110.png" alt="Alt text"><br>…具体还是看前面的笔记内容吧。。 4个指令，9个动作，还有4个域对象什么的</p>
 <h4 id="EL表达式-1"><a href="#EL表达式-1" class="headerlink" title="EL表达式"></a>EL表达式</h4><p><img src="./1577445380410.png" alt="Alt text"><br><img src="./1577445386386.png" alt="Alt text"><br><img src="./1577445397929.png" alt="Alt text"></p>
-<p><strong>当EL表达式中的变量不给定范围时，则默认在page范围查找，然后依次在request、session、application范围查找。也就是从小到大的范围找</strong></p>
+<p>EL内置的11个对象:</p>
+<ul>
+<li><strong>pageScope</strong></li>
+<li><strong>requestScope</strong></li>
+<li><strong>sessionScope</strong></li>
+<li><strong>applicationScope</strong></li>
+<li><strong>param</strong> 是一个map,key是参数,value是多个参数值</li>
+<li><strong>paramValues</strong> 是一个map,key是参数,value是多个参数值,request.getParameterValues(“xxx”)</li>
+<li><strong>header</strong>: 相当于请求头，对应request.getHeader(String)</li>
+<li><strong>headerValues</strong></li>
+<li><strong>init-param</strong> 获取context-param中的参数</li>
+<li><strong>cookie</strong> 中key是cookie的name，value是cookie对象 ${cookie.JSESSIONID.value }就是获取sessionId</li>
+<li><strong>pageContext</strong><br>相当于使用该对象调用getxxx()方法，例如pageContext.getRequest()可以写为${pageContext.request)</li>
+</ul>
+<p>表达式中的变量不给定范围时，则默认在page范围查找，然后依次在request、session、application范围查找。也就是从小到大的范围找**</p>
 <pre><code>EL 提供“.“和“[ ]“两种运算符来存取数据。
 当要存取的属性名称中包含一些特殊字符，如 . 或 - 等并非字母或数字的符号，就一定要使用“[ ]“。例如：
 ${ user. My-Name}应当改为${user[&quot;My-Name&quot;]}
@@ -2389,6 +2415,20 @@ public class LoginAction extends ActionSupport {
         &lt;result name=&quot;error&quot;&gt;/error.jsp&lt;/result&gt;
         &lt;result name=&quot;success&quot;&gt;/index.jsp&lt;/result&gt;
   &lt;/action&gt;
+</code></pre><p>高端用法：</p>
+<pre><code>&lt;package name=&quot;mooc&quot; extends=&quot;struts-default&quot; namespace=&quot;/&quot;&gt;
+     &lt;action name=&quot;product_*&quot; class=&quot;action.ProductAction&quot;  method=&quot;{1}&quot;/&gt;
+  &lt;/package&gt;
+
+{1}代表第一个*
+</code></pre><p>获取request的方法:</p>
+<pre><code>ActionContext.getContext().get(&quot;request&quot;);
+ServletActionContext.getRequest();
+ServletRequestAware接口
+    public void setServletRequest(HttpServletRequest request){
+        this.request = request;
+
+    }
 </code></pre>
     </div>
 
@@ -2415,7 +2455,10 @@ public class LoginAction extends ActionSupport {
     <a href="/2019/12/26/%E3%80%90%E6%B7%B1%E5%B1%A4%E5%AD%A6%E7%BF%92%E3%80%91LSTM-Long-Short%20Term%20Memory/" rel="prev" title="【深層学習】LSTM-Long-Short Term Memory">
       <i class="fa fa-chevron-left"></i> 【深層学習】LSTM-Long-Short Term Memory
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/" rel="next" title="【Web】JavaEE考点对策">
+      【Web】JavaEE考点对策 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -2475,10 +2518,10 @@ public class LoginAction extends ActionSupport {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#web容器-servlet容器"><span class="nav-number">1.</span> <span class="nav-text">web容器(servlet容器)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#header"><span class="nav-number"></span> <span class="nav-text">header</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署web-application在Tomcat"><span class="nav-number"></span> <span class="nav-text">部署web application在Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-socket"><span class="nav-number"></span> <span class="nav-text">web socket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Server-Sent-Event-SSE-服务器向客户端发送消息-应该是只做了解"><span class="nav-number"></span> <span class="nav-text">Server Sent Event(SSE):服务器向客户端发送消息 (应该是只做了解)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#javax-websocket-Endpoint类"><span class="nav-number"></span> <span class="nav-text">javax.websocket.Endpoint类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session-接口-websocket的"><span class="nav-number"></span> <span class="nav-text">Session 接口  (websocket的)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocketContainer"><span class="nav-number"></span> <span class="nav-text">WebSocketContainer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpSession"><span class="nav-number"></span> <span class="nav-text">HttpSession</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookies"><span class="nav-number"></span> <span class="nav-text">Cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压缩-要考"><span class="nav-number"></span> <span class="nav-text">压缩(要考)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RequestDispatcher"><span class="nav-number"></span> <span class="nav-text">RequestDispatcher</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-number"></span> <span class="nav-text">Filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP"><span class="nav-number"></span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Page指令"><span class="nav-number"></span> <span class="nav-text">Page指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Include指令"><span class="nav-number"></span> <span class="nav-text">Include指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#taglib指令"><span class="nav-number"></span> <span class="nav-text">taglib指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充PageContext相关"><span class="nav-number"></span> <span class="nav-text">补充PageContext相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP动作指令"><span class="nav-number"></span> <span class="nav-text">JSP动作指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-9个-内置对象"><span class="nav-number"></span> <span class="nav-text">JSP 9个    内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PageBean"><span class="nav-number"></span> <span class="nav-text">PageBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDBC连接池的配置"><span class="nav-number"></span> <span class="nav-text">JDBC连接池的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名服务"><span class="nav-number"></span> <span class="nav-text">命名服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录服务"><span class="nav-number"></span> <span class="nav-text">目录服务</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#null"><span class="nav-number">0.1.</span> <span class="nav-text">jvax.naming.directory：对命名包的扩充，提供了访问目录服务的类和接口。例如，它为属性增加了新的类，提供了表示目录上下文的DirContext接口，定义了检查和更新目录对象的属性的方法。
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaEE复习笔记"><span class="nav-number">1.</span> <span class="nav-text">JavaEE复习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#web容器-servlet容器"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">web容器(servlet容器)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#header"><span class="nav-number">1.0.1.</span> <span class="nav-text">header</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署web-application在Tomcat"><span class="nav-number">1.1.</span> <span class="nav-text">部署web application在Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web-socket"><span class="nav-number">1.2.</span> <span class="nav-text">web socket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Server-Sent-Event-SSE-服务器向客户端发送消息-应该是只做了解"><span class="nav-number">1.2.1.</span> <span class="nav-text">Server Sent Event(SSE):服务器向客户端发送消息 (应该是只做了解)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#javax-websocket-Endpoint类"><span class="nav-number">1.2.2.</span> <span class="nav-text">javax.websocket.Endpoint类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Session-接口-websocket的"><span class="nav-number">1.2.3.</span> <span class="nav-text">Session 接口  (websocket的)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebSocketContainer"><span class="nav-number">1.2.4.</span> <span class="nav-text">WebSocketContainer</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpSession"><span class="nav-number">1.3.</span> <span class="nav-text">HttpSession</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookies"><span class="nav-number">1.3.1.</span> <span class="nav-text">Cookies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#压缩-要考"><span class="nav-number">1.3.2.</span> <span class="nav-text">压缩(要考)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RequestDispatcher"><span class="nav-number">1.3.3.</span> <span class="nav-text">RequestDispatcher</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Filter"><span class="nav-number">1.4.</span> <span class="nav-text">Filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP"><span class="nav-number">1.5.</span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Page指令"><span class="nav-number">1.5.1.</span> <span class="nav-text">Page指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Include指令"><span class="nav-number">1.5.2.</span> <span class="nav-text">Include指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#taglib指令"><span class="nav-number">1.5.3.</span> <span class="nav-text">taglib指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#补充PageContext相关"><span class="nav-number">1.5.4.</span> <span class="nav-text">补充PageContext相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP动作指令"><span class="nav-number">1.6.</span> <span class="nav-text">JSP动作指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-9个-内置对象"><span class="nav-number">1.7.</span> <span class="nav-text">JSP 9个    内置对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#PageBean"><span class="nav-number">1.7.1.</span> <span class="nav-text">PageBean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JDBC连接池的配置"><span class="nav-number">1.7.2.</span> <span class="nav-text">JDBC连接池的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命名服务"><span class="nav-number">1.7.3.</span> <span class="nav-text">命名服务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目录服务"><span class="nav-number">1.7.4.</span> <span class="nav-text">目录服务</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#null"><span class="nav-number">1.7.4.0.1.</span> <span class="nav-text">jvax.naming.directory：对命名包的扩充，提供了访问目录服务的类和接口。例如，它为属性增加了新的类，提供了表示目录上下文的DirContext接口，定义了检查和更新目录对象的属性的方法。
 Javax.naming.event：提供了对访问命名和目录服务时的事件通知的支持。例如，定义了NamingEvent类，这个类用来表示命名&#x2F;目录服务产生的事件，定义了侦听NamingEvents的NamingListener接口。
 Javax.naming.ldap：这个包提供了对LDAP 版本3扩充的操作和控制的支持，通用包javax.naming.directory没有包含这些操作和控制。
-Javax.naming.spi：这个包提供了一个方法，通过javax.naming和有关包动态增加对访问命名和目录服务的支持。这个包是为有兴趣创建服务提供者的开发者提供的。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC与struts"><span class="nav-number"></span> <span class="nav-text">MVC与struts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActionServlet"><span class="nav-number"></span> <span class="nav-text">ActionServlet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number"></span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注解类"><span class="nav-number"></span> <span class="nav-text">注解类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装配bean"><span class="nav-number"></span> <span class="nav-text">装配bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-MVC注解"><span class="nav-number"></span> <span class="nav-text">Spring MVC注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanFactory"><span class="nav-number"></span> <span class="nav-text">BeanFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图解析"><span class="nav-number"></span> <span class="nav-text">视图解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#view-controller"><span class="nav-number"></span> <span class="nav-text">view controller</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aware接口"><span class="nav-number"></span> <span class="nav-text">Aware接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据访问，存储"><span class="nav-number"></span> <span class="nav-text">数据访问，存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-jdbc"><span class="nav-number"></span> <span class="nav-text">Spring jdbc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatist"><span class="nav-number"></span> <span class="nav-text">mybatist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写注解"><span class="nav-number"></span> <span class="nav-text">编写注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number"></span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关重要的接口"><span class="nav-number"></span> <span class="nav-text">相关重要的接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Servlet接口"><span class="nav-number"></span> <span class="nav-text">Servlet接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletConfig-类"><span class="nav-number"></span> <span class="nav-text">ServletConfig 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServlet类"><span class="nav-number"></span> <span class="nav-text">HttpServlet类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletRequest-接口"><span class="nav-number"></span> <span class="nav-text">ServletRequest 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServletRequest类"><span class="nav-number"></span> <span class="nav-text">HttpServletRequest类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpSession-接口"><span class="nav-number"></span> <span class="nav-text">HttpSession 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number"></span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletResponse接口-amp-HttpServletResponse类"><span class="nav-number"></span> <span class="nav-text">ServletResponse接口 &amp; HttpServletResponse类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#突然发现重复的东西太多了，所以下面只补充一些笔记里没有的了"><span class="nav-number"></span> <span class="nav-text">突然发现重复的东西太多了，所以下面只补充一些笔记里没有的了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotations-注解"><span class="nav-number"></span> <span class="nav-text">Annotations  注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#javax-servlet-annotation"><span class="nav-number"></span> <span class="nav-text">javax.servlet.annotation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WebServlet"><span class="nav-number">1.</span> <span class="nav-text">@WebServlet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebListener"><span class="nav-number">2.</span> <span class="nav-text">@WebListener</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebInitParam"><span class="nav-number">3.</span> <span class="nav-text">@WebInitParam</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebFilter"><span class="nav-number">4.</span> <span class="nav-text">@WebFilter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ServletSecurity"><span class="nav-number">5.</span> <span class="nav-text">@ServletSecurity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HandlesTypes-class"><span class="nav-number"></span> <span class="nav-text">@HandlesTypes(class[])</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL表达式"><span class="nav-number"></span> <span class="nav-text">EL表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Controller"><span class="nav-number"></span> <span class="nav-text">Spring Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-注解补充"><span class="nav-number"></span> <span class="nav-text">Spring 注解补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring补充"><span class="nav-number"></span> <span class="nav-text">spring补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationContext"><span class="nav-number"></span> <span class="nav-text">ApplicationContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanFactory-1"><span class="nav-number"></span> <span class="nav-text">BeanFactory</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number"></span> <span class="nav-text">上面是spring的基础,下面是spring MVC内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Controller-1"><span class="nav-number"></span> <span class="nav-text">Spring Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number"></span> <span class="nav-text">
+Javax.naming.spi：这个包提供了一个方法，通过javax.naming和有关包动态增加对访问命名和目录服务的支持。这个包是为有兴趣创建服务提供者的开发者提供的。</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC与struts"><span class="nav-number">2.</span> <span class="nav-text">MVC与struts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActionServlet"><span class="nav-number">2.1.</span> <span class="nav-text">ActionServlet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring"><span class="nav-number">3.</span> <span class="nav-text">Spring</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#注解类"><span class="nav-number">3.0.1.</span> <span class="nav-text">注解类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#装配bean"><span class="nav-number">3.0.2.</span> <span class="nav-text">装配bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-MVC注解"><span class="nav-number">3.0.3.</span> <span class="nav-text">Spring MVC注解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanFactory"><span class="nav-number">3.0.4.</span> <span class="nav-text">BeanFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#视图解析"><span class="nav-number">3.0.5.</span> <span class="nav-text">视图解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#view-controller"><span class="nav-number">3.0.6.</span> <span class="nav-text">view controller</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aware接口"><span class="nav-number">3.1.</span> <span class="nav-text">Aware接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据访问，存储"><span class="nav-number">3.2.</span> <span class="nav-text">数据访问，存储</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-jdbc"><span class="nav-number">3.2.1.</span> <span class="nav-text">Spring jdbc</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatist"><span class="nav-number">3.3.</span> <span class="nav-text">mybatist</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写注解"><span class="nav-number">4.</span> <span class="nav-text">编写注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#相关重要的接口"><span class="nav-number">5.1.</span> <span class="nav-text">相关重要的接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Servlet接口"><span class="nav-number">5.1.1.</span> <span class="nav-text">Servlet接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletConfig-类"><span class="nav-number">5.1.2.</span> <span class="nav-text">ServletConfig 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServlet类"><span class="nav-number">5.1.3.</span> <span class="nav-text">HttpServlet类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletRequest-接口"><span class="nav-number">5.1.4.</span> <span class="nav-text">ServletRequest 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpServletRequest类"><span class="nav-number">5.1.5.</span> <span class="nav-text">HttpServletRequest类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HttpSession-接口"><span class="nav-number">5.1.6.</span> <span class="nav-text">HttpSession 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">5.1.7.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ServletResponse接口-amp-HttpServletResponse类"><span class="nav-number">5.1.8.</span> <span class="nav-text">ServletResponse接口 &amp; HttpServletResponse类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#突然发现重复的东西太多了，所以下面只补充一些笔记里没有的了"><span class="nav-number">6.</span> <span class="nav-text">突然发现重复的东西太多了，所以下面只补充一些笔记里没有的了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Annotations-注解"><span class="nav-number">6.1.</span> <span class="nav-text">Annotations  注解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#javax-servlet-annotation"><span class="nav-number">6.1.1.</span> <span class="nav-text">javax.servlet.annotation</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#WebServlet"><span class="nav-number">6.1.1.1.</span> <span class="nav-text">@WebServlet</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebListener"><span class="nav-number">6.1.1.2.</span> <span class="nav-text">@WebListener</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebInitParam"><span class="nav-number">6.1.1.3.</span> <span class="nav-text">@WebInitParam</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WebFilter"><span class="nav-number">6.1.1.4.</span> <span class="nav-text">@WebFilter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ServletSecurity"><span class="nav-number">6.1.1.5.</span> <span class="nav-text">@ServletSecurity</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HandlesTypes-class"><span class="nav-number">6.1.2.</span> <span class="nav-text">@HandlesTypes(class[])</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL表达式"><span class="nav-number">6.2.</span> <span class="nav-text">EL表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Controller"><span class="nav-number">6.3.</span> <span class="nav-text">Spring Controller</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-注解补充"><span class="nav-number">6.4.</span> <span class="nav-text">Spring 注解补充</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring补充"><span class="nav-number">6.5.</span> <span class="nav-text">spring补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ApplicationContext"><span class="nav-number">6.5.1.</span> <span class="nav-text">ApplicationContext</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanFactory-1"><span class="nav-number">6.5.2.</span> <span class="nav-text">BeanFactory</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number">6.6.</span> <span class="nav-text">上面是spring的基础,下面是spring MVC内容</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring-Controller-1"><span class="nav-number">6.6.1.</span> <span class="nav-text">Spring Controller</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number">6.6.2.</span> <span class="nav-text">
 1.ModelAndView 
 2.Model
 3.ModelMap
@@ -2487,7 +2530,7 @@ Javax.naming.spi：这个包提供了一个方法，通过javax.naming和有关�
 6.String  字符串描述的视图的逻辑名字，通过视图解析器解析为物理视图地址。
 7.void            
 8.@ResponseBody Object
-</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number"></span> <span class="nav-text">redirect和forward有何区别？!!!</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View"><span class="nav-number"></span> <span class="nav-text">View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-1"><span class="nav-number"></span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EL表达式-1"><span class="nav-number"></span> <span class="nav-text">EL表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充struts2"><span class="nav-number"></span> <span class="nav-text">补充struts2</span></a></div>
+</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yetAnotherBean"><span class="nav-number">6.7.</span> <span class="nav-text">redirect和forward有何区别？!!!</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#View"><span class="nav-number">6.7.1.</span> <span class="nav-text">View</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-1"><span class="nav-number">6.8.</span> <span class="nav-text">JSP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EL表达式-1"><span class="nav-number">6.8.1.</span> <span class="nav-text">EL表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充struts2"><span class="nav-number">6.9.</span> <span class="nav-text">补充struts2</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -2503,7 +2546,7 @@ Javax.naming.spi：这个包提供了一个方法，通过javax.naming和有关�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -2571,12 +2614,12 @@ Javax.naming.spi：这个包提供了一个方法，通过javax.naming和有关�
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">283k</span>
+    <span title="Symbols count total">299k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:17</span>
+    <span title="Reading time total">4:32</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Mist',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Http协议请求一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个请求行，若干个消息头（请求头），换行，实体内容 请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：  User-Agent：客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等） Connection：告诉服务器，请求完成后，是否保持连接 If-Modifie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Web】JavaEE考点对策">
+<meta property="og:url" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/index.html">
+<meta property="og:site_name" content="SakuyuiのBLOG">
+<meta property="og:description" content="Http协议请求一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个请求行，若干个消息头（请求头），换行，实体内容 请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：  User-Agent：客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等） Connection：告诉服务器，请求完成后，是否保持连接 If-Modifie">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577520192233.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577526986514.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577524740633.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577528193902.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577526473068.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577528293581.png">
+<meta property="article:published_time" content="2019-12-28T15:16:14.000Z">
+<meta property="article:modified_time" content="2019-12-28T15:16:37.068Z">
+<meta property="article:author" content="Sakuyui39">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/1577520192233.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>【Web】JavaEE考点对策 | SakuyuiのBLOG</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SakuyuiのBLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="Searching..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Sakuyui" class="github-corner" title="My github" aria-label="My github" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          【Web】JavaEE考点对策
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-28 23:16:14 / Modified: 23:16:37" itemprop="dateCreated datePublished" datetime="2019-12-28T23:16:14+08:00">2019-12-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="Views" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">Views: </span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>14 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个<strong>请求行</strong>，<strong>若干个消息头（请求头）</strong>，<strong>换行</strong>，<strong>实体内容</strong><br><img src="./1577520192233.png" alt="Alt text"></p>
+<p>请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：</p>
+<ul>
+<li><strong>User-Agent：</strong>客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等）</li>
+<li><strong>Connection：</strong>告诉服务器，请求完成后，是否保持连接</li>
+<li><strong>If-Modified-Since：</strong>客户机通过这个头告诉服务器，资源的缓存时间</li>
+<li><strong>Accept-Charset：</strong>用于告诉服务器，客户机采用的编码格式</li>
+<li><strong>Accept-Encoding：</strong>用于告诉服务器，客户机支持的数据压缩格式</li>
+<li><strong>Accept-Language：</strong>客户机语言环境</li>
+<li><strong>Host:</strong> 客户机通过这个服务器，想访问的主机名</li>
+<li><strong>Referer：</strong>客户机通过这个头告诉服务器，它（客户端）是从哪个资源来访问服务器的（防盗链）</li>
+</ul>
+<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br><img src="./1577526986514.png" alt="Alt text"></p>
+<h3 id="回应"><a href="#回应" class="headerlink" title="回应"></a>回应</h3><p>一个http响应代表服务器端向客户端回送的数据，它包括：<br>一个<strong>状态行</strong>，<strong>若干个消息头</strong>，以及<strong>实体内容</strong><br><img src="./1577524740633.png" alt="Alt text"></p>
+<p>响应头(消息头)包含:<br><strong>Allow:</strong>允许哪些请求方法，post get等    </p>
+<ul>
+<li><strong>Location：</strong>这个头配合302状态吗，用于告诉客户端找谁</li>
+<li><strong>Server：</strong>服务器通过这个头，告诉浏览器服务器的类型</li>
+<li><strong>Content-Encoding：</strong>告诉浏览器，服务器的数据压缩格式</li>
+<li>Content-Length：告诉浏览器，回送数据的长度</li>
+<li><strong>Content-Type：</strong>告诉浏览器，回送数据的类型</li>
+<li><strong>Last-Modified：</strong>告诉浏览器当前资源缓存时间，只有改动时间迟于该时间的才会返回。否则<strong>304</strong>  一般与与If-Modified-Since一起用</li>
+<li><strong>Refresh：</strong>告诉浏览器，隔多长时间刷新</li>
+<li>Content-Disposition：告诉浏览器以下载的方式打开数据。例如： context.Response.AddHeader(“Content-+ Disposition”,”attachment:filename=aa.jpg”);                                        context.Response.WriteFile(“aa.jpg”);<br>Transfer-Encoding：告诉浏览器，传送数据的编码格式</li>
+<li><strong>ETag：</strong>缓存相关的头,类似一个资源hash函数的存在。可以发现资源是否有变化</li>
+<li><strong>Expries：</strong> 过期时间，可以相对，可以绝对</li>
+<li><p><strong>Cache-Control：</strong>控制浏览器缓存 </p>
+</li>
+<li><p><strong>max-age</strong>:是HTTP/1.1中的 过期时间。是个相对的值(<strong>相对于请求时间</strong>)</p>
+</li>
+<li><strong>Connection：</strong>响应完成后，是否断开连接。  close/Keep-Alive</li>
+<li><strong>Content-Disposition</strong><br>Date：告诉浏览器，服务器响应时间</li>
+</ul>
+<p>》通过AddHeader函数可以为HTTP消息头加入我们自定义的内容。使用这种方法可以强制让浏览器提示下载文件，即使这个文件是我们已知的类型，基于是HTML网页。如果想要让用户下载时提示一个默认的文件名，只需要在前面一句话后加上“filename=文件名”即可。例如：</p>
+<pre><code>Response.AddHeader(&quot;Content-Disposition: attachment; filename=mypage.htm&quot;);
+</code></pre><h3 id="Http缓存"><a href="#Http缓存" class="headerlink" title="!!Http缓存"></a>!!Http缓存</h3><p>http缓存有<strong>强缓存</strong>,<strong>协商缓存</strong><br>步骤1. 浏览器先根据这个资源的http头信息来判断是否命中强缓存。如果命中则直接加在缓存中的资源，并不会将请求发送到服务器。<strong>(返回200)</strong><br>2.如果未命中强缓存，则浏览器会将资源加载<em>请求发送到服务器<strong>。服务器来</strong>判断浏览器本地缓存是否失效*</em>。若可以使用，则服务器并不会返回资源信息，浏览器继续从缓存加载资源。<br>3.如果未命中协商缓存，则服务器会将完整的资源返回给浏览器，浏览器加载新资源，并更新缓存。</p>
+<h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p> 利用http的<strong>回应</strong>头中的<strong>Expires</strong>或者<strong>Cache-Control</strong>两个字段来控制的。</p>
+<p><strong>Cache-Control</strong>: </p>
+<pre><code> Cache-Control: max-age=30  也可以填 no-cache(每次用缓存前都会发请求), no-store 不缓存 public private(不允许任何web代理进行缓存，)
+ Expires: Wed, 21 Oct 2015 07:28:00 GMT
+</code></pre><p>同时启用的时候Cache-Control优先级高</p>
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>服务器根据http头信息中的<strong>Last-Modify/If-Modify-Since</strong>或<strong>Etag/If-None-Match</strong>来判断是否命中协商缓存。如果命中，则http返回码为<strong>304</strong>，浏览器从缓存中加载资源。<br><img src="./1577528193902.png" alt="Alt text"></p>
+<h4 id="http状态码："><a href="#http状态码：" class="headerlink" title="http状态码："></a>http状态码：</h4><p>2xx OK<br>3xx 重定向<br>—&gt;302 Object Moved <img src="./1577526473068.png" alt="Alt text"> 要根据Location重新发请求<br>—&gt;304 未修改</p>
+<p>4xx 客户端错误<br>—&gt;400 请求语法错误<br>—&gt;401 (访问拒绝)客户端证书无效,账号密码错误<br>—&gt;403 Access Forbidden 请求结构正确。但是服务器不想处理.403暗示了所请求的资源确实存在。跟401一样，若服务器不想透露此信息，它可以谎报一个404<br>—&gt;404 资源不存在<br>—&gt;405 请求方法错误。比如用了不支持的协议，或者不支持get,结果用了get</p>
+<p>5xx:服务器端错误<br>502 代理错误<br>500 异常<br>501 服务器不能识别一个方法。类似405,但是405是能够被服务器识别，但是资源不支持该方法.<br>503 目前服务器处理不了，一段时间后可能正常<br><strong>101表示服务器已经理解了客户端的请求，并将通过Upgrade消息头通知客户端采用不同的协议来完成这个请求。</strong></p>
+<h4 id="COOKIES"><a href="#COOKIES" class="headerlink" title="COOKIES"></a>COOKIES</h4><pre><code>Set-Cookie: key=haha; expires=Sun, 31-Dec-2006 16:00:00 GMT; path=/
+Set-Cookie: ASPSESSIONIDCSQCRTBS=KOIPGIMBCOCBFMOBENDCAKDP; path=/ (会话)
+</code></pre><h4 id="媒体类型"><a href="#媒体类型" class="headerlink" title="媒体类型"></a>媒体类型</h4><p><img src="./1577528293581.png" alt="Alt text"></p>
+<h4 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h4><p>三部分: schema协议 主机地址 资源路径</p>
+<h3 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h3><h4 id="SimpleTag接口"><a href="#SimpleTag接口" class="headerlink" title="SimpleTag接口"></a>SimpleTag接口</h4><p>继承了JspTag</p>
+<ul>
+<li><strong>setJspContext方法</strong><br>　　用于把JSP页面的pageContext对象传递给标签处理器对象<br>setParent方法<br>　　用于把父标签处理器对象传递给当前标签处理器对象<br>getParent方法<br>　　用于获得当前标签的父标签处理器对象<br>doTag方法<br>　　用于完成所有的标签逻辑</li>
+</ul>
+<h4 id="Tag接口"><a href="#Tag接口" class="headerlink" title="Tag接口"></a>Tag接口</h4><ul>
+<li><strong>doEndTag()</strong></li>
+<li><strong>doStartTag()</strong></li>
+<li>setPageContext(PageContext pc)</li>
+<li>setParent(Tag t)</li>
+</ul>
+<h4 id="TagSupport"><a href="#TagSupport" class="headerlink" title="TagSupport"></a>TagSupport</h4><pre><code>public class TimeTag extends TagSupport{
+public int doStartTag() throws JspException{ //现在可以就用doTag()  simpleTagSupport  //不能抛IOException
+        JspWriter out=pageContext.getOut();
+        //try{
+            out.println(xxxx);
+        //}catch(...){}
+    }
+}
+
+//TagHandler
+public class ResetTag extends TagSupport{
+    public void getColor(){
+    }
+    public void setColor(){
+    }
+
+    public int doEndTag() throws JspException{
+        NumberGuessBean numberguessbean=(..)pageContext.get
+    }
+}
+</code></pre><p>配置文件tld</p>
+<pre><code>&lt;tag-lib&gt;
+    &lt;uri&gt;.............&lt;/uri&gt;  //考试会考    打包后再Jar包里找不到的。。copy一遍扔到jsp
+    &lt;tag&gt;
+        &lt;short-name&gt;t&lt;/short-name&gt;
+        &lt;name&gt;time&lt;/name&gt;   &lt;!--重要，标签名--&gt;
+        &lt;tag-class&gt;a.TimeTag&lt;/tag-calss&gt;  &lt;!--重要，标签类--&gt;
+        &lt;body-content&gt;&lt;/body-content&gt;
+        &lt;!--重要，定义参数--&gt;
+        &lt;attribute&gt;
+            &lt;name&gt;color&lt;name&gt;
+            &lt;Type&gt;java.lang.String&lt;/&gt;
+            &lt;required&gt;false&lt;/required&gt;
+        &lt;/attribute&gt;
+    &lt;/tag&gt;
+&lt;/tag-lib&gt;
+</code></pre><p>引入且使用</p>
+<pre><code>&lt;%@ taglib uri=&quot;...&quot; prefix=&quot;t&quot;%&gt;
+&lt;t:time /&gt;
+</code></pre><p>执行顺序:</p>
+<ul>
+<li>WEB容器调用标签处理器对象的setJspContext方法，将代表JSP页面的pageContext对象传递给标签处理器对象。</li>
+<li>WEB容器调用标签处理器对象的setParent方法，将父标签处理器对象传递给这个标签处理器对象。注意，只有在标签存在父标签的情况下，WEB容器才会调用这个方法。</li>
+<li>如果调用标签时设置了属性，容器将调用每个属性对应的setter方法把属性值传递给标签处理器对象。如果标签的属性值是EL表达式或脚本表达式，则WEB容器首先计算表达式的值，然后把值传递给标签处理器对象。</li>
+<li>如果简单标签有标签体，容器将调用setJspBody方法把代表标签体的JspFragment对象传递进来。</li>
+</ul>
+<blockquote>
+<p><strong>doStartTag()</strong>方法是遇到标签开始时执行，其合法的返回值是<strong>EVAL_BODY_INCLUDE</strong>与<strong>SKIP_BODY,</strong>前者表示将显示标签间的内容，后者表示不显示标签间的内容；<strong>doEndTag()</strong>方法是在遇到标签结束时执行，其合法的返回值是<strong>EVAL_PAGE</strong>与<strong>SKIP_PAGE</strong>，前者表示处理完标签后继续执行以下的JSP网页，后者是表示不处理接下来的JSP网页<br><strong>预定的处理顺序是：doStartTag()返回SKIP_BODY,doAfterBodyTag()返回SKIP_BODY,doEndTag()返回EVAL_PAGE.</strong></p>
+</blockquote>
+<pre><code>doAfterBody()
+
+这个方法是在显示完标签间文字之后呼叫的，其返回值有EVAL_BODY_AGAIN与SKIP_BODY，前者会再显示一次标签间的文字，后者则继续执行标签处理的下一步。
+</code></pre><p>如果继承了TagSupport之后，如果没有改写任何的方法，标签处理的执行顺序是：<br>doStartTag() -&gt;不显示文字-&gt;doEndTag()-&gt;执行接下来的网页</p>
+<h3 id="HttpSession"><a href="#HttpSession" class="headerlink" title="HttpSession"></a>HttpSession</h3><p>HttpSession生命周期：<br>1.什么时候创建HttpSession<br>1）.对于JSP：<br>是否浏览器访问服务端的任何一个JSP或Servlet，服务器都会立即创建一个HttpSession对象呢？<br>不一定。<br>①. 若当前的JSP或（Servlet）是客户端访问的当前WEB应用的第一个资源，且JSP的page指定的<br>session属性为false，则服务器就不会为JSP创建一个HttpSession对象；<br>②.若当前JSP不是客户端访问的当前WEB应用的第一个资源，且其他页面已经创建一个HttpSession对象，<br>则服务器也不会为当前JSP创建一个新的HttpSession对象，而会把和当前会话关联的那个HttpSession对象返回给当前的JSP页面。<br>2）.page指令的session=”false” 到底表示什么意思：<br>当前JSP页面禁用session隐含变量！但可以使用其他的显式的对象<br>3）.对于Servlet而言：<br>若Servlet是客户端访问的第一个WEB应用的资源，则只有调用了request.getSession()或request.getSession(true)  才会创建HttpSession对象</p>
+<p>4）. 在Servlet中如何获取HttpSession对象？<br>request.getSession(boolean create):create为false,若没有和当前JSP页面关联的HttpSession对象<br>则返回null；<br>若有返回true  create为true一定返回一个HTTPSession对象。若没有和昂前JSP页面关联的HttpSession对象，<br>则服务器创建一个新的HttpSession对象返回，若有，则直接返回关联。</p>
+<p>request.getSession()等同于request.getSession(true) </p>
+<p>2.什么时候销毁HttpSession对象：<br> 1）.直接调用HttpSession的invalidate（）方法：使Httpsession失效<br> 2）.服务器卸载了当前WEB应用。<br> 3）.超出HttpSession的过期时间。<br> 设置HttpSession的过期时间：单位为S</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><h3 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletReuqest request,HttpServletResponse)</span> <span class="keyword">throws</span> IOException,ServletException</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.doPost(request,response);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse)</span> <span class="keyword">throws</span> IOException,ServletException</span>&#123;</span><br><span class="line">		PrintWriter writer = response.getWriter();</span><br><span class="line">		response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		response.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">		request.getRequestDispatcher(<span class="string">"/bs"</span>).forward(request,response); <span class="comment">//***记得url是在getdispatcher时填的，forward要带两个参</span></span><br><span class="line">		request.getRequestDispatcher(<span class="string">"/bs"</span>).include(request,response);</span><br><span class="line">		response.sendRedirect(<span class="string">"/a.jsp"</span>);</span><br><span class="line">		<span class="keyword">this</span>.getServletContext();</span><br><span class="line">		request.getServletContext();</span><br><span class="line">		request.getSession().getServletContext();</span><br><span class="line">		<span class="keyword">this</span>.config.getServletContext();</span><br><span class="line">		ServletContext sc=getServletConfig.getServletContext();</span><br><span class="line">		config.getInitParameter(<span class="string">"p1"</span>);</span><br><span class="line">		sc.getInitParam(<span class="string">"p2"</span>); <span class="comment">//注意</span></span><br><span class="line">		</span><br><span class="line">		request.getParameter(<span class="string">"aaa"</span>);</span><br><span class="line">		request.getParameterValues(<span class="string">"aaa"</span>);  <span class="comment">//string[]</span></span><br><span class="line">		request.getRealPath(<span class="string">"/"</span>);  <span class="comment">//不推荐 use ServletContext.getRealPath(java.lang.String) instead.</span></span><br><span class="line">		request.getProtocol(<span class="string">"/"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(name=<span class="string">"BServlet"</span>,urlPatterns=&#123;<span class="string">"/bse"</span>&#125;,init-params=&#123;<span class="meta">@WebInitParam</span>(name=<span class="string">"p1"</span>,value=<span class="string">"123"</span>)&#125; )</span><br><span class="line"><span class="meta">@MultipartConfig</span>(localtion=<span class="string">"c:\aaa"</span>,fileSizeThreshold=<span class="number">0</span>,maxFileSize=<span class="number">102400</span>, 	maxRequestSize=<span class="number">102400</span>)</span><br><span class="line"><span class="comment">/*fileSizeThreshold默认0，多少字节后存到文件系统上，mfs:最大文件大小 mrs:最大请求的multipart form大小*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletReuqest request,HttpServletResponse)</span> <span class="keyword">throws</span> IOException,ServletException</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.doPost(request,response);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest request, HttpServletResponse)</span> <span class="keyword">throws</span> IOException,ServletException</span>&#123;</span><br><span class="line">		PrintWriter writer = response.getWriter();</span><br><span class="line">		response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		response.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">		response.addCookie(<span class="keyword">new</span> Cookie(<span class="string">"akb"</span>,<span class="string">"111"</span>));  <span class="comment">//不是set是add</span></span><br><span class="line">		Cookie c1=<span class="keyword">new</span> Cookie(<span class="string">"a"</span>,<span class="string">"1"</span>);</span><br><span class="line">		c1.setMaxAge(<span class="number">2000</span>); <span class="comment">//秒</span></span><br><span class="line">		response.addCookie(c1);</span><br><span class="line">		response.sendError(<span class="number">500</span>);</span><br><span class="line">		writer.print(request.getProtocol());</span><br><span class="line">		<span class="comment">//4个路径</span></span><br><span class="line">		request.getRequestURI();</span><br><span class="line">		reuqest.getRequestURL();</span><br><span class="line">		request.getContextPath();</span><br><span class="line">		request.getServletPath();</span><br><span class="line">		<span class="keyword">long</span> l=<span class="keyword">this</span>.getLastModified(request);</span><br><span class="line">		HttpSession hs= request.getSession();</span><br><span class="line">		hs.getID();</span><br><span class="line">		hs.setMaxInactiveInterval(<span class="number">1000</span>); <span class="comment">//s</span></span><br><span class="line">		</span><br><span class="line">		<span class="comment">//上传</span></span><br><span class="line">		Part part=request.getPart(<span class="string">"file"</span>); <span class="comment">//寻找指定名称的part</span></span><br><span class="line">		part.write(<span class="string">"c:\aa"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;  <span class="comment">//也可以extends HttpServlet</span></span><br><span class="line">	FilterConfig config;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig c)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.config=c;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request,ServletResponse response,FilterChain chain)</span></span>&#123; <span class="comment">//注意第三个参数</span></span><br><span class="line">		c.getInitParameter(<span class="string">"p1"</span>); <span class="comment">//完整的param</span></span><br><span class="line">		c.getServletContext();</span><br><span class="line">		</span><br><span class="line">		chain.doFilter(request,response); <span class="comment">//往下传</span></span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebFilter</span>(name=<span class="string">"BFilter"</span>, initParams=&#123;<span class="meta">@WebInitParam</span>(name=<span class="string">"p1"</span>,balue=<span class="string">"1"</span>) &#125;, urlPatterns=&#123;<span class="string">"/a/*.css"</span>&#125;, servletName=&#123;<span class="string">"AServlet"</span>&#125;)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FIlterConfig c)</span></span>&#123;&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain chain )</span></span>&#123;</span><br><span class="line">		request.getRequestDispatch(<span class="string">"/login"</span>).forward(request,response);</span><br><span class="line">		Cookie c=<span class="keyword">new</span> Cookie(<span class="string">"c1"</span>,<span class="string">"1"</span>);</span><br><span class="line">		c.setDomain(<span class="string">".kk.com"</span>); <span class="comment">//必须.开头</span></span><br><span class="line">		c.setPath(<span class="string">"/"</span>);</span><br><span class="line">		chain.doFilter(request,response);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  &lt;form action="/HelloWorld/UpLoad" method="post" enctype="multipart/form-data"&gt;//注意</span></span><br><span class="line"><span class="comment">            &lt;input type="file" name="file"&gt;</span></span><br><span class="line"><span class="comment">            &lt;input type="submit" name="upload" value="上传"&gt;</span></span><br><span class="line"><span class="comment">        &lt;/form&gt;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Listener*/</span>  <span class="comment">/*Event都是EventObject子类  Listener都是 EventListener 子接口*/</span></span><br><span class="line"><span class="comment">//监听三大域的初始化和销毁</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitializated</span><span class="params">(ServletConetxtEvent s)</span></span>&#123;  <span class="comment">//注意名字</span></span><br><span class="line">		s.getServletContext();</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent s)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class implements HttpSessionListener</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionCreated</span><span class="params">(HttpSessionEvent session)</span></span>&#123;</span><br><span class="line">		session.getSession();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionDestroyed</span><span class="params">(HttpSessionEvent session)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">ServletRequestListener</span></span>&#123;  <span class="comment">//名字不是http</span></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">requestInitializated</span><span class="params">(ServletRequestEvent s)</span></span>&#123;</span><br><span class="line">		s.getServletContext();</span><br><span class="line">		s.getServletRequest();  <span class="comment">//httprequest是其子接口</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sessionDestroyed</span><span class="params">(ServletRequestEvent s)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//监听三大域的属性变更</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">SerlvetContextAttributeListener</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletAttributeEvent e)</span></span>&#123;</span><br><span class="line">		e.getName();</span><br><span class="line">		e.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletAttributeEvent e)</span></span>&#123;&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletAttributeEvent e)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">HttpSessionAttributeListener</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(HttpSeesionBindingEvent e)</span></span>&#123;  <span class="comment">//注意事件名</span></span><br><span class="line">		e.getSession(); <span class="comment">//HttpSession</span></span><br><span class="line">		e.getName();</span><br><span class="line">		e.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(HttpSeesionBindingEvent e)</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(HttpSeesionBindingEvent e)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">ServletRequestAttriuteListener</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeAdded</span><span class="params">(ServletRequestAttributeEvent e)</span></span>&#123;  <span class="comment">//注意事件名</span></span><br><span class="line">		e.getName();</span><br><span class="line">		e.getValue();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeRemoved</span><span class="params">(ServletRequestAttributeEvent  e)</span></span>&#123;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attributeReplaced</span><span class="params">(ServletRequestAttributeEvent  e)</span></span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//session的属性绑定与</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="keyword">implements</span> <span class="title">HttpSessionBindingListener</span></span>&#123;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueBound</span><span class="params">(HttpSessionBindingEvent event)</span></span>&#123;&#125;</span><br><span class="line">       <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">valueUnbound</span><span class="params">(HttpSessionBindingEvent event)</span></span></span><br><span class="line"><span class="function">&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class implements HttpSessionActivativationListener</span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> 	<span class="title">sessionDidActivate</span><span class="params">(HttpSessionEvent se)</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> 	<span class="title">sessionDidActivate</span><span class="params">(HttpSessionEvent se)</span></span></span><br><span class="line"><span class="function">&#125; <span class="comment">//**</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"><span class="comment">/*执行顺序:</span></span></span><br><span class="line"><span class="function"><span class="comment">+ WEB容器调用标签处理器对象的setJspContext方法，将代表JSP页面的pageContext对象传递给标签处理器对象。</span></span></span><br><span class="line"><span class="function"><span class="comment">+ WEB容器调用标签处理器对象的setParent方法，将父标签处理器对象传递给这个标签处理器对象。注意，只有在标签存在父标签的情况下，WEB容器才会调用这个方法。</span></span></span><br><span class="line"><span class="function"><span class="comment">+ 如果调用标签时设置了属性，容器将调用每个属性对应的setter方法把属性值传递给标签处理器对象。如果标签的属性值是EL表达式或脚本表达式，则WEB容器首先计算表达式的值，然后把值传递给标签处理器对象。</span></span></span><br><span class="line"><span class="function"><span class="comment">+ 如果简单标签有标签体，容器将调用setJspBody方法把代表标签体的JspFragment对象传递进来。*/</span></span></span><br><span class="line"><span class="function"><span class="comment">/*doStartTag()方法是遇到标签开始时执行，其合法的返回值是EVAL_BODY_INCLUDE与SKIP_BODY,前者表示将显示标签间的内容，后者表示不显示标签间的内容；</span></span></span><br><span class="line"><span class="function"><span class="comment">	doEndTag()方法是在遇到标签结束时执行，其合法的返回值是EVAL_PAGE与SKIP_PAGE，前者表示处理完标签后继续执行以下的JSP网页，后者是表示不处理接下来的JSP网页*/</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> class TagA extends TagSupport</span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doStartTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException</span>&#123;  <span class="comment">//注意抛的异常</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> Tag.EVAL_BODY_INCLUDE;  <span class="comment">//不跳过body</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doAfterBody</span><span class="params">()</span> throw JspException</span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> Tag.SKIP_BODY;  </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">doEndTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> Tag.EVAL_PAGE;  <span class="comment">//不跳过剩下的页面</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TagB</span> <span class="keyword">extends</span> <span class="title">SimpleTagSupport</span></span>&#123;</span><br><span class="line">	String account=<span class="string">""</span>;</span><br><span class="line">	String passwd=<span class="string">""</span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAccount</span><span class="params">(String a)</span></span>&#123;<span class="keyword">this</span>.account=a;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPasswd</span><span class="params">(String p)</span></span>&#123;<span class="keyword">this</span>.passwd=p;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">setAccount</span><span class="params">(String a)</span></span>&#123;<span class="keyword">return</span> account;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">setPasswd</span><span class="params">(String p)</span></span>&#123;<span class="keyword">return</span> passwd;&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doTag</span><span class="params">()</span> <span class="keyword">throws</span> JspException</span>&#123;</span><br><span class="line">		PageContext pc=(PageContext)<span class="keyword">this</span>.getJspContext;  <span class="comment">//重要，获取pageContext的方式</span></span><br><span class="line">		JspWriter out=pc.getOut();</span><br><span class="line">		pc.getRequest();</span><br><span class="line">		pc.getResponse();</span><br><span class="line">		pc.getSession();</span><br><span class="line">		pc.getServletContext();</span><br><span class="line">		pc.getServletConfig();</span><br><span class="line">		pc.forward(<span class="string">"url"</span>);</span><br><span class="line">		pc.include(<span class="string">"/aaa"</span>,<span class="keyword">true</span>); <span class="comment">//第二个参数flush</span></span><br><span class="line">		pc.setAttribute(<span class="string">"a"</span>,pc,PageContext.SESSION_SCOPE); <span class="comment">//第三个参数可选。在哪个域中写入属性。session,application,request,不写的话是在pagecontext</span></span><br><span class="line">		pc.release();</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Xml"><a href="#Xml" class="headerlink" title="Xml"></a>Xml</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--部署app在tomcat--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"localhost"</span> <span class="attr">appBase</span>=<span class="string">"webapps"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/a"</span> <span class="attr">docBase</span>=<span class="string">"/s/f"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/b"</span> <span class="attr">docBase</span>=<span class="string">"/s/b"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">""</span> <span class="attr">docBase</span>=<span class="string">"/u/a"</span>/&gt;</span></span><br><span class="line">	...	</span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--web.xml--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>p2<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>123<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>AServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.a.AServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>p1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>123<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">serlvet-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>AServlet<span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/hello<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">fliter</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">fliter-name</span>&gt;</span>AFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">fliter-class</span>&gt;</span>com.a.AFilter<span class="tag">&lt;/<span class="name">fliter-class</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>f1<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>v1<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">fliter-mapping</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">filter-nmae</span>&gt;</span>f1<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/a/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ta.tld</span><br><span class="line"><span class="tag">&lt;<span class="name">taglib...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>d<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">short-name</span>&gt;</span>aaa<span class="tag">&lt;/<span class="name">short-name</span>&gt;</span> <span class="comment">&lt;!--前缀--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">uri</span>&gt;</span>http://java.xx.aaa/aa/core<span class="tag">&lt;/<span class="name">uri</span>&gt;</span>  <span class="comment">&lt;!--等下引入会用到--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--下面是各种标签的定义--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tag</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">tag-class</span>&gt;</span>com.akb.TagA<span class="tag">&lt;/<span class="name">tag-calss</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">body-content</span>&gt;</span><span class="tag">&lt;<span class="name">body-content</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!--属性定义--&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>account<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>true<span class="tag">&lt;/<span class="name">required</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>false<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">attribute</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">name</span>&gt;</span>passwd<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">required</span>&gt;</span>true<span class="tag">&lt;/<span class="name">required</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">rtexprvalue</span>&gt;</span>false<span class="tag">&lt;/<span class="name">rtexprvalue</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">attribute</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">taglib</span>&gt;</span>		</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">引入</span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">taglib</span> <span class="attr">uri</span>=<span class="string">"http://java.xx.aaa/aa/core"</span> <span class="attr">prefix</span>=<span class="string">"aaa"</span>&gt;</span></span><br><span class="line">使用</span><br><span class="line"><span class="tag">&lt;<span class="name">aaa:hello</span> <span class="attr">account</span>=<span class="string">"4442ss"</span> <span class="attr">passwd</span>=<span class="string">"123"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">JSP2.0更简便的办法</span><br><span class="line">创建tag文件 在/WEB-INF/tags下</span><br><span class="line">time.tag</span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">tag</span> <span class="attr">import</span>=<span class="string">"java.util.*"</span> <span class="attr">import</span>=<span class="string">"java.text.*"</span> %&gt;</span>  <span class="comment">&lt;!--在这里引入需要的包--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">  <span class="attr">DateFormat</span> <span class="attr">df</span> = <span class="string">DateFormat.getDateInstance(DateFormat.LONG);</span></span></span><br><span class="line"><span class="tag">  <span class="attr">Date</span> <span class="attr">d</span> = <span class="string">new</span> <span class="attr">Date</span>(<span class="attr">System.currentTimeMillis</span>());</span></span><br><span class="line"><span class="tag">  <span class="attr">out.println</span>(<span class="attr">df.format</span>(<span class="attr">d</span>));</span></span><br><span class="line"><span class="tag">%&gt;</span></span><br><span class="line"></span><br><span class="line">repeater.tag</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">attribute</span> <span class="attr">name</span>=<span class="string">"count"</span> <span class="attr">type</span>=<span class="string">"java.lang.Integer"</span> <span class="attr">required</span>=<span class="string">"true"</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">attribute</span> <span class="attr">name</span>=<span class="string">"value"</span> <span class="attr">type</span>=<span class="string">"java.lang.String"</span> <span class="attr">required</span>=<span class="string">"true"</span> %&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%!</span></span></span><br><span class="line"><span class="tag">  <span class="attr">private</span> <span class="attr">String</span> <span class="attr">repeater</span>(<span class="attr">Integer</span> <span class="attr">count</span>, <span class="attr">String</span> <span class="attr">s</span>) &#123;</span></span><br><span class="line"><span class="tag"> </span></span><br><span class="line"><span class="tag">   <span class="attr">int</span> <span class="attr">n</span> = <span class="string">count.intValue();</span></span></span><br><span class="line"><span class="tag">    <span class="attr">StringBuffer</span> <span class="attr">sb</span> = <span class="string">new</span> <span class="attr">StringBuffer</span>();</span></span><br><span class="line"><span class="tag"> </span></span><br><span class="line">   for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">      sb.append(s);</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">  return sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span><br><span class="line"><span class="tag">  <span class="attr">out.println</span>(<span class="attr">repeater</span>(<span class="attr">count</span>, <span class="attr">value</span>));</span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag"></span></span><br><span class="line"><span class="tag">使用</span></span><br><span class="line">&lt;%@ taglib prefix="util" tagdir="/WEB-INF/tags" %&gt; &lt;!--直接用tagdir指定文件夹--&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">util:repeater</span> <span class="attr">count</span>=<span class="string">'$&#123;3 * 10&#125;'</span> <span class="attr">value</span>=<span class="string">'zzz'</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------End of this passage-------------</div>
+    
+</div>
+  
+</div>
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="JavaEE复习笔记">
+      <i class="fa fa-chevron-left"></i> JavaEE复习笔记
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Http协议"><span class="nav-number">1.</span> <span class="nav-text">Http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求"><span class="nav-number">1.1.</span> <span class="nav-text">请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回应"><span class="nav-number">1.2.</span> <span class="nav-text">回应</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http缓存"><span class="nav-number">1.3.</span> <span class="nav-text">!!Http缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强缓存"><span class="nav-number">1.3.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协商缓存"><span class="nav-number">1.3.2.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http状态码："><span class="nav-number">1.3.3.</span> <span class="nav-text">http状态码：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#COOKIES"><span class="nav-number">1.3.4.</span> <span class="nav-text">COOKIES</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#媒体类型"><span class="nav-number">1.3.5.</span> <span class="nav-text">媒体类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#URL"><span class="nav-number">1.3.6.</span> <span class="nav-text">URL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标签"><span class="nav-number">1.4.</span> <span class="nav-text">标签</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SimpleTag接口"><span class="nav-number">1.4.1.</span> <span class="nav-text">SimpleTag接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tag接口"><span class="nav-number">1.4.2.</span> <span class="nav-text">Tag接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TagSupport"><span class="nav-number">1.4.3.</span> <span class="nav-text">TagSupport</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HttpSession"><span class="nav-number">1.5.</span> <span class="nav-text">HttpSession</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Java"><span class="nav-number">2.1.</span> <span class="nav-text">Java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Xml"><span class="nav-number">2.2.</span> <span class="nav-text">Xml</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Sakuyui39"
+      src="/images/tx.jpg">
+  <p class="site-author-name" itemprop="name">Sakuyui39</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Sakuyui" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Sakuyui" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:microyui39@yahoo.co.jp" title="E-Mail → mailto:microyui39@yahoo.co.jp" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/bkyh/" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;bkyh&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/microice17" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;microice17" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://www.instagram.com/sakuyui39/" title="Instagram → https:&#x2F;&#x2F;www.instagram.com&#x2F;sakuyui39&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 2018 – 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sakuyui39</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="Symbols count total">299k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="Reading time total">4:32</span>
+</div>
+  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="Total Visitors">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="Total Views">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='240' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

@@ -210,6 +210,135 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E3%80%91Boosting%E6%97%8F%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/26/%E3%80%90%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E3%80%91Boosting%E6%97%8F%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">【统计学习】Boosting族算法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-26 20:50:44 / Modified: 20:23:06" itemprop="dateCreated datePublished" datetime="2019-12-26T20:50:44+08:00">2019-12-26</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>837</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>1 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="【统计学习】Boosting族算法"><a href="#【统计学习】Boosting族算法" class="headerlink" title="【统计学习】Boosting族算法"></a>【统计学习】Boosting族算法</h2><blockquote>
+<p>和bagging不同的是，分类器是串行的。必须先生成第一个再生成第二个。。。<br><img src="./1557063634839.png" alt="Alt text"><br>D2解决错误<br><img src="./1557063714197.png" alt="Alt text"><br>D3解决争端<br><img src="./1557063776838.png" alt="Alt text"></p>
+</blockquote>
+<p>boosting分类器比bagging少得多<br><img src="./1557064027038.png" alt="Alt text"></p>
+<h3 id="Stacking"><a href="#Stacking" class="headerlink" title="Stacking"></a>Stacking</h3><p><img src="./1557063475709.png" alt="Alt text"></p>
+<p>用原始数据集训练得到k个分类器，然后用结果二次训练得到分类器的权重。    </p>
+<h3 id="Adboost"><a href="#Adboost" class="headerlink" title="Adboost"></a>Adboost</h3><blockquote>
+<p>Addictive Model<br>AdaBoost是最著名的Boosting族算法。<strong>开始时，所有样本的权重相同</strong>，训练得到第一个基分类器。从第二轮开始，每轮开始前都先根据上一轮基分类器的分类效果调整每个样本的权重，<strong>上一轮分错的样本权重提高，分对的样本权重降低</strong>。之后根据新得到样本的权重指导本轮中的基分类器训练，即在考虑样本不同权重的情况下得到本轮错误率最低的基分类器。重复以上步骤直至训练到约定的轮数结束，每一轮训练得到一个基分类器。<br>可以想象到，远离边界（超平面）的样本点总是分类正确，而分类边界附近的样本点总是有大概率被弱分类器（基分类器）分错，所以权值会变高，即边界附近的样本点会在分类时得到更多的重视。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">符号</th>
+<th style="text-align:right">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">$D=\{(\vec {x_i)},y_i\,\in[1,m]\}$</td>
+<td style="text-align:right">训练集，共m个样本</td>
+</tr>
+<tr>
+<td style="text-align:left">$T$</td>
+<td style="text-align:right">训练轮数</td>
+</tr>
+<tr>
+<td style="text-align:left">$D_t(x)$</td>
+<td style="text-align:right">第t轮样本权重分布</td>
+</tr>
+<tr>
+<td style="text-align:left">$h_t$</td>
+<td style="text-align:right">第t轮得到的基分类器</td>
+</tr>
+<tr>
+<td style="text-align:left">$\alpha_t$</td>
+<td style="text-align:right">第t轮得到的基分类器的权重</td>
+</tr>
+<tr>
+<td style="text-align:left">$\epsilon_t$</td>
+<td style="text-align:right">第t轮$h_t$的错误率</td>
+</tr>
+<tr>
+<td style="text-align:left">$P_A(D)$</td>
+<td style="text-align:right">强分类器A在数据集D上的最终准确率</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="./1556331112900.png" alt="Alt text"><br><img src="./1556331755956.png" alt="Alt text"><br>第一轮完成</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/26/%E3%80%90%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E3%80%91Boosting%E6%97%8F%E7%AE%97%E6%B3%95/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E3%80%91Bayes%20classifier(%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1224,90 +1353,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E3%80%91%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%845%E7%A7%8D%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="Sakuyui39">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SakuyuiのBLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/26/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E3%80%91%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%845%E7%A7%8D%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">【密码学】分组密码的5种基本工作模式</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-26 20:48:53 / Modified: 20:32:26" itemprop="dateCreated datePublished" datetime="2019-12-26T20:48:53+08:00">2019-12-26</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>228</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>1 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="【密码学】分组密码的5种基本工作模式"><a href="#【密码学】分组密码的5种基本工作模式" class="headerlink" title="【密码学】分组密码的5种基本工作模式"></a>【密码学】分组密码的5种基本工作模式</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><img src="./1569292471510.png" alt="Alt text"></p>
-<h2 id="ECB-Electrinic-CodeBook"><a href="#ECB-Electrinic-CodeBook" class="headerlink" title="ECB(Electrinic CodeBook)"></a>ECB(Electrinic CodeBook)</h2><p><img src="./1569292508764.png" alt="Alt text"><br>简单，扩散性不好，明文规律会反映在密文上</p>
-<h2 id="CBC-Cipher-Block-Chining"><a href="#CBC-Cipher-Block-Chining" class="headerlink" title="CBC(Cipher Block Chining)"></a>CBC(Cipher Block Chining)</h2><p><img src="./1569292567732.png" alt="Alt text"><br>解密支持并行计算（解密不支持）<br>能够解密任意密文分组<br>明文的重复不会反映在密文中</p>
-<h2 id="CFB-Cipher-FeedBack"><a href="#CFB-Cipher-FeedBack" class="headerlink" title="CFB(Cipher-FeedBack)"></a>CFB(Cipher-FeedBack)</h2><p><img src="./1569292739967.png" alt="Alt text"><br>长度和明文分组相等<br>解密支持并行计算<br>对噪声抵抗力小</p>
-<h2 id="OFB-Output-FeedBack"><a href="#OFB-Output-FeedBack" class="headerlink" title="OFB(Output-FeedBack)"></a>OFB(Output-FeedBack)</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/26/%E3%80%90%E5%AF%86%E7%A0%81%E5%AD%A6%E3%80%91%E5%88%86%E7%BB%84%E5%AF%86%E7%A0%81%E7%9A%845%E7%A7%8D%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1380,7 +1425,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1448,12 +1493,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">283k</span>
+    <span title="Symbols count total">299k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:17</span>
+    <span title="Reading time total">4:32</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>

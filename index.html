@@ -210,6 +210,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/tx.jpg">
+      <meta itemprop="name" content="Sakuyui39">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SakuyuiのBLOG">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/" class="post-title-link" itemprop="url">【Web】JavaEE考点对策</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2019-12-28 23:16:14 / Modified: 23:16:37" itemprop="dateCreated datePublished" datetime="2019-12-28T23:16:14+08:00">2019-12-28</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="Symbols count in article">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              <span>16k</span>
+            </span>
+            <span class="post-meta-item" title="Reading time">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              <span>14 mins.</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Http协议"><a href="#Http协议" class="headerlink" title="Http协议"></a>Http协议</h2><h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><p>一个http请求代表客户端浏览器向服务器发送的数据。一个完整的http请求消息，包含一个<strong>请求行</strong>，<strong>若干个消息头（请求头）</strong>，<strong>换行</strong>，<strong>实体内容</strong><br><img src="./1577520192233.png" alt="Alt text"></p>
+<p>请求头（消息头）包含（客户机请求的服务器主机名，客户机的环境信息等）：</p>
+<ul>
+<li><strong>User-Agent：</strong>客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等）</li>
+<li><strong>Connection：</strong>告诉服务器，请求完成后，是否保持连接</li>
+<li><strong>If-Modified-Since：</strong>客户机通过这个头告诉服务器，资源的缓存时间</li>
+<li><strong>Accept-Charset：</strong>用于告诉服务器，客户机采用的编码格式</li>
+<li><strong>Accept-Encoding：</strong>用于告诉服务器，客户机支持的数据压缩格式</li>
+<li><strong>Accept-Language：</strong>客户机语言环境</li>
+<li><strong>Host:</strong> 客户机通过这个服务器，想访问的主机名</li>
+<li><strong>Referer：</strong>客户机通过这个头告诉服务器，它（客户端）是从哪个资源来访问服务器的（防盗链）</li>
+</ul>
+<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br><img src="./1577526986514.png" alt="Alt text"></p>
+<h3 id="回应"><a href="#回应" class="headerlink" title="回应"></a>回应</h3><p>一个http响应代表服务器端向客户端回送的数据，它包括：<br>一个<strong>状态行</strong>，<strong>若干个消息头</strong>，以及<strong>实体内容</strong><br><img src="./1577524740633.png" alt="Alt text"></p>
+<p>响应头(消息头)包含:<br><strong>Allow:</strong>允许哪些请求方法，post get等    </p>
+<ul>
+<li><strong>Location：</strong>这个头配合302状态吗，用于告诉客户端找谁</li>
+<li><strong>Server：</strong>服务器通过这个头，告诉浏览器服务器的类型</li>
+<li><strong>Content-Encoding：</strong>告诉浏览器，服务器的数据压缩格式</li>
+<li>Content-Length：告诉浏览器，回送数据的长度</li>
+<li><strong>Content-Type：</strong>告诉浏览器，回送数据的类型</li>
+<li><strong>Last-Modified：</strong>告诉浏览器当前资源缓存时间，只有改动时间迟于该时间的才会返回。否则<strong>304</strong>  一般与与If-Modified-Since一起用</li>
+<li><strong>Refresh：</strong>告诉浏览器，隔多长时间刷新</li>
+<li>Content-Disposition：告诉浏览器以下载的方式打开数据。例如： context.Response.AddHeader(“Content-+ Disposition”,”attachment:filename=aa.jpg”);                                        context.Response.WriteFile(“aa.jpg”);<br>Transfer-Encoding：告诉浏览器，传送数据的编码格式</li>
+<li><strong>ETag：</strong>缓存相关的头,类似一个资源hash函数的存在。可以发现资源是否有变化</li>
+<li><strong>Expries：</strong> 过期时间，可以相对，可以绝对</li>
+<li><p><strong>Cache-Control：</strong>控制浏览器缓存 </p>
+</li>
+<li><p><strong>max-age</strong>:是HTTP/1.1中的 过期时间。是个相对的值(<strong>相对于请求时间</strong>)</p>
+</li>
+<li><strong>Connection：</strong>响应完成后，是否断开连接。  close/Keep-Alive</li>
+<li><strong>Content-Disposition</strong><br>Date：告诉浏览器，服务器响应时间</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/12/28/j2ee%E8%80%83%E7%82%B9%E5%AF%B9%E7%AD%96/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -241,7 +353,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-12-28 13:47:06" itemprop="dateModified" datetime="2019-12-28T13:47:06+08:00">2019-12-28</time>
+                <time title="Modified: 2019-12-28 23:16:54" itemprop="dateModified" datetime="2019-12-28T23:16:54+08:00">2019-12-28</time>
               </span>
 
           <br>
@@ -250,7 +362,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>79k</span>
+              <span>80k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
@@ -269,7 +381,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
+          <h2 id="JavaEE复习笔记"><a href="#JavaEE复习笔记" class="headerlink" title="JavaEE复习笔记"></a>JavaEE复习笔记</h2><blockquote>
 <p>根据上课的笔记整理与补充。<br>contact: 405544641@qq.com</p>
 </blockquote>
 <p>Spring的思想 <strong>控制翻转</strong>:让容器管理对象的创建与销毁，<strong>依赖注入</strong>:利用<strong>反射</strong>实现，动态地向一个对象提供其所需的其他对象</p>
@@ -299,7 +411,7 @@
 /*和/** 后者会匹配更多的目录 (Ant path匹配。spring支持。还支持正则表达式,进行更复杂的匹配)
 </code></pre><p>关于url-pattern的/, 同样在struts中，默认映射了<em>.action </em>.do ,  /无法覆盖他们<br>strut2的配置文件加载顺序为： </p>
 <pre><code>   Struts-default.xml---&gt; struts-plugin.xml--&gt; struts.xml--&gt;   struts.properties--&gt; web.xml
-</code></pre><p><strong>使用servlet</strong></p>
+</code></pre>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
@@ -1273,90 +1385,6 @@ u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/Operating%20System%20Concepts/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/tx.jpg">
-      <meta itemprop="name" content="Sakuyui39">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SakuyuiのBLOG">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/26/Operating%20System%20Concepts/" class="post-title-link" itemprop="url">Operating System Concepts</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2019-12-26 20:54:23 / Modified: 20:19:12" itemprop="dateCreated datePublished" datetime="2019-12-26T20:54:23+08:00">2019-12-26</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="Symbols count in article">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>5.1k</span>
-            </span>
-            <span class="post-meta-item" title="Reading time">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>5 mins.</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Operating-System-Concepts"><a href="#Operating-System-Concepts" class="headerlink" title="Operating System Concepts"></a>Operating System Concepts</h1><p>[TOC]</p>
-<h2 id="Chapter-1-Introduction-介绍"><a href="#Chapter-1-Introduction-介绍" class="headerlink" title="Chapter 1 Introduction(介绍)"></a>Chapter 1 Introduction(介绍)</h2><h3 id="1-1-What-OS-Do"><a href="#1-1-What-OS-Do" class="headerlink" title="1.1 What OS Do?"></a>1.1 What OS Do?</h3><p>A computer system can be divided roughly into <strong>four</strong> components: the <strong>hardware</strong>, the <strong>operating system</strong>, the <strong>application programs</strong>,and a <strong>user</strong></p>
-<h4 id="1-1-1-User-View"><a href="#1-1-1-User-View" class="headerlink" title="1.1.1 User View"></a>1.1.1 User View</h4><p><img src="./1552728926122.png" alt="Alt text"><br>Some Computer have little or no user view,such as <strong>embedded computers(嵌入式计算机)</strong></p>
-<h4 id="1-1-2-System-View"><a href="#1-1-2-System-View" class="headerlink" title="1.1.2 System View"></a>1.1.2 System View</h4><p>we can view OS as a <strong>resource allocator</strong></p>
-<h4 id="1-1-3-Defining-OS"><a href="#1-1-3-Defining-OS" class="headerlink" title="1.1.3 Defining OS"></a>1.1.3 Defining OS</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2019/12/26/Operating%20System%20Concepts/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1429,7 +1457,7 @@ u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">75</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1497,12 +1525,12 @@ u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">283k</span>
+    <span title="Symbols count total">299k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:17</span>
+    <span title="Reading time total">4:32</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>
