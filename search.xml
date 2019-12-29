@@ -249,10 +249,8 @@ Empty 运算符:
   </entry>
   <entry>
     <title>JavaEE复习笔记</title>
-    <url>/2019/12/28/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<hr>
-<p>title: JavaEE复习笔记<br>date: 2019-12-27 21:35:14<br>—-## JavaEE复习笔记</p>
-<blockquote>
+    <url>/2019/12/27/JavaEE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="JavaEE复习笔记"><a href="#JavaEE复习笔记" class="headerlink" title="JavaEE复习笔记"></a>JavaEE复习笔记</h2><blockquote>
 <p>根据上课的笔记整理与补充。<br>contact: 405544641@qq.com</p>
 </blockquote>
 <p>Spring的思想 <strong>控制翻转</strong>:让容器管理对象的创建与销毁，<strong>依赖注入</strong>:利用<strong>反射</strong>实现，动态地向一个对象提供其所需的其他对象</p>
