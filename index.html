@@ -233,10 +233,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-12-28 23:16:14 / Modified: 23:16:37" itemprop="dateCreated datePublished" datetime="2019-12-28T23:16:14+08:00">2019-12-28</time>
+              <time title="Created: 2019-12-28 23:16:14" itemprop="dateCreated datePublished" datetime="2019-12-28T23:16:14+08:00">2019-12-28</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-12-29 10:52:40" itemprop="dateModified" datetime="2019-12-29T10:52:40+08:00">2019-12-29</time>
+              </span>
 
           <br>
             <span class="post-meta-item" title="Symbols count in article">
@@ -244,14 +250,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">Symbols count in article: </span>
-              <span>16k</span>
+              <span>25k</span>
             </span>
             <span class="post-meta-item" title="Reading time">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">Reading time &asymp;</span>
-              <span>14 mins.</span>
+              <span>23 mins.</span>
             </span>
 
         </div>
@@ -269,28 +275,30 @@
 <li><strong>User-Agent：</strong>客户机通过这个头告诉服务器，客户机的软件环境（操作系统，浏览器版本等）</li>
 <li><strong>Connection：</strong>告诉服务器，请求完成后，是否保持连接</li>
 <li><strong>If-Modified-Since：</strong>客户机通过这个头告诉服务器，资源的缓存时间</li>
+<li><strong>Accept</strong>: 告诉服务器可以接收的文件类型</li>
 <li><strong>Accept-Charset：</strong>用于告诉服务器，客户机采用的编码格式</li>
 <li><strong>Accept-Encoding：</strong>用于告诉服务器，客户机支持的数据压缩格式</li>
 <li><strong>Accept-Language：</strong>客户机语言环境</li>
 <li><strong>Host:</strong> 客户机通过这个服务器，想访问的主机名</li>
 <li><strong>Referer：</strong>客户机通过这个头告诉服务器，它（客户端）是从哪个资源来访问服务器的（防盗链）</li>
 </ul>
-<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br><img src="./1577526986514.png" alt="Alt text"></p>
+<p>实体内容：<br>就是指浏览器端通过http协议发送给服务器的实体数据。例如：name=dylan&amp;id=110<br><img src="./1577526986514.png" alt="Alt text"><br>cookies间用:</p>
 <h3 id="回应"><a href="#回应" class="headerlink" title="回应"></a>回应</h3><p>一个http响应代表服务器端向客户端回送的数据，它包括：<br>一个<strong>状态行</strong>，<strong>若干个消息头</strong>，以及<strong>实体内容</strong><br><img src="./1577524740633.png" alt="Alt text"></p>
 <p>响应头(消息头)包含:<br><strong>Allow:</strong>允许哪些请求方法，post get等    </p>
 <ul>
 <li><strong>Location：</strong>这个头配合302状态吗，用于告诉客户端找谁</li>
 <li><strong>Server：</strong>服务器通过这个头，告诉浏览器服务器的类型</li>
-<li><strong>Content-Encoding：</strong>告诉浏览器，服务器的数据压缩格式</li>
+<li><strong>Content-Encoding：</strong>告诉浏览器，服务器的数据压缩格式 <strong>gzip,deflate, sdch….</strong></li>
 <li>Content-Length：告诉浏览器，回送数据的长度</li>
 <li><strong>Content-Type：</strong>告诉浏览器，回送数据的类型</li>
 <li><strong>Last-Modified：</strong>告诉浏览器当前资源缓存时间，只有改动时间迟于该时间的才会返回。否则<strong>304</strong>  一般与与If-Modified-Since一起用</li>
 <li><strong>Refresh：</strong>告诉浏览器，隔多长时间刷新</li>
 <li>Content-Disposition：告诉浏览器以下载的方式打开数据。例如： context.Response.AddHeader(“Content-+ Disposition”,”attachment:filename=aa.jpg”);                                        context.Response.WriteFile(“aa.jpg”);<br>Transfer-Encoding：告诉浏览器，传送数据的编码格式</li>
 <li><strong>ETag：</strong>缓存相关的头,类似一个资源hash函数的存在。可以发现资源是否有变化</li>
-<li><strong>Expries：</strong> 过期时间，可以相对，可以绝对</li>
-<li><p><strong>Cache-Control：</strong>控制浏览器缓存 </p>
-</li>
+<li><strong>Expries：</strong> 过期时间，绝对= <strong>max-age+请求时间</strong> </li>
+<li><p><strong>Cache-Control：</strong>控制浏览器缓存 如</p>
+<pre><code>      Cache-Control: public, max-age:350000
+</code></pre></li>
 <li><p><strong>max-age</strong>:是HTTP/1.1中的 过期时间。是个相对的值(<strong>相对于请求时间</strong>)</p>
 </li>
 <li><strong>Connection：</strong>响应完成后，是否断开连接。  close/Keep-Alive</li>
@@ -1525,12 +1533,12 @@ u、v都满足二维的拉普拉斯方程，所以都是调和函数。因为是
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="Symbols count total">299k</span>
+    <span title="Symbols count total">309k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="Reading time total">4:32</span>
+    <span title="Reading time total">4:41</span>
 </div>
   <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.6.0
   </div>
